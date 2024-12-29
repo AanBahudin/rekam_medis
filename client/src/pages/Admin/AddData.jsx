@@ -12,21 +12,21 @@ const AddData = () => {
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
         <div className='w-full grid grid-cols-4 gap-x-4 gap-y-6'>
-          <CustomFormInput label='nama lengkap' placeholder='nama pasien' isFirstItem={true} name='nama' isRequired={true} />
-          <CustomFormInput label='tanggal lahir' name='tanggalLahir' isRequired={true} type='date' />
-          <CustomFormInput label='usia' placeholder='usia pasien' name='usia' isRequired={true} type='number' />
-          <CustomFormInput label='jenis kelamin' name='jenisKelamin' isRequired={true} inputType='select' list={['Pria', 'Wanita']} />
-          <CustomFormInput label='nomor induk keluarga' placeholder='Nomor Induk Pasien' name='nik' isRequired={true} type='number' />
-          <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' name='nomorTelepon' isRequired={true}  type='number'/>
-          <CustomFormInput label='status perkawinan' name='statusPernikahan' isRequired={true} inputType='select' list={['Menikah', 'Belum Menikah', 'Cerai']} />
-          <CustomFormInput label='Kebangsaan' placeholder='kebangsaan' name='kebangsaan' isRequired={true} />
-          <CustomFormInput label='Agama' name='agama' isRequired={true} inputType='select' list={['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']} />
-          <CustomFormInput label='alamat pasien' placeholder='Alamat Pasien' name='alamat' isRequired={true} />
-          <CustomFormInput label='kota' placeholder='kota ' name='kota' isRequired={true} />
-          <CustomFormInput label='kecamatan' placeholder='kecamatan' name='kecamatan' isRequired={true} />
-          <CustomFormInput label='kelurahan' placeholder='kelurahan' name='kelurahan' isRequired={true} />
-          <CustomFormInput label='RT' placeholder='nomor RT' name='rt' isRequired={true} />
-          <CustomFormInput label='RW' placeholder='nomor RW' name='rw' isRequired={true} />
+          <CustomFormInput label='nama lengkap *' placeholder='nama pasien' isFirstItem={true} name='nama' isRequired={true} />
+          <CustomFormInput label='tanggal lahir *' name='tanggalLahir' isRequired={true} type='date' />
+          <CustomFormInput label='usia *' placeholder='usia pasien' name='usia' isRequired={true} type='number' />
+          <CustomFormInput label='jenis kelamin *' name='jenisKelamin' isRequired={true} inputType='select' list={['Pria', 'Wanita']} />
+          <CustomFormInput label='nomor induk keluarga *' placeholder='Nomor Induk Pasien' name='nik' isRequired={true} type='number' />
+          <CustomFormInput label='Nomor telepon *' placeholder='0823 2402 2150' name='nomorTelepon' isRequired={true}  type='number'/>
+          <CustomFormInput label='status perkawinan *' name='statusPernikahan' isRequired={true} inputType='select' list={['Menikah', 'Belum Menikah', 'Cerai']} />
+          <CustomFormInput label='Kebangsaan *' placeholder='kebangsaan' name='kebangsaan' isRequired={true} />
+          <CustomFormInput label='Agama *' name='agama' isRequired={true} inputType='select' list={['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']} />
+          <CustomFormInput label='alamat pasien *' placeholder='Alamat Pasien' name='alamat' isRequired={true} />
+          <CustomFormInput label='kota *' placeholder='kota ' name='kota' isRequired={true} />
+          <CustomFormInput label='kecamatan *' placeholder='kecamatan' name='kecamatan' isRequired={true} />
+          <CustomFormInput label='kelurahan *' placeholder='kelurahan' name='kelurahan' isRequired={true} />
+          <CustomFormInput label='RT *' placeholder='nomor RT' name='rt' isRequired={true} />
+          <CustomFormInput label='RW *' placeholder='nomor RW' name='rw' isRequired={true} />
         </div>
       </div>
 
@@ -122,12 +122,12 @@ const AddData = () => {
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
         <div className='w-full grid grid-cols-2 gap-x-4 gap-y-6'>
-          <CustomFormInput label='Resiko pasien' name='statusResiko' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah']} />
-          <CustomFormInput label='Resiko infeksi menular' name='infeksiMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
-          <CustomFormInput label='Resiko penyakit kronis' name='kronis' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
-          <CustomFormInput label='Resiko penyakit menular' name='penyakitMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
+          <CustomFormInput label='Resiko pasien *' name='statusResiko' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah']} />
+          <CustomFormInput label='Resiko infeksi menular *' name='infeksiMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
+          <CustomFormInput label='Resiko penyakit kronis *' name='kronis' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
+          <CustomFormInput label='Resiko penyakit menular *' name='penyakitMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
           <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
-          <CustomFormInput label='pemeriksaan lanjutan' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
+          <CustomFormInput label='pemeriksaan lanjutan *' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
           {/* <CustomFormInput label='' placeholder='mmHg' name='keluhan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} /> */}
         </div>
       </div>
