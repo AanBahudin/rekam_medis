@@ -1,8 +1,17 @@
-import React from 'react'
+import { FormInput } from '../../components'
+
 
 const AddData = () => {
   return (
-    <div>AddData</div>
+    <section className="w-full flex flex-col items-center justify-start">
+      
+      <article className='flex'>
+        <div className=''>
+          <FormInput inputName='search' inputType='text' labelName='search'  />
+        </div>
+      </article>
+
+    </section>
   )
 }
 

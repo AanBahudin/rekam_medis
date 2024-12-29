@@ -38,7 +38,7 @@ const Stats = () => {
 
         {/* summary */}
         <section className="w-full grid grid-cols-12 mt-6 gap-x-6 text-greyPrimary">
-          <div className="w-full h-fit col-span-8 bg-lightGrey rounded-2xl flex flex-col items-start justify-center p-10">
+          <div className="w-full h-fit col-span-8 bg-white rounded-2xl flex flex-col items-start justify-center p-10">
             <h4 className='flex gap-x-2 text-sm items-center justify-center mb-6 text-greyPrimary'>
               <ChartNoAxesCombined className="my-auto" />
               <span className='my-auto capitalize text-md font-semibold'> Pertumbuhan Pasien </span>
@@ -55,7 +55,7 @@ const Stats = () => {
 
           </div>
 
-          <div className="bg-gradient flex items-center justify-center col-span-4 rounded-2xl p-6">
+          <div className="bg-white flex items-center justify-center col-span-4 rounded-2xl p-6">
             <ResponsiveContainer width= '100%' height='100%'>
               <PieChart width={900} height={250}>
                 <Pie data={userActivity} dataKey="activeUser" nameKey="date" cx="50%" cy="50%" outerRadius={50} fill="#F7A4A4" />
@@ -68,7 +68,7 @@ const Stats = () => {
         {/* activity */}
         <section className="w-full grid grid-cols-12 mt-6 mb-20 gap-x-6">
           
-          <div className="col-span-4 bg-lightGrey rounded-2xl h-[60vh] overflow-auto py-6 no-scrollbar">
+          <div className="col-span-4 bg-white rounded-2xl h-[60vh] overflow-auto py-6 no-scrollbar">
             <h4 className="font-semibold text-md mb-6 ml-6">Activity</h4>
 
             <div className="flex flex-col gap-y-6">
@@ -78,7 +78,7 @@ const Stats = () => {
             </div>
           </div>
 
-          <div className="col-span-8 bg-lightGrey rounded-2xl h-[60vh] px-6 py-10 overflow-auto no-scrollbar">
+          <div className="col-span-8 bg-white rounded-2xl h-[60vh] px-6 py-10 overflow-auto no-scrollbar">
               <h4 className="font-semibold text-md mb-6">Pasien Terbaru</h4>
 
               <table className="w-full h-full border-separate border-spacing-y-6  overflow-y-scroll no-scrollbar">

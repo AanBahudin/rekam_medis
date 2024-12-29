@@ -7,7 +7,7 @@ const BigSidebar = () => {
     const {showSidebar, toggleSidebar} = useAdminContext();
 
   return (
-    <div className={` bg-lightGrey ${showSidebar ? 'w-[15%]' : 'w-0'} h-full ease-in-out duration-200 py-10`}>
+    <div className={` bg-white ${showSidebar ? 'w-[15%]' : 'w-0'} h-full ease-in-out duration-200 py-10`}>
 
         <div className={`px-6 ${!showSidebar ? 'hidden' : 'visible'}`}>
             <h2 className={`font-semibold text-md ${ showSidebar ? 'visible' : 'hidden' } duration-200 ease-in-out`}>Bhakti Medika</h2>

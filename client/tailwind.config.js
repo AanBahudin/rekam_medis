@@ -21,7 +21,7 @@ export default {
         greyPrimary: '#221D23',
         greySecondary: '#463F3A',
         greyComplementary: "#DCDCDD",
-        lightGrey: "#F4F6FF",
+        lightGrey: "#EEEDEB",
         green: "#A1D6B2",
         blueCard: '#B4E4FF',
         redCard: '#F7A4A4',

@@ -12,7 +12,6 @@ const Login = () => {
       <section className='bg-gradient bg-cover flex flex-col items-start justify-center px-10 h-full w-halfScreen'>
         <h4 className='text-greyPrimary text-2xl font-semibold select-none'>Welcome to</h4>
         <h1 className='text-white text-7xl font-semibold select-none'>Rekam Medis</h1>
-        <h4 className='text-greyPrimary text-2xl font-semibold select-none'>Klinik Bhakti Medika</h4>
 
       </section>
 
