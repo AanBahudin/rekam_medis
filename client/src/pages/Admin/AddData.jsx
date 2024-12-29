@@ -34,7 +34,7 @@ const AddData = () => {
         <h5 className='text-xl tracking-wide text-greyPrimary mb-4 font-medium  bg-blueCard rounded-md px-4 w-fit py-2'>Informasi Kontak  </h5>
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
         <div className='w-full grid grid-cols-4 gap-x-4 gap-y-6'>
-          <CustomFormInput label='nama penanggung jawab' placeholder='penanggung jawab' name='penanggungJawab' isRequired={true} />
+          <CustomFormInput label='nama penanggung jawab' placeholder='penanggung jawab' name='namaPenanggungJawab' isRequired={true} />
           <CustomFormInput label='Hubungan dengan pasien' name='hubunganPenanggungJawab' isRequired={true} inputType='select' list={['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat']} />
           <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' name='nomorTeleponPenanggungJawab' isRequired={true}  type='number'/>
           <CustomFormInput label='alamat penanggung jawab' placeholder='Alamat keluarga' name='alamatPenanggungJawab' isRequired={true} />
@@ -51,8 +51,8 @@ const AddData = () => {
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
         <div className='w-full grid grid-cols-3 gap-x-4 gap-y-6'>
-          <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true} type='number'/>
-          <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} />
+          <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true} />
+          <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} type='number'/>
           <CustomFormInput label='RR (Respiratory Rate)' placeholder='per menit' name='RR' isRequired={true} type='number'/>
           <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBdan' type='number' isRequired={true}/>
           <CustomFormInput label='tingkat kesadaran (1 - 15)' placeholder='kesadaran' name='skalaKesadaran' type='number' isRequired={true} />
@@ -69,7 +69,7 @@ const AddData = () => {
         <div className='w-full grid grid-cols-3 gap-x-4 gap-y-6'>
           <CustomFormInput label='status psikologis' name='statusPsikologi' isRequired={true} inputType='select' list={['stabil', 'cemas', 'depresi', 'agitasi', 'euforia']} />
           <CustomFormInput label='status emosional' name='statusEmosional' isRequired={true} inputType='select' list={['tenang', 'mudah tersinggung', 'marah', 'sedih', 'takut']} />
-          <CustomFormInput label='status kesadaran' name='statusKesadaran' isRequired={true} inputType='select' list={['sadar penuh', 'linglung', 'delirium (bingung mendadak)', 'tidak sadar']} />
+          <CustomFormInput label='status kesadaran' name='statusKesadaran' isRequired={true} inputType='select' list={['sadar penuh', 'linglung', 'delirium', 'tidak sadar']} />
           <CustomFormInput label='status perilaku' name='statusPerilaku' isRequired={true} inputType='select' list={['kooperatif', 'menarik diri', 'agresif', 'pasif']} />
           <CustomFormInput label='status kognitif' name='statusKognitif' isRequired={true} inputType='select' list={['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']} />
           <CustomFormInput label='status sosial' name='statusSosial' isRequired={true} inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
