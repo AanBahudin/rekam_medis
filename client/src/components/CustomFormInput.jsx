@@ -1,7 +1,7 @@
-const CustomFormInput = ({ label, placeholder, name, children, width, isRequired, isFirstItem = false, type='text', inputType = 'input', list = [], defaultValue }) => {
+const CustomFormInput = ({ label, placeholder, name, children, width='w-full', isRequired, isFirstItem = false, type='text', inputType = 'input', list = [], defaultValue }) => {
   return (
     <div className={`${width} flex flex-col gap-y-1`}>
-        <label htmlFor="" className='text-[14px] font-medium truncate'>{label}</label>
+        <label htmlFor="" className='text-[14px] font-medium truncate lowercase'>{label}</label>
         <div className='flex bg-lightGrey px-2 w-full rounded-md items-center'>
             {children}
 
