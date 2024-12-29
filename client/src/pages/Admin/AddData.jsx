@@ -13,7 +13,8 @@ const AddData = () => {
 
         <div className='w-full grid grid-cols-4 gap-x-4 gap-y-6'>
           <CustomFormInput label='nama lengkap' placeholder='nama pasien' width='w-full' isFirstItem={true} name='nama' isRequired={true} />
-          <CustomFormInput label='Tanggal Lahir' placeholder='Pria' width='w-full' name='nama' isRequired={true} type='date' />
+          <CustomFormInput label='tanggal lahir' placeholder='Pria' width='w-full' name='nama' isRequired={true} type='date' />
+          <CustomFormInput label='usia' placeholder='Pria' width='w-full' name='nama' isRequired={true} type='date' />
           <CustomFormInput label='jenis kelamin' placeholder='Pria' width='w-full' name='nama' isRequired={true} inputType='select' list={['Pria', 'Wanita']} />
           <CustomFormInput label='nomor induk keluarga' placeholder='Nomor Induk Pasien' width='w-full' name='nama' isRequired={true} type='number' />
           <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' width='w-full' name='nama' isRequired={true}  type='number'/>
@@ -56,6 +57,7 @@ const AddData = () => {
           <CustomFormInput label='tingkat kesadaran (1 - 15)' placeholder='kesadaran' width='w-full' name='nama' type='number' />
           <CustomFormInput label='tinggi badan (cm)' placeholder='tinggi pasien' width='w-full' name='nama' type='number' />
           <CustomFormInput label='berat badan (kg)' placeholder='berat pasien' width='w-full' name='nama' type='number' />
+          <CustomFormInput label='golongan darah' placeholder='berat pasien' width='w-full' name='nama' type='number' inputType='select' list={['A', 'A+', 'A-', 'AB', 'AB+','AB-', 'B', 'B+', 'B-', 'O', 'O+', 'O-',]} />
         </div>
       </div>
 
@@ -96,15 +98,36 @@ const AddData = () => {
         <h5 className='text-xl tracking-wide text-greyPrimary mb-4 font-medium bg-blueCard rounded-md px-4 w-fit py-2'>Penilaian Resiko Jatuh dan Informasi Gizi</h5>
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
-        <div className='w-full grid grid-cols-3 gap-x-4 gap-y-6'>
-          <CustomFormInput label='keluhan penyakit' placeholder='keluhan pasien' width='w-full' name='keluhan' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat penyakit' placeholder='penanggung jawab' width='w-full' name='nama' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat penyakit turunan' placeholder='Alamat Pasien' width='w-full' name='nama' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat operasi' placeholder='Pria' width='w-full' name='nama' inputType='textarea'/>
-          <CustomFormInput label='alergi' placeholder='0823 2402 2150' width='w-full' name='nama' inputType='textarea'/>
-          <CustomFormInput label='penyakit yang diderita' placeholder='Alamat Pasien' width='w-full' name='nama' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat pengobatan sedang berjalan' placeholder='Alamat Pasien' width='w-full' name='nama' isRequired={true} inputType='textarea' />
+        <div className='w-full grid grid-cols-2 gap-x-4 gap-y-6'>
+          <CustomFormInput label='jalan tidak seimbang' placeholder='keluhan pasien' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
+          <CustomFormInput label='jalan menggunakan alat bantu' placeholder='keluhan pasien' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
+          <CustomFormInput label='apakah ada penurunan berat badan yang tidak diinginkan 6 bulan terakhir?' placeholder='keluhan pasien' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
+          <CustomFormInput label='apakah ada penurunan nafsu makan?' placeholder='keluhan pasien' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
         </div>
+      </div>
+
+      <div className='w-full p-6'>
+        <h5 className='text-xl tracking-wide text-greyPrimary mb-4 font-medium bg-blueCard rounded-md px-4 w-fit py-2'>Informasi Tambahan</h5>
+        <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
+
+        <div className='w-full grid grid-cols-2 gap-x-4 gap-y-6'>
+          <CustomFormInput label='informasi tambahan 1' placeholder='informasi tambahan' width='w-full' name='keluhan' isRequired={true} inputType='textarea' />
+          <CustomFormInput label='informasi tambahan 2' placeholder='informasi tambahan' width='w-full' name='nama' isRequired={true} inputType='textarea' />
+        </div>
+      </div>
+
+      <div className='w-full p-6'>
+        {/* <h5 className='text-xl tracking-wide text-greyPrimary mb-4 font-medium bg-blueCard rounded-md px-4 w-fit py-2'></h5> */}
+        <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
+
+        <div className='w-full grid grid-cols-2 gap-x-4 gap-y-6'>
+          <CustomFormInput label='Resiko pasien' placeholder='mmHg' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah', 'agitasi', 'euforia']} />
+          <CustomFormInput label='tujuan berobat' placeholder='mmHg' width='w-full' name='keluhan' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
+        </div>
+      </div>
+
+      <div className='w-full p-6 flex justify-end'>
+        <button className='bg-blue-500 px-6 py-2 rounded-md'>Tambah Pasien</button>
       </div>
 
     </section>

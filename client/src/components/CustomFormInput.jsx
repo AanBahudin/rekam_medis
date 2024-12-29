@@ -6,17 +6,17 @@ const CustomFormInput = ({ label, placeholder, name, children, width, isRequired
             {children}
 
             { inputType === 'input' ? (
-                <input name id={name} type={type} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} autoFocus={isFirstItem} required={isRequired} autoComplete='off'/>
+                <input name id={name} type={type} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ${children ? 'ml-2' : ''} rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} autoFocus={isFirstItem} required={isRequired} autoComplete='off'/>
             ) : (
 
                 inputType === 'select' ? (
-                    <select name={name} id={name} className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
+                    <select name={name} id={name} className={`px-2 py-3 bg-lightGrey ${children ? 'ml-2' : ''} rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
                         {list.map((item, index) => {
                             return <option key={index} value={item}>{item}</option>
                         })}
                     </select>
                 ) : (
-                    <textarea name={name} id={name} rows={5} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px] resize-none`}></textarea>
+                    <textarea name={name} id={name} rows={5} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ${children ? 'ml-2' : ''} rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px] resize-none`}></textarea>
                 )
             ) }
         </div>
