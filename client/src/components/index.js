@@ -1,5 +1,6 @@
 export { default as ActivityCard } from './ActivityCard'
 export { default as BigSidebar } from './BigSidebar'
+export { default as CustomFormInput } from './CustomFormInput'
 export { default as Data } from './Data'
 export { default as FormInput } from './FormInput'
 export { default as Navbar } from './Navbar'
