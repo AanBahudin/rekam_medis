@@ -35,7 +35,7 @@ const App = () => {
               element: <ProfilePage />
             },
             {
-              path: 'data/:id',
+              path: 'all-data/:id',
               element: <SingleDataPage />
             },
             

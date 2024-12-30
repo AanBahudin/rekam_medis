@@ -8,7 +8,10 @@ const PasienSchema = new mongoose.Schema({
         type: String,
         enum: ['Pria', 'Wanita']
     },
-    nik: Number,
+    nik: {
+        type: String,
+        unique: true
+    },
     statusPernikahan: {
         type: String,
         enum: ['Menikah', 'Belum Menikah', 'Cerai']
