@@ -65,3 +65,30 @@ export const validateRegister = withValidationErrors([
         .isLength({ min: 4 })
         .withMessage('password is to short!')
 ])
+
+export const validateAddRekamMedis = withValidationErrors([
+    body('nama')
+        .notEmpty()
+        .withMessage('nama tidak boleh kosong')
+        .isLength({ min: 3 })
+        .withMessage('nama terlalu pendek')
+        .trim(),
+    body('tanggalLahir')
+        .notEmpty()
+        .withMessage('tanggal lahir tidak boleh kosong')
+        .isDate()
+        .withMessage('tanggal lahir tidak valid'),
+    body('usia')
+        .notEmpty()
+        .withMessage('Umur tidak boleh kosong')
+        .isNumeric()
+        .withMessage('umur harus angka')
+        .isInt({ min: 0, max: 150 })
+        .withMessage('Umur harus bilangan bulat')
+        .isFloat({ min: 0 })
+        .withMessage('umur tidak valid'),
+    body('jenisKelamin')
+        .notEmpty()
+        .withMessage('jenis kelamin tidak boleh kosong'),
+
+])
