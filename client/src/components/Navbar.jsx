@@ -3,7 +3,7 @@ import { useAdminContext } from '../pages/Admin/AdminLayout'
 
 const Navbar = () => {
 
-    const { toggleSidebar } = useAdminContext()
+    const { user, toggleSidebar } = useAdminContext()
 
   return (
     <div className='w-full h-[70px] flex items-center justify-between bg-white  px-10'>
@@ -11,7 +11,7 @@ const Navbar = () => {
 
         <section className='flex items-center justify-center gap-x-2 my-auto'>
             <User className='my-auto' size={20} />
-            <h5 className='text-sm my-auto text-center'>Admin</h5>
+            <h5 className='text-sm my-auto text-center'>{user.nama}</h5>
         </section>
     </div> 
   )

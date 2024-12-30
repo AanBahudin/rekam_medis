@@ -7,6 +7,10 @@ const AdminSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'admin'
+    },
+    isApproved: {
+        type: Boolean,
+        default: false
     }
 })
 

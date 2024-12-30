@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes'
 import { comparePassword, hashPassword } from '../utils/passwordUtils.js'
-import { NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js';
+import { BadRequestError, NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js';
 import Admin from '../models/AdminModel.js'
 import { createToken } from '../utils/jwt.js';
 
@@ -25,6 +25,10 @@ export const login = async(req, res) => {
     const isPasswordCorrect = await comparePassword(req.body.password, user.password)
     if (!isPasswordCorrect) {
         throw new NotAuthenticatedError('password is wrong')
+    }
+
+    if (user.isApproved === false) {
+        throw new BadRequestError('email and password are wrong')
     }
 
     const payload = {userId: user._id, name: user.nama, role: user.role, email: user.email}

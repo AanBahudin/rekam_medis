@@ -1,6 +1,5 @@
 import { body, param, validationResult } from 'express-validator'
-import { BadRequestError, UnathorizedError, NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js'
-import { comparePassword } from '../utils/passwordUtils.js'
+import { BadRequestError, UnathorizedError } from '../middleware/ErrorHandlerMiddleware.js'
 
 import Admin from '../models/AdminModel.js'
 

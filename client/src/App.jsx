@@ -1,7 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
-import { AdminDashboardLayout, AddDataPage, AllDataPage, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { AdminDashboardLayout, AddDataPage, AllAdminPage, AllDataPage, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+
 import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
+import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
+
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
 
@@ -48,6 +51,11 @@ const App = () => {
               path: 'all-data/:id',
               element: <SingleDataPage />
             },
+            {
+              path: 'all-admin',
+              loader: AdminPageLoader,
+              element: <AllAdminPage />
+            }
             
           ]
         }

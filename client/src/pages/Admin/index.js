@@ -1,5 +1,6 @@
 export { default as AdminDashboardLayout } from './AdminLayout'
 export { default as AddDataPage } from './AddData'
+export { default as AllAdminPage } from './AllAdmin'
 export { default as AllDataPage } from './AllData'
 export { default as ProfilePage } from './Profile'
 export { default as SingleDataPage } from './SingleData'

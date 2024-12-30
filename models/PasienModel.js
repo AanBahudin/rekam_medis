@@ -31,6 +31,11 @@ const PasienSchema = new mongoose.Schema({
     rt: String,
     rw: String,
     pemeriksa: String,
+    createdBy: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Admin',
+        required: true
+    },
     status: {
         type: String,
         enum: ['Ditangani', 'Proses', 'Belum Ditangani']

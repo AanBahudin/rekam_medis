@@ -6,7 +6,7 @@ import { useState, useContext, createContext } from 'react'
 
 export const loader = async({ params }) => {
   try {
-    const data = await customFetch.get('/admin/current-user');
+    const { data } = await customFetch.get('/admin/current-user');
     return data;
   } catch (error) {
     return redirect('/');
@@ -18,8 +18,7 @@ const AdminDashboardContext = createContext();
 
 const AdminLayout = () => {  
 
-  const { data } = useLoaderData()
-  console.log(data);
+  const { user } = useLoaderData()
 
   const [showSidebar, setShowSidebar] = useState(true);
   const toggleSidebar = () => {
@@ -29,6 +28,7 @@ const AdminLayout = () => {
   return (
 
     <AdminDashboardContext.Provider value={{
+      user,
       showSidebar,
       toggleSidebar
     }}>
