@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import { ErrorPage, HomeLayoutPage, LoginPage } from './pages'
+import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
 import { AdminDashboardLayout, AddDataPage, AllDataPage, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { action as loginAction } from './pages/Login'
+import { action as registerAction } from './pages/Register'
 
 const App = () => {
 
@@ -12,7 +14,13 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <LoginPage />
+          element: <LoginPage />,
+          action: loginAction
+        },
+        {
+          path: '/register',
+          action: registerAction,
+          element: <RegisterPage />
         },
         {
           path: '/admin',

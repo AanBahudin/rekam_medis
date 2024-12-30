@@ -93,7 +93,7 @@ const Stats = () => {
 
                   {recentPasien.map((item, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.idPasien}</td>
                         <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.user}</td>
                         <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.gender}</td>

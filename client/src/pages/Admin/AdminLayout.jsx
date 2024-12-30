@@ -5,6 +5,16 @@ import { useState, useContext, createContext } from 'react'
 
 const AdminDashboardContext = createContext();
 
+export const loader = async({ params }) => {
+  try {
+    const { data } = await customFetch.get('/jobs');
+    return { data };
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+}
+
 const AdminLayout = () => {
 
   const [showSidebar, setShowSidebar] = useState(true);

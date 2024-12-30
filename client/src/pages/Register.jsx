@@ -10,16 +10,17 @@ export const action = async({ request }) => {
   const data = Object.fromEntries(formData)
 
   try {
-    await customFetch.post('/auth/login', data);
-    toast.success('Login successfully')
-    return redirect('/admin')
+    await customFetch.post('/auth/register', data);
+    toast.success('Register successfully')
+    return redirect('/')
+
   } catch (error) {
-    console.log(error);
-    return 'error'
+    toast.error(error?.response?.data?.msg || 'Something is wrong');
+    return error
   }
 }
 
-const Login = () => {
+const Register = () => {
 
   const [isChecked, setIsChecked] = useState(false);
   const navigation = useNavigation()
@@ -38,7 +39,7 @@ const Login = () => {
       <section className='h-full w-halfScreen max-w-full flex flex-col items-start justify-center px-20'>
         <div className='w-[80%] mx-auto'>
           <img className='w-12 h-12' src={mainLogo} />
-          <h1 className='text-5xl font-semibold text-greyPrimary mt-8 mb-4 tracking-wider'>Login</h1>
+          <h1 className='text-5xl font-semibold text-greyPrimary mt-8 mb-4 tracking-wider'>Register</h1>
           <p className='text-greySecondary text-md'>Lorem ipsum dolor sit amet consectetur adipisicing </p>
 
 
@@ -46,10 +47,16 @@ const Login = () => {
           <Form method='POST' className='my-4 w-full] mx-auto odd:mb-10'>
 
             <FormInput 
+              labelName="nama"
+              inputType="text"
+              inputName="nama"
+              isFirstinput={true}
+            />
+
+            <FormInput 
               labelName="email"
               inputType="email"
               inputName="email"
-              isFirstinput={true}
             />
 
             <FormInput 
@@ -66,7 +73,9 @@ const Login = () => {
               <label className='text-sm my-auto font-medium text-greyPrimary outline-none ring-0 border-none' htmlFor="showPass">Show password</label>
             </div>
 
-            <button type='submit' disabled={isSubmitting} className='w-full bg-blue-400 text-white font-medium py-[12px] text-sm rounded-lg cursor-default'>{ isSubmitting ? 'Logged in ...' : 'Login' }</button>
+            <button type='submit' disabled={isSubmitting} className='w-full bg-blue-400 text-white font-medium py-[12px] text-sm rounded-lg cursor-default'>
+              { isSubmitting ? 'Submitting ...' : 'Register' }
+            </button>
           </Form>
         </div>
         
@@ -75,4 +84,4 @@ const Login = () => {
   )
 }
 
-export default Login  
+export default Register  
