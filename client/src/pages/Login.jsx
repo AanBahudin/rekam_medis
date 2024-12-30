@@ -14,8 +14,8 @@ export const action = async({ request }) => {
     toast.success('Login successfully')
     return redirect('/admin')
   } catch (error) {
-    console.log(error);
-    return 'error'
+    toast.error(error?.response?.data?.msg)
+    return error
   }
 }
 

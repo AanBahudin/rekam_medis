@@ -8,8 +8,8 @@ export const authenticatedUser = async (req, res, next) => {
     }
 
     try {
-        const { userId, role } = verifyToken(token)
-        req.user = { userId, role };
+        const { userId, role, email, name } = verifyToken(token)
+        req.user = { userId, role, email, name };
         next()
     } catch (error) {
         throw new NotAuthenticatedError('authentication invalid');   

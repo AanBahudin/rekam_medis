@@ -27,7 +27,7 @@ export const login = async(req, res) => {
         throw new NotAuthenticatedError('password is wrong')
     }
 
-    const payload = {userId: user._id, name: user.nama, role: user.role}
+    const payload = {userId: user._id, name: user.nama, role: user.role, email: user.email}
     const token = createToken(payload)
 
     const oneDay = 1000 * 60 * 60 * 24;

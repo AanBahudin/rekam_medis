@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
 import { AdminDashboardLayout, AddDataPage, AllDataPage, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
 
@@ -25,6 +26,7 @@ const App = () => {
         {
           path: '/admin',
           element: <AdminDashboardLayout />,
+          loader: AdminLayoutLoader,
           children: [
             {
               index: true,

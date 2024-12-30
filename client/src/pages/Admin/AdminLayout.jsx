@@ -1,21 +1,25 @@
-import { Outlet } from 'react-router'
+import { Outlet, redirect, useLoaderData } from 'react-router'
 import { BigSidebar, Navbar } from '../../components'
+import customFetch from '../../utils/customFetch'
 import { useState, useContext, createContext } from 'react'
 
 
-const AdminDashboardContext = createContext();
-
 export const loader = async({ params }) => {
   try {
-    const { data } = await customFetch.get('/jobs');
-    return { data };
+    const data = await customFetch.get('/admin/current-user');
+    return data;
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
-    return error;
+    return redirect('/');
   }
 }
 
-const AdminLayout = () => {
+const AdminDashboardContext = createContext();
+
+
+const AdminLayout = () => {  
+
+  const { data } = useLoaderData()
+  console.log(data);
 
   const [showSidebar, setShowSidebar] = useState(true);
   const toggleSidebar = () => {
