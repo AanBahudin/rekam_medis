@@ -1,11 +1,24 @@
 import React from 'react'
 
-const Data = ({ label, value }) => {
+const Data = ({ label, value, dataType = 'simple', bg='' }) => {
   return (
-    <div className='flex flex-col gap-y-1'>
-      <h5 className='text-md text-greySecondary/70 truncate text-[14px]'>{label}</h5>
-      <p className='text-sm'>{value}</p>
-    </div>
+    <>
+      {
+        dataType === "simple" ? (
+          <div className='flex flex-col gap-y-1'>
+            <h5 className='text-[14px] font-medium truncate lowercase'>{label}</h5>
+            <p className={`px-2 py-3 ${bg ? bg : 'bg-transparent'} rounded-md text-[12px] border-[1px] border-greySecondary/60`}>{value}</p>
+          </div>
+        ) : (
+          <div className='flex flex-col gap-y-1'>
+            <h5 className='text-[14px] font-medium truncate lowercase'>{label}</h5>
+            <div className='w-full rounded-md bg-transparent h-[15vh] overflow-y-auto no-scrollbar border-[1px] border-greySecondary/60'>
+              <p className='text-[12px] px-2 py-3'>{value}</p>
+            </div>
+          </div>
+        )
+      }
+    </>
   )
 }
 
