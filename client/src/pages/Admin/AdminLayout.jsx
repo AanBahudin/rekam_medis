@@ -1,7 +1,8 @@
-import { Outlet, redirect, useLoaderData } from 'react-router'
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router'
 import { BigSidebar, Navbar } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { useState, useContext, createContext } from 'react'
+import { toast } from 'react-toastify'
 
 
 export const loader = async({ params }) => {
@@ -19,10 +20,17 @@ const AdminDashboardContext = createContext();
 const AdminLayout = () => {  
 
   const { user } = useLoaderData()
+  const navigate = useNavigate()
 
   const [showSidebar, setShowSidebar] = useState(true);
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
+  }
+
+  const logout = async() => {
+    navigate('/');
+    await customFetch.get('/auth/logout');
+    toast.success('Logging out...');
   }
 
   return (
@@ -30,7 +38,8 @@ const AdminLayout = () => {
     <AdminDashboardContext.Provider value={{
       user,
       showSidebar,
-      toggleSidebar
+      toggleSidebar,
+      logout
     }}>
       <div className='w-full h-[100vh] flex overflow-hidden'>
         <BigSidebar />

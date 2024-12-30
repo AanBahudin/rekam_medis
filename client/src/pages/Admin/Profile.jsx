@@ -6,7 +6,7 @@ import { useAdminContext } from './AdminLayout'
 
 const Profile = () => {
 
-  const { user } = useAdminContext()
+  const { user, logout } = useAdminContext()
 
   return (
     <section className='w-full flex flex-col items-center justify-center gap-x-4'>
@@ -19,7 +19,8 @@ const Profile = () => {
           <p className='text-sm text-center opacity-60 mt-2'>{user.email}</p>
           <p className='text-sm text-center opacity-60 mt-2'>{user.role}</p>
 
-          <Link className='w-full bg-blueCard text-center cursor-default py-2 rounded-lg text-opacity-60 text-sm mt-4'> edit pasien </Link>
+          <Link className='w-[50%] mx-auto bg-blueCard text-center cursor-default py-2 rounded-lg text-opacity-60 text-sm mt-4'> edit profil </Link>
+          <button onClick={logout} className='w-[50%] mx-auto bg-redCard text-center cursor-default py-2 rounded-lg text-opacity-60 text-sm mt-4'> keluar </button>
         </div>
       </article>
 
