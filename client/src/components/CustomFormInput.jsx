@@ -6,7 +6,7 @@ const CustomFormInput = ({ label, placeholder, name, children, width='w-full', i
             {children}
 
             { inputType === 'input' ? (
-                <input name id={name} type={type} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ${children ? 'ml-2' : ''} rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px] focus:placeholder:text-transparent`} autoFocus={isFirstItem} required={isRequired} autoComplete='off'/>
+                <input name={name} id={name} type={type} placeholder={placeholder} className={`px-2 py-3 bg-lightGrey ${children ? 'ml-2' : ''} rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px] focus:placeholder:text-transparent`} autoFocus={isFirstItem} required={isRequired} autoComplete='off'/>
             ) : (
 
                 inputType === 'select' ? (

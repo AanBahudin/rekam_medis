@@ -130,7 +130,7 @@ const AllData = () => {
           <div className='w-full mt-8 flex flex-col gap-y-1'>
             {dummyData.map((item, index) => {
               return (
-                <TableData {...item} />
+                <TableData key={index} {...item} />
               )
             })}
           </div>
