@@ -128,6 +128,7 @@ const AddData = () => {
           <CustomFormInput label='Resiko penyakit menular *' name='penyakitMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
           <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
           <CustomFormInput label='pemeriksaan lanjutan *' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
+          <CustomFormInput label='Identitas Pemeriksa *' name='pemeriksa' isRequired={true} inputType='select' list={['Perawat 1', 'Perawat 2', 'Perawat 3']} />
           {/* <CustomFormInput label='' placeholder='mmHg' name='keluhan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} /> */}
         </div>
       </div>

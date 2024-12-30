@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const PasienSchema = new mongoose.Schema({
     nama: String,
-    tanggalLahir: String,
+    tanggalLahir: Date,
     usia: Number,
     jenisKelamin: {
         type: String,
@@ -27,6 +27,7 @@ const PasienSchema = new mongoose.Schema({
     kelurahan: String,
     rt: String,
     rw: String,
+    pemeriksa: String,
     status: {
         type: String,
         enum: ['Ditangani', 'Proses', 'Belum Ditangani']
@@ -158,15 +159,36 @@ const PasienSchema = new mongoose.Schema({
         tambahanPertama: String,
         tambahanKedua: String
     },
-    riwayat: [
+    riwayatPemeriksaan: [
         {
-            idRiwayat: mongoose.Types.ObjectId,
-            tanggalPemeriksaan: String,
+            idRiwayat: {
+                type: mongoose.Types.ObjectId,
+                default: () => new mongoose.Types.ObjectId()
+            },
+            tanggalPemeriksaan: Date,
             subjektif: String,
             objektif: String,
             assessment: String,
             planning: String,
+            tindakan: {
+                type: String,
+                enum: ['Pengobatan secara berkala', 'Kontrol']
+            },
             catatan: String
+        }
+    ],
+    riwayatKunjungan: [
+        {
+            idRiwayatKunjungan: {
+                type: mongoose.Types.ObjectId,
+                default: () => new mongoose.Types.ObjectId()
+            },
+            tanggalKunjungan: Date,
+            perihalKunjungan: {
+                type: String,
+                enum: ['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap', 'Pemeriksaan Laboratorium', 'Pemeriksaan Radiologi', 'Pengambilan Obat']
+            }
+            
         }
     ]
 })
