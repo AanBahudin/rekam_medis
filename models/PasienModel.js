@@ -1,12 +1,16 @@
 import mongoose from 'mongoose'
 
 const PasienSchema = new mongoose.Schema({
-    nama: String,
+    nama: {
+        type: String,
+        default: 'Tanpa nama'
+    },
     tanggalLahir: Date,
     usia: Number,
     jenisKelamin: {
         type: String,
-        enum: ['Pria', 'Wanita']
+        enum: ['Pria', 'Wanita'],
+        default: 'Pria'
     },
     nik: {
         type: String,
@@ -22,7 +26,8 @@ const PasienSchema = new mongoose.Schema({
     },
     agama: {
         type: String,
-        enum: ['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']
+        enum: ['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu'],
+        default: 'Islam'
     },
     alamat: String,
     kota: String,
@@ -38,7 +43,11 @@ const PasienSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Ditangani', 'Proses', 'Belum Ditangani']
+        enum: ['Ditangani', 'Proses', 'Belum Ditangani'],
+        default: 'Belum Ditangani'
+    },
+    nomorTelepon: {
+        type: String
     },
     kontrol: {
         type: String,
@@ -52,121 +61,121 @@ const PasienSchema = new mongoose.Schema({
         type: String,
         enum: ['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']
     },
-    informasiKontak: {
-        namaPenanggungJawab: String,
-        hubunganPenanggungJawab: {
-            type: String,
-            enum: ['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat']
-        },
-        nomorTeleponPenanggungJawab: String,
-        alamatPenanggungJawab: String,
-        kotaPenanggungJawab: String,
-        kecamatanPenanggungJawab: String,
-        kelurahanPenanggungJawab: String,
-        rtPenanggungJawab: String,
-        rwPenanggungJawab: String
+    namaPenanggungJawab: String,
+    hubunganPenanggungJawab: {
+        type: String,
+        enum: ['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat']
     },
-    keadaanUmum: {
-        tekananDarah: String,
-        denyutNadi: Number,
-        RR: String,
-        suhuBadan: Number,
-        skalaKesadaran: Number,
-        tinggiBadan: Number,
-        beratBadan: Number,
-        golonganDarah: {
-            type: String,
-            enum: ['A', 'A+', 'A-', 'AB', 'AB+','AB-', 'B', 'B+', 'B-', 'O', 'O+', 'O-']
-        }
+    nomorTeleponPenanggungJawab: String,
+    alamatPenanggungJawab: String,
+    kotaPenanggungJawab: String,
+    kecamatanPenanggungJawab: String,
+    kelurahanPenanggungJawab: String,
+    rtPenanggungJawab: String,
+    rwPenanggungJawab: String,
+    tekananDarah: String,
+    denyutNadi: Number,
+    RR: String,
+    suhuBadan: Number,
+    skalaKesadaran: Number,
+    tinggiBadan: Number,
+    beratBadan: Number,
+    golonganDarah: {
+        type: String,
+        enum: ['A', 'A+', 'A-', 'AB', 'AB+','AB-', 'B', 'B+', 'B-', 'O', 'O+', 'O-'],
+        default: 'A'
     },
-    resiko: {
-        statusResiko: {
-            type: String,
-            enum: ['Tinggi', 'Sedang', 'Rendah']
-        },
-        infeksiMenular: {
-            type: String,
-            enum: ['Tinggi', 'Sedang', 'Rendah']
-        },
-        kronis: {
-            type: String,
-            enum: ['Tinggi', 'Sedang', 'Rendah']
-        },
-        penyakitMenular: {
-            type: String,
-            enum: ['Tinggi', 'Sedang', 'Rendah']
-        }
+    statusResiko: {
+        type: String,
+        enum: ['Tinggi', 'Sedang', 'Rendah'],
+        default: 'Rendah'
     },
-    psikologi: {
-        statusPsikologi: {
-            type: String,
-            enum: ['stabil', 'cemas', 'depresi', 'agitasi', 'euforia']
-        },
-        statusEmosional: {
-            type: String,
-            enum: ['tenang', 'mudah tersinggung', 'marah', 'sedih', 'takut']
-        },
-        statusKesadaran: {
-            type: String,
-            enum: ['sadar penuh', 'linglung', 'delirium', 'tidak sadar']
-        },
-        statusPerilaku: {
-            type: String,
-            enum: ['kooperatif', 'menarik diri', 'agresif', 'pasif']
-        },
-        statusKognitif: {
-            type: String,
-            enum: ['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']
-        },
-        statusSosial: {
-            type: String,
-            enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']
-        },
-        hubunganDenganKeluarga: {
-            type: String,
-            enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']
-        },
-        tinggalBersama: {
-            type: String,
-            enum: ['orang tua', 'kerabat', 'mengontrak/menumpang', 'sendirian']
-        },
-        statusEkonomi: {
-            type: String,
-            enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']
-        },
-        bahasa: String
+    infeksiMenular: {
+        type: String,
+        enum: ['Tinggi', 'Sedang', 'Rendah'],
+        default: 'Rendah'
     },
-    riwayatKesehatan: {
-        keluhanPenyakit: String,
-        riwayatPenyakit: String,
-        penyakitTurunan: String,
-        riwayatOperasi: String,
-        alergi: String,
-        penyakitDiderita: String,
-        pengobatanBerjalaln: String
+    kronis: {
+        type: String,
+        enum: ['Tinggi', 'Sedang', 'Rendah'],
+        default: 'Rendah'
     },
-    resikoJatuhdanGizi: {
-        kondisiBerjalan: {
-            type: String,
-            enum: ['ya', 'kadang', 'tidak']
-        },
-        menggunakanAlatBantu: {
-            type: String,
-            enum: ['ya', 'kadang', 'tidak']
-        },
-        penurunanBeratBadan: {
-            type: String,
-            enum: ['ya', 'kadang', 'tidak']
-        },
-        penurunanNafsuMakan: {
-            type: String,
-            enum: ['ya', 'kadang', 'tidak']
-        }
+    penyakitMenular: {
+        type: String,
+        enum: ['Tinggi', 'Sedang', 'Rendah'],
+        default: 'Rendah'
     },
-    additional: {
-        tambahanPertama: String,
-        tambahanKedua: String
+    statusPsikologi: {
+        type: String,
+        enum: ['stabil', 'cemas', 'depresi', 'agitasi', 'euforia'],
+        default: 'stabil'
     },
+    statusEmosional: {
+        type: String,
+        enum: ['tenang', 'mudah tersinggung', 'marah', 'sedih', 'takut'],
+        default: 'tenang'
+    },
+    statusKesadaran: {
+        type: String,
+        enum: ['sadar penuh', 'linglung', 'delirium', 'tidak sadar'],
+        default: 'sadar penuh'
+    },
+    statusPerilaku: {
+        type: String,
+        enum: ['kooperatif', 'menarik diri', 'agresif', 'pasif'],
+        default: 'kooperatif'
+    },
+    statusKognitif: {
+        type: String,
+        enum: ['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi'],
+        default: 'normal'
+    },
+    statusSosial: {
+        type: String,
+        enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik'],
+        default: 'sangat baik'
+    },
+    hubunganDenganKeluarga: {
+        type: String,
+        enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik'],
+        default: 'sangat baik'
+    },
+    tinggalBersama: {
+        type: String,
+        enum: ['orang tua', 'kerabat', 'mengontrak/menumpang', 'sendirian'],
+        default: 'orang tua'
+    },
+    statusEkonomi: {
+        type: String,
+        enum: ['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik'],
+        default: 'sangat baik'
+    },
+    bahasa: String,
+    keluhanPenyakit: String,
+    riwayatPenyakit: String,
+    penyakitTurunan: String,
+    riwayatOperasi: String,
+    alergi: String,
+    penyakitDiderita: String,
+    pengobatanBerjalan: String,
+    kondisiBerjalan: {
+        type: String,
+        enum: ['ya', 'kadang', 'tidak']
+    },
+    menggunakanAlatBantu: {
+        type: String,
+        enum: ['ya', 'kadang', 'tidak']
+    },
+    penurunanBeratBadan: {
+        type: String,
+        enum: ['ya', 'kadang', 'tidak']
+    },
+    penurunanNafsuMakan: {
+        type: String,
+        enum: ['ya', 'kadang', 'tidak']
+    },
+    tambahanPertama: String,
+    tambahanKedua: String,
     riwayatPemeriksaan: [
         {
             idRiwayat: {
@@ -199,6 +208,6 @@ const PasienSchema = new mongoose.Schema({
             
         }
     ]
-})
+}, { timestamps: true })
 
-export default mongoose.model('Pasien', UserSchema);
+export default mongoose.model('Pasien', PasienSchema);

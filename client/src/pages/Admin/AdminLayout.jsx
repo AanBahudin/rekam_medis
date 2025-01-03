@@ -27,7 +27,7 @@ const AdminLayout = () => {
     setShowSidebar(!showSidebar);
   }
 
-  const logout = async() => {
+  const logoutUser = async() => {
     navigate('/');
     await customFetch.get('/auth/logout');
     toast.success('Logging out...');
@@ -39,10 +39,10 @@ const AdminLayout = () => {
       user,
       showSidebar,
       toggleSidebar,
-      logout
+      logoutUser
     }}>
       <div className='w-full h-[100vh] flex overflow-hidden'>
-        <BigSidebar />
+        <BigSidebar logoutFunction={logoutUser} />
 
         <div className='flex-1'>
           <Navbar />

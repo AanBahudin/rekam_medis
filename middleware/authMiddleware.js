@@ -1,26 +1,27 @@
 import { NotAuthenticatedError, UnathorizedError } from "./ErrorHandlerMiddleware.js"
 import { verifyToken } from "../utils/jwt.js";
 
-export const authenticatedUser = async (req, res, next) => {
-    const { token } = req.cookies;
-    if (!token) {
-        throw new NotAuthenticatedError('authentication invalid');
-    }
+export const authenticatedUser = (req, res, next) => {
+    const { token } = req.cookies
 
+    if (!token) {
+        throw new NotAuthenticatedError('Error')
+    }
     try {
-        const { userId, role, email, name } = verifyToken(token)
-        req.user = { userId, role, email, name };
+        const isTokenValid = verifyToken(token)
+        req.user = { ...isTokenValid }
         next()
     } catch (error) {
-        throw new NotAuthenticatedError('authentication invalid');   
+        throw new NotAuthenticatedError('authenticated failed')
     }
 }
 
-export const authorizePermissions = (...roles) => {
-    return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
-            throw new UnathorizedError('Unauthorized to access this route');
-        }
-        next();
+export const authorizedAdminPermission = (req, res, next) => {
+    const { role } = req.user
+    
+    if (role !== 'admin') {
+        throw new UnathorizedError('Not Authorized')
     }
+
+    next()
 }

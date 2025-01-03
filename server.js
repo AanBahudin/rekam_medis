@@ -16,7 +16,7 @@ import { adminRoute, authRoute, rekamMedisRoute } from './routes/index.js'
 
 const app = express();
 app.use(express.json())
-if (process.env.NODE_ENV !== "production") {app.use(morgan("combined"))}
+if (process.env.NODE_ENV !== "production") {app.use(morgan("tiny"))}
 dotenv.config()
 app.use(cookieParser())
 

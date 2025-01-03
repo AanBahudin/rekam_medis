@@ -1,8 +1,26 @@
 import { Search, IdCard, CircleUser, ChevronLeft, ChevronRight } from 'lucide-react'
 import { TableData } from '../../components'
 import { dummyData } from '../../utils/constants'
+import customFetch from '../../utils/customFetch'
+import { toast } from 'react-toastify'
+import { useLoaderData } from 'react-router'
+
+export const loader = async() => {
+  try {
+    const { data } = await customFetch.get('/medis')
+    return data
+  } catch (error) {
+    toast.error(error.response.data.msg)
+    return error
+  }
+}
 
 const AllData = () => {
+
+  const data = useLoaderData()
+  console.log(data);
+  
+
   return (
     <section className="w-full flex flex-col items-start justify-center pb-20">
       
@@ -102,6 +120,7 @@ const AllData = () => {
 
       </article>
 
+
       <article className="w-full bg-white rounded-lg shadow-lg px-4 py-6 mt-6">
 
           {/* title and info */}
@@ -109,7 +128,7 @@ const AllData = () => {
             <h3 className='text-xl font-medium tracking-wide'>Data Pasien</h3>
             <h5 className='text-sm tracking-wide text-greySecondary flex gap-x-4 items-center justify-center'>
               <ChevronLeft size={20} className='hover:stroke-blue-500 duration-200 ease-in-out'/>
-              <span className='text-blue-500'>1</span> of <span className='text-blue-500'>40</span> 
+              <span className='text-blue-500'>{data.currentPage}</span> of <span className='text-blue-500'>{data.numOfPages}</span> 
               <ChevronRight size={20} className='hover:stroke-blue-500 duration-200 ease-in-out' />
             </h5>
           </div>
@@ -128,7 +147,7 @@ const AllData = () => {
 
           {/* isi data */}
           <div className='w-full mt-8 flex flex-col gap-y-1'>
-            {dummyData.map((item, index) => {
+            {data.pasien.map((item, index) => {
               return (
                 <TableData key={index} {...item} />
               )

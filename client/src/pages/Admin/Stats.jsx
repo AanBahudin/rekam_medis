@@ -1,9 +1,30 @@
-import { StatsCard, ActivityCard } from "../../components"
-import { statsCardData, activityData, recentPasien } from "../../utils/constants"
-import { ChartNoAxesCombined } from 'lucide-react'
+import { StatsCard } from "../../components"
+import { activityData } from "../../utils/constants"
+import { Link } from 'react-router'
+import { ChartNoAxesCombined, Users, ShieldAlert, ShieldMinus, ShieldPlus, UserPlus } from 'lucide-react'
 import { BarChart, Bar, Tooltip, YAxis, XAxis, PieChart, Pie, ResponsiveContainer } from 'recharts'
+import customFetch from "../../utils/customFetch"
+import { toast } from "react-toastify"
+import { man } from '../../assets/images'
+import { useLoaderData } from "react-router"
+
+export const loader = async() => {
+  try {
+    const { data } = await customFetch('/medis/stats')
+    return data
+  } catch (error) {
+    toast.error('terjadi kesalahan')
+    console.log(error.response.data.msg)
+    return error.response.data.msg
+  }
+}
 
 const Stats = () => {
+
+  const data = useLoaderData()
+  console.log(data);
+    
+  
 
   const userActivity = [
     {date: 'Senin', activeUser: 149},
@@ -30,9 +51,10 @@ const Stats = () => {
         
         {/* cards */}
         <section className="w-full grid grid-cols-4 justify-items-center">
-          {statsCardData.map((item, index) => {
-            return <StatsCard key={index} {...item} />
-          })}
+          <StatsCard color='bg-blueCard' icon={<Users size={20} />} title="Total Pasien" total={data.totalPasien} />
+          <StatsCard color='bg-redCard' icon={<ShieldAlert size={20} />} title="Resiko Tinggi" total={data.totalResiko[0].count} />
+          <StatsCard color='bg-yellowCard' icon={<ShieldMinus size={20} />} title="Resiko Sedang" total={data.totalResiko[1]?.count || 0} />
+          <StatsCard color='bg-greenCard' icon={<ShieldPlus size={20} />} title="Resiko Rendah" total={data.totalResiko[2]?.count || 0} />
         </section>
 
 
@@ -72,8 +94,25 @@ const Stats = () => {
             <h4 className="font-semibold text-md mb-6 ml-6">Activity</h4>
 
             <div className="flex flex-col gap-y-6">
-              {activityData.map((item, index) => {
-                return <ActivityCard {...item} key={index} />
+              {data.pasienTerbaru.map((item, index) => {
+                return (
+                  <article className="w-full flex justify-around rounded-lg hover:shadow-md p-4 duration-200 ease-in-out">
+                    <img src={man} alt="user" className="w-10 h-10" />
+
+                    <div>
+                        <h4 className='flex gap-x-2 text-sm items-center justify-start text-greyPrimary'>
+                          <UserPlus size={10} className="my-auto" />
+                          <span className='my-auto capitalize text-[10px] font-semibold'> Pasien Baru </span>
+                        </h4>
+                        <h5 className="text-[12px]"> 
+                            <span className="font-medium">Admin </span>
+                            menambahkan pasien baru
+                        </h5>
+                        <p className="font-medium text-[12px]">{item.nama} - {item._id.slice(0, 10)}...</p>
+                        <p className="text-[10px] mt-1 italic opacity-75">{item.createdAt}</p>
+                    </div>
+                  </article>
+                )
               })}
             </div>
           </div>
@@ -81,29 +120,28 @@ const Stats = () => {
           <div className="col-span-8 bg-white rounded-2xl h-[60vh] px-6 py-10 overflow-auto no-scrollbar">
               <h4 className="font-semibold text-md mb-6">Pasien Terbaru</h4>
 
-              <table className="w-full h-full border-separate border-spacing-y-6  overflow-y-scroll no-scrollbar">
-                <thead className="bg-transparent py-2 border-y-[1px] bro">
-                  <tr>
-                    <th className="text-[14px] font-semibold text-left  opacity-80">ID pasien</th>
-                    <th className="text-[14px] font-semibold text-start opacity-80">Nama</th>
-                    <th className="text-[14px] font-semibold text-start opacity-80">Gender</th>
-                    <th className="text-[14px] font-semibold text-start opacity-80">Usia</th>
-                    <th className="text-[14px] font-semibold text-start opacity-80">Resiko</th>
-                  </tr>
+              <div className='w-full flex items-center gap-x-2 mt-8'>
+                <p className='text-sm font-medium w-[20%]'>Rekam medis</p>
+                <p className='text-sm font-medium w-[20%]'>Nama</p>
+                <p className='text-sm font-medium w-[20%]'>Gender</p>
+                <p className='text-sm font-medium w-[20%]'>Tujuan</p>
+                <p className='text-sm font-medium w-[20%] truncate text-center'>Resiko</p>
+              </div>
 
-                  {recentPasien.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.idPasien}</td>
-                        <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.user}</td>
-                        <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.gender}</td>
-                        <td className="text-[12px] m-4 font-medium text-start opacity-80">{item.usia}</td>
-                        <td className={`text-[12px] px-2 font-normal text-center opacity-80 w-[30px] rounded-full ${ item.kondisi === "Tinggi" ? "bg-redCard" : ( item.kondisi === "Sedang" ? "bg-yellowCard" : "bg-greenCard" ) }`}>{item.kondisi}</td>
-                      </tr>
-                    )
-                  })}
-                </thead>
-              </table>
+              {/* isi data */}
+              <div className='w-full mt-8 flex flex-col gap-y-1 gap-x-2'>
+                {data.pasienTerbaru.map((item, index) => {
+                  return (
+                    <Link to='/admin/all-data/asdfasdfas' className='w-full cursor-default flex items-center gap-x-2 py-4 border-t-2 border-greySecondary/20 hover:bg-blue-50 duration-200 ease-in-out'>
+                      <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item._id.slice(0, 15)}...</p>
+                      <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item.nama}</p>
+                      <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item.jenisKelamin}</p>
+                      <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item.tujuanBerobat}</p>
+                      <p className={`text-[14px] w-[20%] text-greySecondary truncate text-center p-1 rounded-full ${ item.statusResiko === 'Tinggi' ? 'bg-redCard' : ( item.statusResiko === 'Sedang' ? 'bg-yellowCard' : 'bg-blueCard' ) }`}>{item.statusResiko}</p>
+                    </Link>
+                  )
+                })}
+            </div>
           </div>
 
         </section>

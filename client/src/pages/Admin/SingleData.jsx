@@ -1,14 +1,30 @@
 import React from 'react'
-import { Plus, Edit } from 'lucide-react'
+import { Plus, Edit, Trash } from 'lucide-react'
 import { Data } from '../../components'
+import customFetch from '../../utils/customFetch'
+import { useLoaderData } from 'react-router'
+
+export const loader = async({ params }) => {
+  try {
+    const { data } = await customFetch.get(`/medis/${params.id}`)
+    return data;
+  } catch (error) {
+    return error
+  }
+}
 
 const SingleData = () => {
+
+  const { rekamMedis } = useLoaderData()
+  
+
   return (
     <div className='w-full flex flex-col items-start justify-start mb-6'>
 
         <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
           <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </button>
           <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </button>
+          <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
         </div>
 
       <section className="w-full flex flex-col items-start justify-start bg-white rounded-md mb-6">
@@ -18,22 +34,22 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
-            <Data label="no rekam medis" value="d7nfsf00234ds" />
-            <Data label="nama lengkap" value="Aan Bahudin" />
-            <Data label="tanggal lahir" value="10 Desember 1945" />
-            <Data label="usia" value="69 tahun" />
-            <Data label="jenis kelamin" value="Pria" />
-            <Data label="nomor induk keluarga" value="234929324232" />
-            <Data label="nomor telepon" value="0812342143" />
-            <Data label="status perkawinan" value="Belum Menikah" />
-            <Data label="kebangsaan" value="Indonesia" />
-            <Data label="agama" value="Islam" />
-            <Data label="alamat pasien" value="Jalan Jendral Gatot Subroto" />
-            <Data label="kota" value="Baubau" />
-            <Data label="kecamatan" value="Wolio" />
-            <Data label="kelurahan" value="Bukit Wolio Indah" />
-            <Data label="rt" value="001" />
-            <Data label="rw" value="006" />
+            <Data label="no rekam medis" value={rekamMedis._id} />
+            <Data label="nama lengkap" value={rekamMedis.nama} />
+            <Data label="tanggal lahir" value={rekamMedis.tanggalLahir} />
+            <Data label="usia" value={rekamMedis.usia} />
+            <Data label="jenis kelamin" value={rekamMedis.jenisKelamin} />
+            <Data label="nomor induk keluarga" value={rekamMedis.nik} />
+            <Data label="nomor telepon" value={rekamMedis.nomorTelepon || '-'} />
+            <Data label="status perkawinan" value={rekamMedis.statusPernikahan} />
+            <Data label="kebangsaan" value={rekamMedis.kebangsaan} />
+            <Data label="agama" value={rekamMedis.agama} />
+            <Data label="alamat pasien" value={rekamMedis.alamat} />
+            <Data label="kota" value={rekamMedis.kota} />
+            <Data label="kecamatan" value={rekamMedis.kecamatan} />
+            <Data label="kelurahan" value={rekamMedis.kelurahan} />
+            <Data label="rt" value={rekamMedis.rt} />
+            <Data label="rw" value={rekamMedis.rw} />
           </div>
         </div>
 
@@ -42,15 +58,15 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
-            <Data label="nama penanggung jawab" value="James Clear" />
-            <Data label="hubungan dengan pasien" value="Saudara" />
-            <Data label="nomor telepon" value="08347582324" />
-            <Data label="alamat penanggung jawab" value="Jl Wall Street" />
-            <Data label="kota" value="Baubau" />
-            <Data label="kecamatan" value="Murhum" />
-            <Data label="kelurahan" value="Batupuaro" />
-            <Data label="rt" value="13" />
-            <Data label="rw" value="16" />
+            <Data label="nama penanggung jawab" value={rekamMedis.namaPenanggungJawab} />
+            <Data label="hubungan dengan pasien" value={rekamMedis.hubunganPenanggungJawab} />
+            <Data label="nomor telepon" value={rekamMedis.nomorTeleponPenanggungJawab} />
+            <Data label="alamat penanggung jawab" value={rekamMedis.alamatPenanggungJawab} />
+            <Data label="kota" value={rekamMedis.kotaPenanggungJawab} />
+            <Data label="kecamatan" value={rekamMedis.kecamatanPenanggungJawab} />
+            <Data label="kelurahan" value={rekamMedis.kelurahanPenanggungJawab} />
+            <Data label="rt" value={rekamMedis.rtPenanggungJawab} />
+            <Data label="rw" value={rekamMedis.rwPenanggungJawab} />
           </div>
         </div>
 
@@ -59,14 +75,14 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
-            <Data label="tekanan darah" value="120/200 mmHg" />
-            <Data label="denyut nadi" value="40" />
-            <Data label="rate pernapasan" value="15" />
-            <Data label="suhu badan" value="36,5" />
-            <Data label="tingkat kesadaran" value="13" />
-            <Data label="tinggi badan" value="174 cm" />
-            <Data label="berat badan" value="68 kg" />
-            <Data label="golongan darah" value="A+" />
+            <Data label="tekanan darah" value={rekamMedis.tekananDarah} />
+            <Data label="denyut nadi" value={rekamMedis.denyutNadi} />
+            <Data label="rate pernapasan" value={rekamMedis.RR} />
+            <Data label="suhu badan" value={rekamMedis.suhuBadan + ' Celcius'} />
+            <Data label="tingkat kesadaran" value={rekamMedis.skalaKesadaran} />
+            <Data label="tinggi badan" value={rekamMedis.tinggiBadan + ' Cm'} />
+            <Data label="berat badan" value={rekamMedis.beratBadan + ' Kilogram'} />
+            <Data label="golongan darah" value={rekamMedis.golonganDarah} />
           </div>
         </div>
 
@@ -75,16 +91,16 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
-            <Data label="status psikologis" value="stabil" />
-            <Data label="status emosional" value="tenang" />
-            <Data label="status kesadaran" value="sadar penuh" />
-            <Data label="status perilaku" value="kooperatif" />
-            <Data label="status kognitif" value="normal" />
-            <Data label="status sosial" value="sangat baik" />
-            <Data label="hubungan dengan keluarga" value="baik" />
-            <Data label="tinggal bersama" value="orang tua" />
-            <Data label="status ekonomi" value="sangat baik" />
-            <Data label="bahasa sehari hari" value="indonesia" />
+            <Data label="status psikologis" value={rekamMedis.statusPsikologi} />
+            <Data label="status emosional" value={rekamMedis.statusEmosional} />
+            <Data label="status kesadaran" value={rekamMedis.statusKesadaran} />
+            <Data label="status perilaku" value={rekamMedis.statusPerilaku} />
+            <Data label="status kognitif" value={rekamMedis.statusKognitif} />
+            <Data label="status sosial" value={rekamMedis.statusSosial} />
+            <Data label="hubungan dengan keluarga" value={rekamMedis.hubunganDenganKeluarga} />
+            <Data label="tinggal bersama" value={rekamMedis.tinggalBersama} />
+            <Data label="status ekonomi" value={rekamMedis.statusEkonomi} />
+            <Data label="bahasa sehari hari" value={rekamMedis.bahasa} />
           </div>
         </div>
 
@@ -93,13 +109,13 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
-            <Data label="keluhan penyakit" value="Batuk berdahak selama 2 minggu, disertai demam." dataType='complex' />
-            <Data label="riwayat penyakit" value="terkena malaria 2 bulan yang lalu" dataType='complex'  />
-            <Data label="riwayat penyakit turunan" value="tidak ada" dataType='complex'  />
-            <Data label="riwayat operasi" value="tidak ada" dataType='complex'  />
-            <Data label="alergi" value="makanan berprotein hewani" dataType='complex'  />
-            <Data label="penyakit yang sedang diderita" value="demam dan batuk" dataType='complex'  />
-            <Data label="riwayat pengobatan sedang berjalan" value="tidak ada pengobatan" dataType='complex'  />
+            <Data label="keluhan penyakit" value={rekamMedis.keluhanPenyakit} dataType='complex' />
+            <Data label="riwayat penyakit" value={rekamMedis.riwayatPenyakit} dataType='complex'  />
+            <Data label="riwayat penyakit turunan" value={rekamMedis.penyakitTurunan} dataType='complex'  />
+            <Data label="riwayat operasi" value={rekamMedis.riwayatOperasi} dataType='complex'  />
+            <Data label="alergi" value={rekamMedis.alergi} dataType='complex'  />
+            <Data label="penyakit yang sedang diderita" value={rekamMedis.penyakitDiderita} dataType='complex'  />
+            <Data label="riwayat pengobatan sedang berjalan" value={rekamMedis.pengobatanBerjalan} dataType='complex'  />
           </div>
         </div>
 
@@ -108,10 +124,10 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-2 gap-x-4 gap-y-4'>
-            <Data label="jalan tidak seimbang" value="terkadang" />
-            <Data label="penggunaan alat bantu" value="terkadang" />
-            <Data label="penurunan berat badan 6 bulan terakhir" value="tidak" />
-            <Data label="penguranan nafsu makan" value="ya" />
+            <Data label="jalan tidak seimbang" value={rekamMedis.kondisiBerjalan} />
+            <Data label="penggunaan alat bantu" value={rekamMedis.menggunakanAlatBantu} />
+            <Data label="penurunan berat badan 6 bulan terakhir" value={rekamMedis.penurunanBeratBadan} />
+            <Data label="penguranan nafsu makan" value={rekamMedis.penurunanNafsuMakan} />
           </div>
         </div>
 
@@ -120,8 +136,8 @@ const SingleData = () => {
           <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
 
           <div className='w-full grid grid-cols-2 gap-x-4 gap-y-4'>
-            <Data label="Informasi Tambahan 1" value="pasien terkadang merasakan gatal pada malam hari" dataType='complex' />
-            <Data label="Informasi Tambahan 2" value="tidak ada" dataType='complex'  />
+            <Data label="Informasi Tambahan 1" value={rekamMedis.tambahanPertama || 'Tidak ada'} dataType='complex' />
+            <Data label="Informasi Tambahan 2" value={rekamMedis.tambahanKedua || 'Tidak ada'} dataType='complex'  />
           </div>
         </div>
 
@@ -131,12 +147,13 @@ const SingleData = () => {
 
           <div className='w-full grid grid-cols-2 gap-x-4 gap-y-4'>
             <Data label="resiko pasien" value="Tinggi" bg='bg-redCard' />
-            <Data label="resiko infeksi menular" value="rendah" bg='bg-greenCard' />
-            <Data label="resiko penyakit kronis" value="sedang" bg='bg-yellowCard' />
-            <Data label="resiko penyakit menular" value="sedang" bg='bg-yellowCard' />
-            <Data label="tujuan berobat" value="berobat" />
-            <Data label="pemeriksaan lanjutan" value="laboratorium" />
-            <Data label="identitas pemeriksa" value="Perawat 1" />
+            <Data label="resiko infeksi menular" value={rekamMedis.statusResiko} bg='bg-greenCard' />
+            <Data label="resiko penyakit kronis" value={rekamMedis.kronis} bg='bg-yellowCard' />
+            <Data label="resiko penyakit menular" value={rekamMedis.penyakitMenular} bg='bg-yellowCard' />
+            <Data label="tujuan berobat" value={rekamMedis.tujuanBerobat} />
+            <Data label="pemeriksaan lanjutan" value={rekamMedis.pemeriksaanLanjutan} />
+            <Data label="identitas pemeriksa" value={rekamMedis.pemeriksa} />
+            <Data label="Status Penanganan" value={rekamMedis.status || 'Belum Ditangani'} />
           </div>
         </div>
 

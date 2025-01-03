@@ -1,11 +1,27 @@
-import { useState } from 'react'
 import { CustomFormInput } from '../../components'
+import { Form } from 'react-router'
+import customFetch from '../../utils/customFetch'
+import { toast } from 'react-toastify'
 
+export const action = async({ request }) => {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+  // console.log(data);
+  // return data
+  try {
+    await customFetch.post('/medis', data)
+    toast.success('Data di input')
+  } catch (error) {
+    console.log(error.response.data.msg);
+    return toast.error(error.response.data.msg)
+  }
+
+}
 
 const AddData = () => {
 
   return (
-    <section className="w-full flex flex-col items-start justify-start bg-white rounded-md mb-6">
+    <Form method="post" className="w-full flex flex-col items-start justify-start bg-white rounded-md mb-6">
       
       <div className='w-full p-6'>
         <h5 className='text-xl tracking-wide text-greyPrimary mb-4 font-medium  bg-blueCard rounded-md px-4 w-fit py-2'>Identititas Pribadi</h5>
@@ -54,7 +70,7 @@ const AddData = () => {
           <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true} />
           <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} type='number'/>
           <CustomFormInput label='RR (Respiratory Rate)' placeholder='per menit' name='RR' isRequired={true} type='number'/>
-          <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBdan' type='number' isRequired={true}/>
+          <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBadan' type='number' isRequired={true}/>
           <CustomFormInput label='tingkat kesadaran (1 - 15)' placeholder='kesadaran' name='skalaKesadaran' type='number' isRequired={true} />
           <CustomFormInput label='tinggi badan (cm)' placeholder='tinggi pasien' name='tinggiBadan' type='number' isRequired={true} />
           <CustomFormInput label='berat badan (kg)' placeholder='berat pasien' name='beratBadan' type='number' isRequired={true} />
@@ -137,7 +153,7 @@ const AddData = () => {
         <button type='submit' className='bg-blue-500 px-6 py-2 rounded-md'>Tambah Pasien</button> 
       </div>
 
-    </section>
+    </Form>
   )
 }
 
