@@ -49,5 +49,7 @@ export const updateData = async(req, res) => {
 }
 
 export const deleteData = async(req, res) => {
-    res.send('create rekam medis');
+    const { id } = req.params
+    await RekamMedis.findOneAndDelete({_id: id})
+    return res.status(StatusCodes.OK).json({ msg: 'user deleted!' })
 }

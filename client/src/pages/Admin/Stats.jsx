@@ -52,7 +52,7 @@ const Stats = () => {
         {/* cards */}
         <section className="w-full grid grid-cols-4 justify-items-center">
           <StatsCard color='bg-blueCard' icon={<Users size={20} />} title="Total Pasien" total={data.totalPasien} />
-          <StatsCard color='bg-redCard' icon={<ShieldAlert size={20} />} title="Resiko Tinggi" total={data.totalResiko[0].count} />
+          <StatsCard color='bg-redCard' icon={<ShieldAlert size={20} />} title="Resiko Tinggi" total={data.totalResiko[0]?.count || 0} />
           <StatsCard color='bg-yellowCard' icon={<ShieldMinus size={20} />} title="Resiko Sedang" total={data.totalResiko[1]?.count || 0} />
           <StatsCard color='bg-greenCard' icon={<ShieldPlus size={20} />} title="Resiko Rendah" total={data.totalResiko[2]?.count || 0} />
         </section>

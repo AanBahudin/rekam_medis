@@ -2,7 +2,23 @@ import React from 'react'
 import { Plus, Edit, Trash } from 'lucide-react'
 import { Data } from '../../components'
 import customFetch from '../../utils/customFetch'
-import { useLoaderData } from 'react-router'
+import { Form, redirect, useLoaderData } from 'react-router'
+import { toast } from 'react-toastify'
+
+export const action = async({request}) => {
+
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+
+  try {
+    await customFetch.delete(`/medis/${data.id}`)
+    toast.success('Data dihapus')
+    return redirect('/admin/all-data')
+  } catch (error) {
+    toast.error(error.response.data.msg)
+    return error
+  }
+}
 
 export const loader = async({ params }) => {
   try {
@@ -24,7 +40,10 @@ const SingleData = () => {
         <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
           <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </button>
           <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </button>
-          <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
+          <Form method='POST'>
+            <input type="hidden" name='id' value={rekamMedis._id} />
+            <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
+          </Form>
         </div>
 
       <section className="w-full flex flex-col items-start justify-start bg-white rounded-md mb-6">
