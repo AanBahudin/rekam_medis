@@ -11,6 +11,7 @@ import { loader as singleDataPageLoader } from './pages/Admin/SingleData'
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
 import { action as addDataAction } from './pages/Admin/AddData'
+import { action as allAdminAction } from './pages/Admin/AllAdmin'
 
 const App = () => {
 
@@ -62,6 +63,7 @@ const App = () => {
             {
               path: 'all-admin',
               loader: AdminPageLoader,
+              action : allAdminAction,
               element: <AllAdminPage />
             }
             
