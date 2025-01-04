@@ -6,6 +6,7 @@ import { BarChart, Bar, Tooltip, YAxis, XAxis, PieChart, Pie, ResponsiveContaine
 import customFetch from "../../utils/customFetch"
 import { toast } from "react-toastify"
 import { man } from '../../assets/images'
+import moment from "moment"
 import { useLoaderData } from "react-router"
 
 export const loader = async() => {
@@ -22,9 +23,6 @@ export const loader = async() => {
 const Stats = () => {
 
   const data = useLoaderData()
-  console.log(data);
-    
-  
 
   const userActivity = [
     {date: 'Senin', activeUser: 149},
@@ -109,7 +107,7 @@ const Stats = () => {
                             menambahkan pasien baru
                         </h5>
                         <p className="font-medium text-[12px]">{item.nama} - {item._id.slice(0, 10)}...</p>
-                        <p className="text-[10px] mt-1 italic opacity-75">{item.createdAt}</p>
+                        <p className="text-[10px] mt-1 italic opacity-75">{moment(item.createdAt).subtract(10, 'days').calendar()}</p>
                     </div>
                   </article>
                 )

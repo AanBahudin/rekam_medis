@@ -146,7 +146,7 @@ export const validateAddRekamMedis = withValidationErrors([
     body('pemeriksaanLanjutan')
         .notEmpty()
         .withMessage('kontrol tidak boleh kosong')
-        .isIn(['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi'])
+        .isIn(['Tidak ada', 'Labratorium', 'Radiologi', 'Laboratorium dan Radiologi'])
         .withMessage('tidak ada pilihan'),
     body('namaPenanggungJawab')
         .notEmpty()
@@ -154,7 +154,7 @@ export const validateAddRekamMedis = withValidationErrors([
     body('hubunganPenanggungJawab')
         .notEmpty()
         .withMessage('nama penanggung jawab tidak boleh kosong')
-        .isIn(['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat'])
+        .isIn(['Suami', 'Istri', 'Bapak', 'Ibu', 'Saudara', 'Saudari', 'Anak', 'Kerabat'])
         .withMessage('pilihan hubungan penanggung jawab tidak ada'),
     body('nomorTeleponPenanggungJawab')
         .notEmpty()

@@ -1,6 +1,5 @@
 import { Search, IdCard, CircleUser, ChevronLeft, ChevronRight } from 'lucide-react'
 import { TableData } from '../../components'
-import { dummyData } from '../../utils/constants'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
 import { useLoaderData } from 'react-router'
@@ -18,8 +17,6 @@ export const loader = async() => {
 const AllData = () => {
 
   const data = useLoaderData()
-  console.log(data);
-  
 
   return (
     <section className="w-full flex flex-col items-start justify-center pb-20">

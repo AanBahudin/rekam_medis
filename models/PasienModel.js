@@ -51,7 +51,8 @@ const PasienSchema = new mongoose.Schema({
     },
     kontrol: {
         type: String,
-        enum: ['Ya', 'Tidak']
+        enum: ['Ya', 'Tidak'],
+        default: 'Tidak'
     },
     tujuanBerobat: {
         type: String,
@@ -59,12 +60,12 @@ const PasienSchema = new mongoose.Schema({
     },
     pemeriksaanLanjutan: {
         type: String,
-        enum: ['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']
+        enum: ['Tidak ada', 'Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']
     },
     namaPenanggungJawab: String,
     hubunganPenanggungJawab: {
         type: String,
-        enum: ['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat']
+        enum: ['Suami', 'Istri', 'Bapak', 'Ibu', 'Saudara', 'Saudari', 'Anak', 'Kerabat']
     },
     nomorTeleponPenanggungJawab: String,
     alamatPenanggungJawab: String,
@@ -142,7 +143,7 @@ const PasienSchema = new mongoose.Schema({
     },
     tinggalBersama: {
         type: String,
-        enum: ['orang tua', 'kerabat', 'mengontrak/menumpang', 'sendirian'],
+        enum: ['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian'],
         default: 'orang tua'
     },
     statusEkonomi: {

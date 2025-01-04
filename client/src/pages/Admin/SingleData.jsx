@@ -32,7 +32,7 @@ export const loader = async({ params }) => {
 const SingleData = () => {
 
   const { rekamMedis } = useLoaderData()
-  
+  const formattedDate = rekamMedis.tanggalLahir.split('T')[0];
 
   return (
     <div className='w-full flex flex-col items-start justify-start mb-6'>
@@ -55,7 +55,7 @@ const SingleData = () => {
           <div className='w-full grid grid-cols-4 gap-x-4 gap-y-4'>
             <Data label="no rekam medis" value={rekamMedis._id} />
             <Data label="nama lengkap" value={rekamMedis.nama} />
-            <Data label="tanggal lahir" value={rekamMedis.tanggalLahir} />
+            <Data label="tanggal lahir" value={formattedDate} />
             <Data label="usia" value={rekamMedis.usia} />
             <Data label="jenis kelamin" value={rekamMedis.jenisKelamin} />
             <Data label="nomor induk keluarga" value={rekamMedis.nik} />

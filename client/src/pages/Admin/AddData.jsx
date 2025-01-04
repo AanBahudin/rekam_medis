@@ -1,7 +1,8 @@
 import { CustomFormInput } from '../../components'
-import { Form } from 'react-router'
+import { Form, useNavigation } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
+import { LoaderCircle } from 'lucide-react'
 
 export const action = async({ request }) => {
   const formData = await request.formData()
@@ -19,6 +20,9 @@ export const action = async({ request }) => {
 }
 
 const AddData = () => {
+
+  const navigation = useNavigation()
+  const isSubmitting = navigation.state === 'submitting'
 
   return (
     <Form method="post" className="w-full flex flex-col items-start justify-start bg-white rounded-md mb-6">
@@ -51,7 +55,7 @@ const AddData = () => {
         <hr className='mb-8 border-[1px] border-solid border-greySecondary/60' />
         <div className='w-full grid grid-cols-4 gap-x-4 gap-y-6'>
           <CustomFormInput label='nama penanggung jawab' placeholder='penanggung jawab' name='namaPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='Hubungan dengan pasien' name='hubunganPenanggungJawab' isRequired={true} inputType='select' list={['Suami', 'Istri', 'Saudara', 'Saudari', 'Anak', 'Kerabat']} />
+          <CustomFormInput label='Hubungan dengan pasien' name='hubunganPenanggungJawab' isRequired={true} inputType='select' list={['Suami', 'Istri', 'Bapak', 'Ibu', 'Saudara', 'Saudari', 'Anak', 'Kerabat']} />
           <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' name='nomorTeleponPenanggungJawab' isRequired={true}  type='number'/>
           <CustomFormInput label='alamat penanggung jawab' placeholder='Alamat keluarga' name='alamatPenanggungJawab' isRequired={true} />
           <CustomFormInput label='kota' placeholder='kota' name='kotaPenanggungJawab' isRequired={true} />
@@ -90,7 +94,7 @@ const AddData = () => {
           <CustomFormInput label='status kognitif' name='statusKognitif' isRequired={true} inputType='select' list={['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']} />
           <CustomFormInput label='status sosial' name='statusSosial' isRequired={true} inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
           <CustomFormInput label='hubungan pasien dan keluarga' name='hubunganDenganKeluarga' isRequired={true} inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
-          <CustomFormInput label='tinggal bersama' name='tinggalBersama' inputType='select' list={['orang tua', 'kerabat', 'mengontrak/menumpang', 'sendirian']}/>
+          <CustomFormInput label='tinggal bersama' name='tinggalBersama' inputType='select' list={['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian']}/>
           <CustomFormInput label='status ekonomi' name='statusEkonomi' inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']}  />
           <CustomFormInput label='bahasa sehari hari' placeholder='bahasa sehari hari' name='bahasa'/>
         </div>
@@ -143,14 +147,17 @@ const AddData = () => {
           <CustomFormInput label='Resiko penyakit kronis *' name='kronis' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
           <CustomFormInput label='Resiko penyakit menular *' name='penyakitMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
           <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
-          <CustomFormInput label='pemeriksaan lanjutan *' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
+          <CustomFormInput label='pemeriksaan lanjutan *' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Tidak ada', 'Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
           <CustomFormInput label='Identitas Pemeriksa *' name='pemeriksa' isRequired={true} inputType='select' list={['Perawat 1', 'Perawat 2', 'Perawat 3']} />
           {/* <CustomFormInput label='' placeholder='mmHg' name='keluhan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} /> */}
         </div>
       </div>
 
       <div className='w-full p-6 flex justify-end'>
-        <button type='submit' className='bg-blue-500 px-6 py-2 rounded-md'>Tambah Pasien</button> 
+        <button type='submit' disabled={isSubmitting} className='bg-blue-500 text-[14px] text-white px-6 py-2 rounded-md flex items-center justify-center gap-x-4'>
+          { isSubmitting && <LoaderCircle size={20} className='animate-spin stroke-white' />}
+          { isSubmitting ? 'Menambahkan ...' : 'Tambah' }
+        </button> 
       </div>
 
     </Form>
