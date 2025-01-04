@@ -1,5 +1,5 @@
 import { CustomFormInput } from '../../components'
-import { Form, useNavigation } from 'react-router'
+import { Form, redirect, useNavigation } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
 import { LoaderCircle } from 'lucide-react'
@@ -7,14 +7,13 @@ import { LoaderCircle } from 'lucide-react'
 export const action = async({ request }) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
-  // console.log(data);
-  // return data
   try {
     await customFetch.post('/medis', data)
     toast.success('Data di input')
+    return redirect('.')
   } catch (error) {
-    console.log(error.response.data.msg);
-    return toast.error(error.response.data.msg)
+    const errorArr = error.response.data.msg
+    return toast.error(errorArr.join(", "));
   }
 
 }
