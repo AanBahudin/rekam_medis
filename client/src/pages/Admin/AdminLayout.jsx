@@ -46,7 +46,7 @@ const AdminLayout = () => {
 
         <div className='flex-1'>
           <Navbar />
-          <div className='p-10 h-full overflow-y-scroll bg-lightGrey'>
+          <div className='p-10 h-full overflow-y-scroll bg-slate-100'>
             <Outlet />
           </div>
         </div>

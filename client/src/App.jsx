@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
-import { AdminDashboardLayout, AddDataPage, AllAdminPage, AllDataPage, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
 
 import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
 import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
@@ -57,10 +57,22 @@ const App = () => {
               element: <ProfilePage />
             },
             {
+              path: 'kunjungan/:id',
+              element: <AddRiwayat />,
+              // loader: ,
+              // action: ,
+            },
+            {
               path: 'all-data/:id',
               element: <SingleDataPage />,
               loader: singleDataPageLoader,
               action: singleDataAction
+            },
+            {
+              path: 'edit/:id',
+              elemen: <EditRekamMedis />,
+              // loader: ,
+              // action: ,
             },
             {
               path: 'all-admin',
