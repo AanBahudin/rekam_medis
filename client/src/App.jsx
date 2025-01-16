@@ -7,12 +7,14 @@ import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
 import { loader as statsPageLoader } from './pages/Admin/Stats'
 import { loader as allDataPageLoader } from './pages/Admin/AllData'
 import { loader as singleDataPageLoader } from './pages/Admin/SingleData'
+import { loader as editDataPageLoader } from './pages/Admin/EditRekamMedis'
 
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
 import { action as addDataAction } from './pages/Admin/AddData'
 import { action as allAdminAction } from './pages/Admin/AllAdmin'
 import { action as singleDataAction } from './pages/Admin/SingleData'
+import { action as editDataAction } from './pages/Admin/EditRekamMedis'
 
 const App = () => {
 
@@ -70,9 +72,9 @@ const App = () => {
             },
             {
               path: 'edit/:id',
-              elemen: <EditRekamMedis />,
-              // loader: ,
-              // action: ,
+              element: <EditRekamMedis />,
+              loader: editDataPageLoader,
+              action: editDataAction,
             },
             {
               path: 'all-admin',

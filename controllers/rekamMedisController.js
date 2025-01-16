@@ -45,7 +45,10 @@ export const getSingleData = async(req, res) => {
 }
 
 export const updateData = async(req, res) => {
-    res.send('create rekam medis');
+    const {id} = req.params
+    await RekamMedis.findOneAndUpdate({_id: id}, req.body, {new: true, runValidators: true})
+    return res.status(StatusCodes.OK).json({ msg: 'Berhasil diupdate' })
+    
 }
 
 export const deleteData = async(req, res) => {

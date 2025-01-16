@@ -130,7 +130,7 @@ const Stats = () => {
               <div className='w-full mt-8 flex flex-col gap-y-1 gap-x-2'>
                 {data.pasienTerbaru.map((item, index) => {
                   return (
-                    <Link to='/admin/all-data/asdfasdfas' className='w-full cursor-default flex items-center gap-x-2 py-4 border-t-2 border-greySecondary/20 hover:bg-blue-50 duration-200 ease-in-out'>
+                    <Link to={`/admin/all-data/${item._id}`} className='w-full cursor-default flex items-center gap-x-2 py-4 border-t-2 border-greySecondary/20 hover:bg-blue-50 duration-200 ease-in-out'>
                       <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item._id.slice(0, 15)}...</p>
                       <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item.nama}</p>
                       <p className='text-[14px] w-[20%] text-greySecondary truncate'>{item.jenisKelamin}</p>
