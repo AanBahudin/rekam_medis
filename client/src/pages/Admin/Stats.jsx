@@ -1,8 +1,7 @@
 import { StatsCard } from "../../components"
-import { activityData } from "../../utils/constants"
 import { Link } from 'react-router'
 import { ChartNoAxesCombined, Users, ShieldAlert, ShieldMinus, ShieldPlus, UserPlus } from 'lucide-react'
-import { BarChart, Bar, Tooltip, YAxis, XAxis, PieChart, Pie, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, Tooltip, YAxis, XAxis, PieChart, Pie, ResponsiveContainer, Cell } from 'recharts'
 import customFetch from "../../utils/customFetch"
 import { toast } from "react-toastify"
 import { man } from '../../assets/images'
@@ -23,6 +22,8 @@ export const loader = async() => {
 const Stats = () => {
 
   const data = useLoaderData()
+  console.log(data.rasioGender);
+  
 
   const userActivity = [
     {date: 'Senin', activeUser: 149},
@@ -33,16 +34,7 @@ const Stats = () => {
     {date: 'Sabtu', activeUser: 65},
     {date: 'Minggu', activeUser: 178},
   ]
-
-  const userActivity2 = [
-    {date: 'Senin', activeUser: 149},
-    {date: 'Selasa', activeUser: 130},
-    {date: 'Rabu', activeUser: 91},
-    {date: 'Kamis', activeUser: 171},
-    {date: 'Jumat', activeUser: 37},
-    {date: 'Sabtu', activeUser: 65},
-    {date: 'Minggu', activeUser: 178},
-  ]
+  const COLORS = ['#38bdf8', '#f472b6'];
 
   return (
     <div className="w-full text-greyPrimary">
@@ -75,11 +67,25 @@ const Stats = () => {
 
           </div>
 
-          <div className="bg-white flex items-center justify-center col-span-4 rounded-2xl p-6">
-            <ResponsiveContainer width= '100%' height='100%'>
-              <PieChart width={900} height={250}>
-                <Pie data={userActivity} dataKey="activeUser" nameKey="date" cx="50%" cy="50%" outerRadius={50} fill="#F7A4A4" />
-                <Pie data={userActivity2} dataKey="activeUser" nameKey="date" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#B4E4FF" label />
+          <div className="bg-white flex items-center justify-center col-span-4 rounded-2xl">
+            <ResponsiveContainer width="90%" height="100%">
+              <PieChart>
+                <Pie
+                  data={data.rasioGender}
+                  dataKey="count"
+                  nameKey="_id"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  fill="#B4E4FF"
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`} // Label dengan nama dan persentase
+                >
+                  {data.rasioGender.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip /> {/* Tooltip untuk informasi tambahan saat hover */}
               </PieChart>
             </ResponsiveContainer>
           </div>

@@ -11,11 +11,20 @@ export const statsData = async(req, res) => {
             }
         }
     ])
+
+    const rasioGender = await RekamMedis.aggregate([
+        {
+            $group: {
+                _id: '$jenisKelamin',
+                count: { $sum: 1 }
+            }
+        }
+    ])
     const pasienTerbaru = await RekamMedis.find({}).sort({ createdAt: -1 })
     
     
 
-    return res.status(StatusCodes.OK).json({ totalPasien, totalResiko, pasienTerbaru })
+    return res.status(StatusCodes.OK).json({ totalPasien, totalResiko, rasioGender, pasienTerbaru })
 }
 
 export const createData = async(req, res) => {
