@@ -38,7 +38,7 @@ const SingleData = () => {
     <div className='w-full flex flex-col items-start justify-start mb-6'>
 
         <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
-          <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </button>
+          <Link to={`/admin/kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
           <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
           <Form method='POST'>
             <input type="hidden" name='id' value={rekamMedis._id} />

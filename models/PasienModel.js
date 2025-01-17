@@ -205,7 +205,14 @@ const PasienSchema = new mongoose.Schema({
             perihalKunjungan: {
                 type: String,
                 enum: ['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap', 'Pemeriksaan Laboratorium', 'Pemeriksaan Radiologi', 'Pengambilan Obat']
-            }
+            },
+            tekananDarah: String,
+            denyutNadi: Number,
+            RR: String,
+            suhuBadan: Number,
+            tinggiBadan: Number,
+            beratBadan: Number,
+            keluhan: String,
             
         }
     ]
