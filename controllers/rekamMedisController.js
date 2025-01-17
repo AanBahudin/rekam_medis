@@ -65,3 +65,13 @@ export const deleteData = async(req, res) => {
     await RekamMedis.findOneAndDelete({_id: id})
     return res.status(StatusCodes.OK).json({ msg: 'user deleted!' })
 }
+
+export const addKunjungan = async(req, res) => {
+    const { id } = req.params
+    console.log(id);
+    console.log(req.body);
+    
+    
+    // const user = await RekamMedis.findOneAndUpdate({_id: id}, {  })
+return res.status(StatusCodes.OK).json({ msg: 'Okay' })
+}
