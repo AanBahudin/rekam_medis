@@ -34,6 +34,8 @@ const SingleData = () => {
 
   const [currentTab, setCurrentTab] = useState('first')
   const { rekamMedis } = useLoaderData()
+  console.log(rekamMedis._id);
+  
   const { riwayatKunjungan } = rekamMedis
   const formattedDate = (tanggal) => {
     return tanggal.split('T')[0]
@@ -200,8 +202,10 @@ const SingleData = () => {
               </div>
             ) : (
                 riwayatKunjungan.map((item, index) => {
+
+
                   return (
-                  <Link to={`/admin/kunjungan/${item._id}`} key={index} className='bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
+                  <Link to={`/admin/kunjungan/${rekamMedis._id}/${item._id}`} key={index} className='bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
                     <div className='flex flex-col gap-y-2'>
                       <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
     
@@ -217,8 +221,6 @@ const SingleData = () => {
                   )
                 })
             )}
-
-
           </div>
         </article>
 

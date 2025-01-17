@@ -9,6 +9,7 @@ import { loader as allDataPageLoader } from './pages/Admin/AllData'
 import { loader as singleDataPageLoader } from './pages/Admin/SingleData'
 import { loader as editDataPageLoader } from './pages/Admin/EditRekamMedis'
 import { loader as kunjunganPageLoader } from './pages/Admin/AddRiwayat'
+import { loader as singleKunjunganPageLoader } from './pages/Admin/Kunjungan'
 
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
@@ -61,9 +62,9 @@ const App = () => {
               element: <ProfilePage />
             },
             {
-              path: 'kunjungan/:id',
+              path: 'kunjungan/:id/:riwayat',
               element: <Kunjungan />,
-              // loader: kunjunganPageLoader,
+              loader: singleKunjunganPageLoader,
             },
             {
               path: 'tambah_kunjungan/:id',
