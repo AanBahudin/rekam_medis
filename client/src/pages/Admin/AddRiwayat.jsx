@@ -93,7 +93,7 @@ const AddRiwayat = () => {
         {/* THRID TAB */}
         <article className={`${activeTab !== 'third' ? 'hidden' : null}  w-full`}>
           <div className='w-full col-span-4 grid grid-cols-2 gap-x-4'>
-            <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
+            <CustomFormInput label='tujuan kunjungan' name='perihalKunjungan' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap', 'Pemeriksaan Laboratorium', 'Pemeriksaan Radiologi', 'Pengambilan Obat']} />
             <CustomFormInput label='Resiko pasien *' name='statusResiko' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah']} />
           </div>
 

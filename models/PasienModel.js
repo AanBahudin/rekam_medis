@@ -206,14 +206,20 @@ const PasienSchema = new mongoose.Schema({
                 type: String,
                 enum: ['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap', 'Pemeriksaan Laboratorium', 'Pemeriksaan Radiologi', 'Pengambilan Obat']
             },
+            statusResiko: {
+                type: String,
+                enum: ['Tinggi', 'Sedang', 'Rendah'],
+                default: 'Rendah'
+            },
             tekananDarah: String,
             denyutNadi: Number,
             RR: String,
             suhuBadan: Number,
             tinggiBadan: Number,
             beratBadan: Number,
-            keluhan: String,
-            
+            pengobatanBerjalan: String,
+            keluhanPenyakit: String,
+            riwayatPenyakit: String
         }
     ]
 }, { timestamps: true })
