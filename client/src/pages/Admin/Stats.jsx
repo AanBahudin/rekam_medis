@@ -1,5 +1,5 @@
 import { StatsCard } from "../../components"
-import { Link } from 'react-router'
+import { Link, redirect } from 'react-router'
 import { ChartNoAxesCombined, Users, ShieldAlert, ShieldMinus, ShieldPlus, UserPlus } from 'lucide-react'
 import { BarChart, Bar, Tooltip, YAxis, XAxis, PieChart, Pie, ResponsiveContainer, Cell } from 'recharts'
 import customFetch from "../../utils/customFetch"
@@ -13,9 +13,7 @@ export const loader = async() => {
     const { data } = await customFetch('/medis/stats')
     return data
   } catch (error) {
-    toast.error('terjadi kesalahan')
-    console.log(error.response.data.msg)
-    return error.response.data.msg
+    return redirect('/')
   }
 }
 
