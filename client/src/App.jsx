@@ -16,6 +16,7 @@ import { action as addDataAction } from './pages/Admin/AddData'
 import { action as allAdminAction } from './pages/Admin/AllAdmin'
 import { action as singleDataAction } from './pages/Admin/SingleData'
 import { action as editDataAction } from './pages/Admin/EditRekamMedis'
+import { action as kunjunganAction } from './pages/Admin/AddRiwayat'
 
 const App = () => {
 
@@ -63,7 +64,7 @@ const App = () => {
               path: 'kunjungan/:id',
               element: <AddRiwayat />,
               loader: kunjunganPageLoader,
-              // action: ,
+              action: kunjunganAction,
             },
             {
               path: 'all-data/:id',

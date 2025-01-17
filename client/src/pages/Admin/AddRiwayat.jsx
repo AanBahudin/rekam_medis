@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useLoaderData } from 'react-router'
+import { Form, redirect, useLoaderData } from 'react-router'
 import { CustomFormInput } from '../../components'
 import customFetch from '../../utils/customFetch'
+import { toast } from 'react-toastify'
 
 export const loader = async({ params }) => {
   try {
@@ -13,6 +14,19 @@ export const loader = async({ params }) => {
   }
 }
 
+export const action = async({request, params}) => {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+  try {
+    await customFetch.post('', data)
+    toast.success('Kunjungan ditambahkan')
+    return redirect(`/admin/all-data/${params.id}`)
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
 const AddRiwayat = () => {
 
   const [activeTab, setActiveTab] = useState('first')
@@ -21,9 +35,12 @@ const AddRiwayat = () => {
   
 
   return (
-    <section className='w-full flex flex-col items-start justify-start mb-6'>
-      <h1 className='text-3xl font-semibold text-slate-700'>Tambah Kunjungan Pasien</h1>
-      <p className='text-slate-600'>Catat kunjungan baru pasien dengan detail seperti tanggal, tujuan, keluhan, dan tindakan medis untuk melengkapi riwayat kesehatan mereka.</p>
+    <Form method='POST' className='w-full flex flex-col items-start justify-start mb-6'>
+      <div className='w-full flex justify-between items-center'>
+        <h1 className='text-3xl font-semibold text-slate-700'>Tambah Kunjungan Pasien</h1>
+        <button className='bg-blueCard/80 hover:bg-blueCard duration-200 ease-in-out cursor-default px-5 py-2 rounded-md text-xs'>Tambah Kunjungan</button>
+      </div>
+      <p className='text-slate-600 mt-2'>Catat kunjungan baru pasien dengan detail seperti tanggal, tujuan, keluhan, dan tindakan medis untuk melengkapi riwayat kesehatan mereka.</p>
 
       {/* TABS */}
       <div className='w-[60%] mx-auto flex items-center justify-center mt-10'>
@@ -65,16 +82,31 @@ const AddRiwayat = () => {
 
         {/* SECOND TAB */}
         <article className={`${activeTab !== 'second' ? 'hidden' : 'grid grid-cols-4 gap-x-4  gap-y-6'}  w-full`}>
-          <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true}  defaultValue={data.tekananDarah}/>
-          <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} type='number' defaultValue={data.denyutNadi}/>
-          <CustomFormInput label='RR (Respiratory Rate)' placeholder='per menit' name='RR' isRequired={true} type='number'  defaultValue={data.RR}/>
-          <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBadan' type='number' isRequired={true} defaultValue={data.suhuBadan}/>
+          <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true}/>
+          <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} type='number'/>
+          <CustomFormInput label='RR (Respiratory Rate)' placeholder='per menit' name='RR' isRequired={true} type='number'/>
+          <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBadan' type='number' isRequired={true} />
           <CustomFormInput label='tinggi badan (cm)' placeholder='tinggi pasien' name='tinggiBadan' type='number' isRequired={true}  defaultValue={data.tinggiBadan}/>
           <CustomFormInput label='berat badan (kg)' placeholder='berat pasien' name='beratBadan' type='number' isRequired={true}  defaultValue={data.beratBadan}/>
         </article>
 
+        {/* THRID TAB */}
+        <article className={`${activeTab !== 'third' ? 'hidden' : null}  w-full`}>
+          <div className='w-full col-span-4 grid grid-cols-2 gap-x-4'>
+            <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
+            <CustomFormInput label='Resiko pasien *' name='statusResiko' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah']} />
+          </div>
+
+          <div className='w-full grid grid-cols-3 gap-x-4 mt-4'>
+            <CustomFormInput label='riwayat pengobatan sedang berjalan' placeholder='pengobatan berjalan' name='pengobatanBerjalan' isRequired={true} inputType='textarea' defaultValue={data.pengobatanBerjalan}/>
+            <CustomFormInput label='keluhan penyakit' placeholder='keluhan penyakit' name='keluhanPenyakit' isRequired={true} inputType='textarea' />
+            <CustomFormInput label='riwayat penyakit' placeholder='riwayat penyakit' name='riwayatPenyakit' isRequired={true} inputType='textarea' />
+          </div>
+        </article>
+
+
       </div>
-    </section>
+    </Form>
 
   )
 }
