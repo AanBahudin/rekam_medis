@@ -194,23 +194,30 @@ const SingleData = () => {
           {/* LIST CONTAINER */}
           <div className='w-full mt-6 flex flex-col gap-y-4'>
 
-            {riwayatKunjungan.map((item, index) => {
-              return (
-              <section key={index} className='bg-slate-200/50 hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
-                <div className='flex flex-col gap-y-2'>
-                  <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
+            {riwayatKunjungan.length === 0 ? (
+              <div>
+                <h1 className='text-slate-700 text-xl'>Belum ada riwayat kunjungan</h1>
+              </div>
+            ) : (
+                riwayatKunjungan.map((item, index) => {
+                  return (
+                  <section key={index} className='bg-slate-200/50 hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
+                    <div className='flex flex-col gap-y-2'>
+                      <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
+    
+                      <div className='flex items-center'>
+                        <ShieldAlert size={33} className={`p-1 rounded-md ${ item.statusResiko === 'Tinggi' ? 'bg-red-300' : (item.statusResiko === 'Sedang' ? 'bg-yellowCard' : 'bg-blueCard') }`} />
+                        <h1 className={`text-slate-800 tracking-wide w-fit px-4 py-1 rounded-full text-sm font-medium`}>Resiko {item.statusResiko}</h1>
+                      </div>
+                    </div>
+    
+                    
+                    <h1 className='text-3xl font-semibold text-slate-700'>{item.perihalKunjungan}</h1>
+                  </section>
+                  )
+                })
+            )}
 
-                  <div className='flex items-center'>
-                    <ShieldAlert size={33} className={`p-1 rounded-md ${ item.statusResiko === 'Tinggi' ? 'bg-red-300' : (item.statusResiko === 'Sedang' ? 'bg-yellowCard' : 'bg-blueCard') }`} />
-                    <h1 className={`text-slate-800 tracking-wide w-fit px-4 py-1 rounded-full text-sm font-medium`}>Resiko {item.statusResiko}</h1>
-                  </div>
-                </div>
-
-                
-                <h1 className='text-3xl font-semibold text-slate-700'>{item.perihalKunjungan}</h1>
-              </section>
-              )
-            })}
 
           </div>
         </article>
