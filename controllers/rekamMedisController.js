@@ -68,10 +68,6 @@ export const deleteData = async(req, res) => {
 
 export const addKunjungan = async(req, res) => {
     const { id } = req.params
-    console.log(id);
-    console.log(req.body);
-    
-    
-    // const user = await RekamMedis.findOneAndUpdate({_id: id}, {  })
-return res.status(StatusCodes.OK).json({ msg: 'Okay' })
+    const user = await RekamMedis.findOneAndUpdate({_id: id}, { $push: { riwayatKunjungan: req.body }}, {new: true, runValidators: true} )
+    return res.status(StatusCodes.OK).json({ msg: 'Okay' })
 }

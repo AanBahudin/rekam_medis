@@ -18,7 +18,7 @@ export const action = async({request, params}) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
   try {
-    await customFetch.post('', data)
+    await customFetch.post(`/medis/kunjungan/${params.id}`, data)
     toast.success('Kunjungan ditambahkan')
     return redirect(`/admin/all-data/${params.id}`)
   } catch (error) {

@@ -183,7 +183,10 @@ const PasienSchema = new mongoose.Schema({
                 type: mongoose.Types.ObjectId,
                 default: () => new mongoose.Types.ObjectId()
             },
-            tanggalPemeriksaan: Date,
+            tanggalPemeriksaan: {
+                type: Date,
+                default: Date.now
+            },
             subjektif: String,
             objektif: String,
             assessment: String,
@@ -201,7 +204,10 @@ const PasienSchema = new mongoose.Schema({
                 type: mongoose.Types.ObjectId,
                 default: () => new mongoose.Types.ObjectId()
             },
-            tanggalKunjungan: Date,
+            tanggalKunjungan: {
+                type: Date,
+                default: Date.now
+            },
             perihalKunjungan: {
                 type: String,
                 enum: ['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap', 'Pemeriksaan Laboratorium', 'Pemeriksaan Radiologi', 'Pengambilan Obat']
