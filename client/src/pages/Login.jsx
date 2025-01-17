@@ -26,20 +26,12 @@ const Login = () => {
   const isSubmitting = navigation.state === 'submitting'
 
   return (
-    <div className='w-fullScreen h-fullScreen grid grid-cols-2'>
-
-      <section className='bg-gradient bg-cover flex flex-col items-start justify-center px-10 h-full w-halfScreen'>
-        <h4 className='text-greyPrimary text-2xl font-semibold select-none'>Welcome to</h4>
-        <h1 className='text-white text-7xl font-semibold select-none'>Rekam Medis</h1>
-
-      </section>
-
-
-      <section className='h-full w-halfScreen max-w-full flex flex-col items-start justify-center px-20'>
+    <div className='w-fullScreen h-fullScreen flex p-10 rounded-xl'>
+      <section className='h-full w-halfScreen max-w-full flex flex-col items-start justify-center px-20 '>
         <div className='w-[80%] mx-auto'>
           <img className='w-12 h-12' src={mainLogo} />
-          <h1 className='text-5xl font-semibold text-greyPrimary mt-8 mb-4 tracking-wider'>Login</h1>
-          <p className='text-greySecondary text-md'>Lorem ipsum dolor sit amet consectetur adipisicing </p>
+          <h1 className='text-4xl font-semibold text-greyPrimary mt-8'>Selamat Datang Kembali</h1>
+          <p className='text-greySecondary text-md'>Silahkan masuk dengan akun anda</p>
 
 
           {/* INPUT */}
@@ -70,6 +62,11 @@ const Login = () => {
           </Form>
         </div>
         
+      </section>
+
+      <section className='bg-gradient bg-cover rounded-xl flex flex-col items-start justify-center px-10 h-full w-halfScreen'>
+        <h4 className='text-greyPrimary text-2xl font-semibold select-none'>Welcome to</h4>
+        <h1 className='text-white text-7xl font-semibold select-none'>Rekam Medis</h1>
       </section>
     </div>
   )

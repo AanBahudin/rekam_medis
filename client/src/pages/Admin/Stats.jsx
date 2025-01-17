@@ -20,8 +20,6 @@ export const loader = async() => {
 const Stats = () => {
 
   const data = useLoaderData()
-  console.log(data.rasioGender);
-  
 
   const userActivity = [
     {date: 'Senin', activeUser: 149},
