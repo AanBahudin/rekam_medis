@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
-import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
 
 import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
 import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
@@ -62,6 +62,11 @@ const App = () => {
             },
             {
               path: 'kunjungan/:id',
+              element: <Kunjungan />,
+              // loader: kunjunganPageLoader,
+            },
+            {
+              path: 'tambah_kunjungan/:id',
               element: <AddRiwayat />,
               loader: kunjunganPageLoader,
               action: kunjunganAction,

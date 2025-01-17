@@ -43,7 +43,7 @@ const SingleData = () => {
     <div className='w-full flex flex-col items-start justify-start mb-6'>
 
       <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
-        <Link to={`/admin/kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
+        <Link to={`/admin/tambah_kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
         <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
         <Form method='POST'>
           <input type="hidden" name='id' value={rekamMedis._id} />
@@ -201,7 +201,7 @@ const SingleData = () => {
             ) : (
                 riwayatKunjungan.map((item, index) => {
                   return (
-                  <section key={index} className='bg-slate-200/50 hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
+                  <Link to={`/admin/kunjungan/${item._id}`} key={index} className='bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
                     <div className='flex flex-col gap-y-2'>
                       <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
     
@@ -213,7 +213,7 @@ const SingleData = () => {
     
                     
                     <h1 className='text-3xl font-semibold text-slate-700'>{item.perihalKunjungan}</h1>
-                  </section>
+                  </Link>
                   )
                 })
             )}
