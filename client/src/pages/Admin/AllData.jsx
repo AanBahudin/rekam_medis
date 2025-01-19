@@ -2,7 +2,8 @@ import { Search, IdCard, CircleUser, ChevronLeft, ChevronRight } from 'lucide-re
 import { TableData } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
-import { Link, useLoaderData } from 'react-router'
+import { Link, useLoaderData, useNavigate } from 'react-router'
+import { useState } from 'react'
 
 export const loader = async({ request }) => {
   const url = new URL(request.url);
@@ -20,6 +21,37 @@ export const loader = async({ request }) => {
 const AllData = () => {
 
   const data = useLoaderData()
+  const navigate = useNavigate()
+  const [filter, setFilter] = useState({
+    _id: '',
+    nik: '',
+    nama: '',
+    jenisKelamin: '',
+    tujuanBerobat: '',
+    status: '',
+    kunjungan: '',
+    golonganDarah: ''
+  })
+
+  const handleFilterChange = (event, filterName) => {
+    setFilter((prev) => ({
+      ...prev, [filterName]: event.target.value
+    }))
+  }
+
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams();
+
+    // Tambahkan filter yang tidak kosong ke queryParams
+    Object.keys(filter).forEach((key) => {
+      if (filter[key]) {
+        queryParams.append(key, filter[key]);
+      }
+    });
+
+    // Arahkan ke URL baru dengan query params
+    navigate(`?${queryParams.toString()}`);
+  };
 
   return (
     <section className="w-full flex flex-col items-start justify-center pb-20">
@@ -33,7 +65,7 @@ const AllData = () => {
             <label htmlFor="" className='text-[14px] font-medium'>rekam medis</label>
             <div className='flex bg-lightGrey px-2 w-full rounded-md items-center'>
               <Search size={20} />
-              <input type="text" placeholder='468749' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
+              <input onChange={(event) => handleFilterChange(event, '_id')} type="text" placeholder='468749' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
             </div>
           </div>
 
@@ -41,7 +73,7 @@ const AllData = () => {
             <label htmlFor="" className='text-[14px] font-medium'>NIK</label>
             <div className='flex bg-lightGrey px-2 w-full rounded-md items-center'>
               <IdCard size={20} />
-              <input type="text" placeholder='nomor induk keluarga' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
+              <input onChange={(event) => handleFilterChange(event, 'nik')} type="text" placeholder='nomor induk keluarga' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
             </div>
           </div>
 
@@ -49,15 +81,14 @@ const AllData = () => {
             <label htmlFor="" className='text-[14px] font-medium'>nama</label>
             <div className='flex bg-lightGrey px-2 w-full rounded-md items-center'>
               <CircleUser className='stroke-greyPrimary' size={20} />
-              <input type="text" placeholder='nama pasien' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
+              <input onChange={(event) => handleFilterChange(event, 'nama')} type="text" placeholder='nama pasien' className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
             </div>
           </div>
 
 
           <div className='w-[10%] flex flex-col gap-y-1'>
             <label htmlFor="" className='text-[14px] font-medium invisible'>Cari data</label>
-            <button type="submit" className='text-center text-white text-sm px-2 py-3 rounded-md cursor-default bg-blue-500'>Search</button>
-            
+            <button onClick={handleSearch} type="submit" className='text-center text-white text-sm px-2 py-3 rounded-md cursor-default bg-blue-500'>Search</button>
           </div>
 
         </div>
@@ -65,7 +96,7 @@ const AllData = () => {
         <div className="w-full flex gap-x-4 items-center justify-between mt-6">
           <div className='w-[20%] flex flex-col gap-y-1 rounded-lg'>
             <label htmlFor="" className='text-[14px] font-medium'>Gender</label>
-            <select name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
+            <select onChange={(event) => handleFilterChange(event, 'jenisKelamin')} name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
               <option value="">All</option>
               <option value="">Pria</option>
               <option value="">Wanita</option>
@@ -75,34 +106,34 @@ const AllData = () => {
           <div className='w-[20%] flex flex-col gap-y-1'>
             <label htmlFor="" className='text-[14px] font-medium'>Tujuan</label>
             <div className='flex bg-lightGrey w-full rounded-md items-center'>
-              <select name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
+              <select onChange={(event) => handleFilterChange(event, 'tujuanBerobat')} name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
                 <option value="">All</option>
                 <option value="">Berobat</option>
                 <option value="">Konsultasi</option>
-                <option value="">Cek Kesehatan</option>
                 <option value="">Kontrol</option>
+                <option value="">Rawat Inap</option>
               </select>
             </div>  
           </div>
 
           <div className='w-[20%] flex flex-col gap-y-1'>
             <label htmlFor="" className='text-[14px] font-medium'>Status</label>
-              <select name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
+              <select onChange={(event) => handleFilterChange(event, 'status')} name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
                 <option value="">All</option>
                 <option value="">Ditangani</option>
-                <option value="">Sedang Ditangani</option>
+                <option value="">Proses</option>
                 <option value="">Belum Ditangani</option>
               </select>
           </div>
 
           <div className='w-[20%] flex flex-col gap-y-1'>
             <label htmlFor="" className='text-[14px] font-medium'>Kunjungan Terakhir</label>
-            <input type='date' name="" id=""   className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
+            <input onChange={(event) => handleFilterChange(event, 'kunjungan')} type='date' name="" id=""   className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`} />
           </div>
 
           <div className='w-[20%] flex flex-col gap-y-1'>
             <label htmlFor="" className='text-[14px] font-medium'>Gol Darah</label>
-            <select name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
+            <select onChange={(event) => handleFilterChange(event, 'golonganDarah')} name="" id="" className={`px-2 py-3 bg-lightGrey rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}>
               <option value="">All</option>
               <option value="">A</option>
               <option value="">A+</option>
