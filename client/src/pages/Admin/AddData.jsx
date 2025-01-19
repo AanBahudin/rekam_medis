@@ -1,4 +1,4 @@
-import { CustomFormInput, InputForm, InputSelect } from '../../components'
+import { CustomFormInput, InputForm, InputSelect, InputTextarea } from '../../components'
 import { Form, redirect, useNavigation } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
@@ -76,66 +76,65 @@ const AddData = () => {
         </div>
 
         <div className={`w-full ${ activeMenu === 'third' ? 'grid grid-cols-3' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='tekanan darah' placeholder='mmHg' name='tekananDarah' isRequired={true} />
-          <CustomFormInput label='denyut nadi' placeholder='per menit' name='denyutNadi' isRequired={true} type='number'/>
-          <CustomFormInput label='RR (Respiratory Rate)' placeholder='per menit' name='RR' isRequired={true} type='number'/>
-          <CustomFormInput label='suhu badan (C)' placeholder='celcius' name='suhuBadan' type='number' isRequired={true}/>
-          <CustomFormInput label='tingkat kesadaran (1 - 15)' placeholder='kesadaran' name='skalaKesadaran' type='number' isRequired={true} />
-          <CustomFormInput label='tinggi badan (cm)' placeholder='tinggi pasien' name='tinggiBadan' type='number' isRequired={true} />
-          <CustomFormInput label='berat badan (kg)' placeholder='berat pasien' name='beratBadan' type='number' isRequired={true} />
-          <CustomFormInput label='golongan darah' name='golonganDarah' inputType='select' list={['A', 'A+', 'A-', 'AB', 'AB+','AB-', 'B', 'B+', 'B-', 'O', 'O+', 'O-',]} isRequired={true} />
+          <InputForm inputName='tekananDarah' label='tekanan darah' placeholder='120' />
+          <InputForm inputName='denyutNadi' label='denyut nadi' placeholder='60' inputType='number'/>
+          <InputForm inputName='RR' label='tingkat pernapasan' placeholder='15' inputType='number'/>
+          <InputForm inputName='suhuBadan' label='suhu badan' placeholder='35' inputType='number'/>
+          <InputForm inputName='skalaKesadaran' label='skala kesadaran (1-15)' placeholder='1' inputType='number' />
+          <InputForm inputName='tinggiBadan' label='tinggi badan' placeholder='170' inputType='number' />
+          <InputForm inputName='beratBadan' label='berat badan' placeholder='70' inputType='number' />
+          <InputSelect inputName='golonganDarah' label='golongan darah' list={['A', 'A+', 'A-', 'AB', 'AB+','AB-', 'B', 'B+', 'B-', 'O', 'O+', 'O-',]} />
         </div>
 
 
 
         <div className={`w-full ${ activeMenu === 'fourth' ? 'grid grid-cols-3' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='status psikologis' name='statusPsikologi' isRequired={true} inputType='select' list={['stabil', 'cemas', 'depresi', 'agitasi', 'euforia']} />
-          <CustomFormInput label='status emosional' name='statusEmosional' isRequired={true} inputType='select' list={['tenang', 'mudah tersinggung', 'marah', 'sedih', 'takut']} />
-          <CustomFormInput label='status kesadaran' name='statusKesadaran' isRequired={true} inputType='select' list={['sadar penuh', 'linglung', 'delirium', 'tidak sadar']} />
-          <CustomFormInput label='status perilaku' name='statusPerilaku' isRequired={true} inputType='select' list={['kooperatif', 'menarik diri', 'agresif', 'pasif']} />
-          <CustomFormInput label='status kognitif' name='statusKognitif' isRequired={true} inputType='select' list={['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']} />
-          <CustomFormInput label='status sosial' name='statusSosial' isRequired={true} inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
-          <CustomFormInput label='hubungan pasien dan keluarga' name='hubunganDenganKeluarga' isRequired={true} inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
-          <CustomFormInput label='tinggal bersama' name='tinggalBersama' inputType='select' list={['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian']}/>
-          <CustomFormInput label='status ekonomi' name='statusEkonomi' inputType='select' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']}  />
-          <CustomFormInput label='bahasa sehari hari' placeholder='bahasa sehari hari' name='bahasa'/>
+          <InputSelect inputName='statusPsikologi' label='status psikologis' list={['stabil', 'cemas', 'depresi', 'agitasi', 'euforia']} />
+          <InputSelect inputName='statusEmosional' label='status emosional' list={['tenang', 'mudah tersinggung', 'marah', 'sedih', 'takut']} />
+          <InputSelect inputName='statusKesadaran' label='status kesadaran' list={['sadar penuh', 'linglung', 'delirium', 'tidak sadar']} />
+          <InputSelect inputName='statusPerilaku' label='status perilaku' list={['kooperatif', 'menarik diri', 'agresif', 'pasif']} />
+          <InputSelect inputName='statusKognitif' label='status kognitif' list={['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']} />
+          <InputSelect inputName='statusSosial' label='status sosial' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
+          <InputSelect inputName='hubunganDenganKeluarga' label='golongan darah' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
+          <InputSelect inputName='tinggalBersama' label='golongan darah' list={['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian']} />
+          <InputSelect inputName='statusEkonomi' label='golongan darah' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
+          <InputForm inputName='bahasa' label='bahasa yang digunakan' placeholder='Indonesia' />
         </div>
 
         <div className={`w-full ${ activeMenu === 'fifth' ? 'grid grid-cols-2' : 'hidden' } gap-x-4 gap-y-6`} >
-          <CustomFormInput label='keluhan penyakit' placeholder='keluhan penyakit' name='keluhanPenyakit' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat penyakit' placeholder='riwayat penyakit' name='riwayatPenyakit' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat penyakit turunan' placeholder='riwayat penyakit turunan' name='penyakitTurunan' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat operasi' placeholder='riwayat operasi pasien' name='riwayatOperasi' inputType='textarea'/>
-          <CustomFormInput label='alergi' placeholder='alergi pasien' name='alergi' inputType='textarea'/>
-          <CustomFormInput label='penyakit yang diderita' placeholder='penyakit diderita' name='penyakitDiderita' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='riwayat pengobatan sedang berjalan' placeholder='pengobatan berjalan' name='pengobatanBerjalan' isRequired={true} inputType='textarea' />
+          <InputTextarea inputName='keluhanPenyakit' label='Keluhan penyakit' placeholder='apa keluhan penyakit pasien'  />
+          <InputTextarea inputName='riwayatPenyakit' label='riwayat penyakit' placeholder='apakah ada riwayat penyakit'  />
+          <InputTextarea inputName='penyakitTurunan' label='penyakit turunan' placeholder='penyakit turunan pasien'  />
+          <InputTextarea inputName='riwayatOperasi' label='riwayat operasi terakhir' placeholder='apakah ada riwayat operasi'  />
+          <InputTextarea inputName='alergi' label='riwayat alergi' placeholder='riwayat alergi pasien'  />
+          <InputTextarea inputName='penyakitDiderita' label='penyakit bawaan / sedang diderita' placeholder='penyakit bawaan pasien'  />
+          <InputTextarea inputName='pengobatanBerjalan' label='riwayat pengobatan terakhir' placeholder='pengobatan terakhir yang dikonsumsi'  />
         </div>
 
-        <div className={`w-full ${ activeMenu === 'sixth' ? 'grid grid-cols-' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='jalan tidak seimbang' name='kondisiBerjalan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
-          <CustomFormInput label='jalan menggunakan alat bantu' name='menggunakanAlatBantu' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
-          <CustomFormInput label='apakah ada penurunan berat badan yang tidak diinginkan 6 bulan terakhir?' name='penurunanBeratBadan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
-          <CustomFormInput label='apakah ada penurunan nafsu makan?' name='penurunanNafsuMakan' isRequired={true} inputType='select' list={['ya', 'kadang', 'tidak']} />
+        <div className={`w-full ${ activeMenu === 'sixth' ? 'grid grid-cols-1' : 'hidden' } gap-x-4 gap-y-6`}>
+          <InputSelect inputName='kondisiBerjalan' label='apakah jalan tidak seimbang?' list={['ya', 'kadang', 'tidak']} />
+          <InputSelect inputName='menggunakanAlatBantu' label='apakah menggunakan alat bantu?' list={['ya', 'kadang', 'tidak']} />
+          <InputSelect inputName='penurunanBeratBadan' label='apakah ada penurunan berat badan yang tidak diinginkan 6 bulan terakhir?' list={['ya', 'kadang', 'tidak']} />
+          <InputSelect inputName='penurunanNafsuMakan' label='apakah ada penurunan nafsu makan?' list={['ya', 'kadang', 'tidak']} />
         </div>
 
         <div className={`w-full ${ activeMenu === 'seventh' ? 'grid grid-cols-2' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='informasi tambahan 1' placeholder='informasi tambahan' name='tambahanPertama' isRequired={true} inputType='textarea' />
-          <CustomFormInput label='informasi tambahan 2' placeholder='informasi tambahan' name='tambahanKedua' isRequired={true} inputType='textarea' />
+          <InputTextarea inputName='tambahanPertama' label='Informasi tambahan 1' placeholder='informasi tambahan 1' isRequired={false}  />
+          <InputTextarea inputName='tambahanKedua' label='Informasi tambahan 2' placeholder='informasti tambahan 2' isRequired={false}  />
         </div>
 
         <div className={`w-full ${ activeMenu === 'eighth' ? 'grid grid-cols-2' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='Resiko pasien *' name='statusResiko' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah']} />
-          <CustomFormInput label='Resiko infeksi menular *' name='infeksiMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
-          <CustomFormInput label='Resiko penyakit kronis *' name='kronis' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
-          <CustomFormInput label='Resiko penyakit menular *' name='penyakitMenular' isRequired={true} inputType='select' list={['Tinggi', 'Sedang', 'Rendah',]} />
-          <CustomFormInput label='tujuan berobat' name='tujuanBerobat' isRequired={true} inputType='select' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
-          <CustomFormInput label='pemeriksaan lanjutan *' name='pemeriksaanLanjutan' isRequired={true} inputType='select' list={['Tidak ada', 'Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} />
-          <CustomFormInput label='Identitas Pemeriksa *' name='pemeriksa' isRequired={true} inputType='select' list={['Perawat 1', 'Perawat 2', 'Perawat 3']} />
-          {/* <CustomFormInput label='' placeholder='mmHg' name='keluhan' isRequired={true} inputType='select' list={['Labratorium', 'Radiologi', 'Laboratorium dan Radiologi']} /> */}
+          <InputSelect inputName='statusResiko' label='resiko penyakit pasien' list={['Tinggi', 'Sedang', 'Rendah']} />
+          <InputSelect inputName='infeksiMenular' label='resiko infeksi menular' list={['Tinggi', 'Sedang', 'Rendah']} />
+          <InputSelect inputName='kronis' label='resiko penyakit kronis' list={['Tinggi', 'Sedang', 'Rendah']} />
+          <InputSelect inputName='penyakitMenular' label='resiko penyakit menular' list={['Tinggi', 'Sedang', 'Rendah']} />
+          <InputSelect inputName='tujuanBerobat' label='tujuan kunjungan' list={['Berobat', 'Konsultasi', 'Kontrol', 'Rawat Inap']} />
+          {/* <InputSelect inputName='pemeriksaanLanjutan' label='resiko penyakit pasien' list={['Tinggi', 'Sedang', 'Rendah']} /> */}
+          <InputSelect inputName='pemeriksa' label='identitas pemeriksa' list={['Perawat 1', 'Perawat 2', 'Perawat 3']} />
         </div>
 
 
-        <button disabled={isSubmitting} className='self-end bg-blueCard/80 w-[10vw] text-sm py-2 rounded-md text-slate-700 flex items-center gap-x-2 justify-center'>
+        <button disabled={isSubmitting} className={`self-end bg-blueCard/80 w-[10vw] text-sm py-2 rounded-md text-slate-700 ${ activeMenu === 'eighth' ? 'flex items-center' : 'hidden' } gap-x-2 justify-center`}>
           {isSubmitting && <LoaderCircle size={20} className='animate-spin stroke-white' />}
           { isSubmitting ? 'Menambahkan ...' : 'Selesai' }
         </button>

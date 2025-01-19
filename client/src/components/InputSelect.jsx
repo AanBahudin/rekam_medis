@@ -10,13 +10,6 @@ const InputSelect = ({ inputName, label, defaultValue, list }) => {
                 return <option value={item}>{item}</option>
             })}
         </select>
-        {/* <input 
-        type={inputType}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        autoComplete='off'
-        className='bg-transparent border-[2px] border-slate-400 px-2 py-3 rounded-lg placeholder:text-[12px] flex-1 outline-none text-[12px] focus:placeholder:text-transparent'/> */}
-
     </section>
   )
 }
