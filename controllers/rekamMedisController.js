@@ -44,10 +44,7 @@ export const getAllData = async (req, res) => {
   console.log(newFilter);
 
   const data = await RekamMedis.find(newFilter).skip(skip).limit(limit);
-  const countDocument = await RekamMedis.find(newFilter)
-    .skip(skip)
-    .limit(limit)
-    .countDocuments();
+  const countDocument = await RekamMedis.find(newFilter).countDocuments();
 
   const numOfPages = Math.ceil(countDocument / limit);
 
