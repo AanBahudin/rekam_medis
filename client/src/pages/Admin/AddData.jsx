@@ -61,28 +61,18 @@ const AddData = () => {
           <InputForm inputName='kelurahan' label='kelurahan' placeholder='Bukit Wolio Indah' />
           <InputForm inputName='rt' label='rukun tetangga' placeholder='01' />
           <InputForm inputName='rw' label='rukun warga' placeholder='01' />
-
-          {/* <CustomFormInput label='status perkawinan' name='statusPernikahan' isRequired={true} inputType='select' list={['Menikah', 'Belum Menikah', 'Cerai']} />
-          <CustomFormInput label='Kebangsaan' placeholder='kebangsaan' name='kebangsaan' isRequired={true} />
-          <CustomFormInput label='Agama' name='agama' isRequired={true} inputType='select' list={['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']} />
-          <CustomFormInput label='alamat pasien' placeholder='Alamat Pasien' name='alamat' isRequired={true} />
-          <CustomFormInput label='kota' placeholder='kota ' name='kota' isRequired={true} />
-          <CustomFormInput label='kecamatan' placeholder='kecamatan' name='kecamatan' isRequired={true} />
-          <CustomFormInput label='kelurahan' placeholder='kelurahan' name='kelurahan' isRequired={true} />
-          <CustomFormInput label='RT' placeholder='nomor RT' name='rt' isRequired={true} />
-          <CustomFormInput label='RW' placeholder='nomor RW' name='rw' isRequired={true} /> */}
         </div>
 
         <div className={`w-full ${ activeMenu === 'second' ? 'grid grid-cols-3' : 'hidden' } gap-x-4 gap-y-6`}>
-          <CustomFormInput label='nama penanggung jawab' placeholder='penanggung jawab' name='namaPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='Hubungan dengan pasien' name='hubunganPenanggungJawab' isRequired={true} inputType='select' list={['Suami', 'Istri', 'Bapak', 'Ibu', 'Saudara', 'Saudari', 'Anak', 'Kerabat']} />
-          <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' name='nomorTeleponPenanggungJawab' isRequired={true}  type='number'/>
-          <CustomFormInput label='alamat penanggung jawab' placeholder='Alamat keluarga' name='alamatPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='kota' placeholder='kota' name='kotaPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='kecamatan' placeholder='kecamatan' name='kecamatanPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='kelurahan' placeholder='kelurahan' name='kelurahanPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='RT' placeholder='nomor rt' name='rtPenanggungJawab' isRequired={true} />
-          <CustomFormInput label='RW' placeholder='nomor rw' name='rwPenanggungJawab' isRequired={true} />
+          <InputForm inputName='namaPenanggungJawab' label='nama penanggung jawab' placeholder='Asep' />
+          <InputSelect inputName='hubunganPenanggungJawab' label='hubungan' list={['Suami', 'Istri', 'Bapak', 'Ibu', 'Saudara', 'Saudari', 'Anak', 'Kerabat']} />
+          <InputForm inputName='nomorTeleponPenanggungJawab' label='nomor telepon' placeholder='0823893232973' />
+          <InputForm inputName='alamatPenanggungJawab' label='alamat' placeholder='Jalan Gatot Subroto' />
+          <InputForm inputName='kotaPenanggungJawab' label='kota' placeholder='Baubau' />
+          <InputForm inputName='kecamatanPenanggungJawab' label='kecamatan' placeholder='Wolio' />
+          <InputForm inputName='kelurahanPenanggungJawab' label='kelurahan' placeholder='Bukit Wolio Indah' />
+          <InputForm inputName='rtPenanggungJawab' label='Rukun Tetangga' placeholder='01' />
+          <InputForm inputName='rwPenanggungJawab' label='Rukun Warga' placeholder='01' />
         </div>
 
         <div className={`w-full ${ activeMenu === 'third' ? 'grid grid-cols-3' : 'hidden' } gap-x-4 gap-y-6`}>
