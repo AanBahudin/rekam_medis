@@ -27,16 +27,48 @@ const AddData = () => {
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
 
+  const [birthDate, setBirthDate] = useState("");
+  const [age, setAge] = useState(null);  
+
+  const calculateAge = (date) => {
+    const today = new Date();
+    const birth = new Date(date);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    const dayDiff = today.getDate() - birth.getDate();
+
+    // Jika bulan belum lewat, atau jika bulan sama tapi hari belum lewat
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+    return age;
+  };
+
+  const handleInputChange = (e) => {
+    const selectedDate = e.target.value;
+    setBirthDate(selectedDate);
+
+    if (selectedDate) {
+      const calculatedAge = calculateAge(selectedDate);
+      setAge(calculatedAge);
+    } else {
+      setAge(null); // Reset jika input kosong
+    }
+  };
+
   return (
-    <Form method='POST' className='w-full h-[100%] grid grid-cols-12 gap-x-4  '>
+    <Form method='POST' className='w-full h-[100%] grid grid-cols-12 gap-x-4 no-scrollbar '>
 
       {/* MENU SECTION */}
-      <section className='col-span-3 rounded-md overflow-y-auto max-h-full bg-slate-50'>
+      <section className='col-span-3 py-4 rounded-md overflow-y-auto max-h-full bg-slate-50'>
+
+        <h1 className='px-4 mb-6 font-semibold text-2xl text-slate-700'>Informasi pasien</h1>
         {/* LINK CONTAINER */}
-        <article className='w-full max-h-full flex flex-col gap-y-1 py-8'>
+        <article className='w-full max-h-full flex flex-col gap-y-1'>
           {addDataLinks.map((item, index) => {
             return (
-              <h1 key={index} onClick={() => setMenu(item.path)} className={`w-full ${ activeMenu === item.path ? 'bg-blueCard text-slate-800' : null } px-4 py-4 select-none cursor-default text-slate-700 text-sm rounded-md duration-200 ease-in-out`}>{item.title}</h1>
+              <h1 key={index} onClick={() => setMenu(item.path)} className={`w-full ${ activeMenu === item.path ? 'bg-blueCard text-slate-800' : 'hover:bg-blueCard/20' } px-4 py-4 select-none cursor-default text-slate-700 text-sm rounded-md duration-200 ease-in-out`}>{item.title}</h1>
             )
           })}
         </article>
@@ -48,13 +80,25 @@ const AddData = () => {
         
         <div className={`w-full ${activeMenu === 'first' ? 'grid grid-cols-3' : 'hidden'}  gap-x-4 gap-y-6`}>
           <InputForm inputName='nama' label='nama lengkap' placeholder='masukan nama pasien' />
-          <InputForm inputName='tanggalLahir' label='tanggal lahir' inputType='date' />
-          <InputForm inputName='usia' label='usia' placeholder='masukan umur pasien' inputType='number' />
+
+          <section className='w-full flex flex-col'>
+              <label htmlFor='tanggalLahir' className='text-slate-700 font-semibold capitalize text-sm'>Tanggal lahir</label>
+              <input 
+              type='date'
+              name='tanggalLahir'
+              autoComplete='off'
+              value={birthDate}
+              required
+              onChange={handleInputChange}
+              className='bg-transparent border-[2px] border-slate-400 px-2 py-3 rounded-lg placeholder:text-[12px] flex-1 outline-none text-[12px] focus:placeholder:text-transparent'/>
+          </section>
+          <InputForm inputName='usia' label='usia' placeholder='masukan umur pasien' inputType='number' defaultValue={age || 0}/>
           <InputSelect inputName='jenisKelamin' label='jenis kelamin' list={['Pria', 'Wanita']} />
           <InputForm inputName='nik' label='nomor induk keluarga' placeholder='masukan sesuai KTP' />
           <InputForm inputName='nomorTelepon' label='nomor telepon' placeholder='0824332' />
           <InputForm inputName='kebangsaan' label='kebangsaan' placeholder='Indonesia' defaultValue='Indonesia' />
-          <InputSelect inputName='agama' label='status pernikahan' list={['Menikah', 'Belum Menikah', 'Cerai']} />
+          <InputSelect inputName='statusPernikahan' label='status pernikahan' list={['Menikah', 'Belum Menikah', 'Cerai']} />
+          <InputSelect inputName='agama' label='agama' list={['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']} />
           <InputForm inputName='alamat' label='alamat' placeholder='Jl. Gatot Subroto ...' />
           <InputForm inputName='kota' label='kota' placeholder='Baubau' />
           <InputForm inputName='kecamatan' label='kecamatan' placeholder='Wolio' />
@@ -95,9 +139,9 @@ const AddData = () => {
           <InputSelect inputName='statusPerilaku' label='status perilaku' list={['kooperatif', 'menarik diri', 'agresif', 'pasif']} />
           <InputSelect inputName='statusKognitif' label='status kognitif' list={['normal', 'gangguan konsentrasi', 'gangguan ingatan', 'gangguan delusi', 'gangguan halusinasi']} />
           <InputSelect inputName='statusSosial' label='status sosial' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
-          <InputSelect inputName='hubunganDenganKeluarga' label='golongan darah' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
-          <InputSelect inputName='tinggalBersama' label='golongan darah' list={['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian']} />
-          <InputSelect inputName='statusEkonomi' label='golongan darah' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
+          <InputSelect inputName='hubunganDenganKeluarga' label='hubungan keluarga' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
+          <InputSelect inputName='tinggalBersama' label='tinggal bersama' list={['orang tua', 'Berkeluarga', 'kerabat', 'mengontrak/menumpang', 'sendirian']} />
+          <InputSelect inputName='statusEkonomi' label='status ekonomi' list={['sangat baik', 'baik', 'cukup baik', 'kurang baik', 'tidak baik']} />
           <InputForm inputName='bahasa' label='bahasa yang digunakan' placeholder='Indonesia' />
         </div>
 

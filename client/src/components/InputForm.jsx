@@ -5,6 +5,8 @@ const InputForm = ({ inputType = 'text', label, inputName, defaultValue, placeho
     <section className='w-full flex flex-col'>
         <label htmlFor={inputName} className='text-slate-700 font-semibold capitalize text-sm'>{label}</label>
         <input 
+        name={inputName}
+        id={inputName}
         type={inputType}
         placeholder={placeholder}
         defaultValue={defaultValue}
