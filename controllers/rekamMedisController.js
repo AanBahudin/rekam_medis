@@ -1,6 +1,5 @@
 import { StatusCodes } from "http-status-codes";
 import RekamMedis from "../models/PasienModel.js";
-import mongoose from "mongoose";
 
 export const statsData = async (req, res) => {
   const totalPasien = await RekamMedis.countDocuments();
