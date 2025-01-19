@@ -17,7 +17,7 @@ const BigSidebar = () => {
         <section className={`w-full mt-20 ${showSidebar ? 'visible' : 'hidden'}`}>
             {links.map((item, index) => {
                 return <NavLink key={index} className={
-                    ({ isActive }) => `w-full flex gap-x-8 px-4 py-6 cursor-default border-b-[1px] ease-in-out duration-200 border-transparent hover:bg-[#DCDCDD] ${isActive ? 'bg-blue-400 hover:bg-blue-400' : ''}`
+                    ({ isActive }) => `w-full flex gap-x-8 px-4 py-6 cursor-default border-b-[1px] ease-in-out duration-200 border-transparent hover:bg-[#DCDCDD] ${isActive ? 'bg-blueCard/80 hover:bg-blueCard' : ''}`
                 } to={item.path} end>
                     {item.icon}
                     {item.name}

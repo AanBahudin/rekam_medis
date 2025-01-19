@@ -1,4 +1,4 @@
-import { CustomFormInput } from '../../components'
+import { CustomFormInput, InputForm, InputSelect } from '../../components'
 import { Form, redirect, useNavigation } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
@@ -28,12 +28,12 @@ const AddData = () => {
   const isSubmitting = navigation.state === 'submitting'
 
   return (
-    <Form method='POST' className='w-full max-h-full min-h-full grid grid-cols-12 gap-x-4'>
-      <section className='col-span-3 rounded-md overflow-y-auto h-full bg-slate-50'>
-        
+    <Form method='POST' className='w-full h-[100%] grid grid-cols-12 gap-x-4  '>
 
+      {/* MENU SECTION */}
+      <section className='col-span-3 rounded-md overflow-y-auto max-h-full bg-slate-50'>
         {/* LINK CONTAINER */}
-        <article className='w-full flex flex-col gap-y-1 py-8'>
+        <article className='w-full max-h-full flex flex-col gap-y-1 py-8'>
           {addDataLinks.map((item, index) => {
             return (
               <h1 key={index} onClick={() => setMenu(item.path)} className={`w-full ${ activeMenu === item.path ? 'bg-blueCard text-slate-800' : null } px-4 py-4 select-none cursor-default text-slate-700 text-sm rounded-md duration-200 ease-in-out`}>{item.title}</h1>
@@ -47,13 +47,22 @@ const AddData = () => {
       <section className='col-span-9 rounded-md overflow-y-auto max-h-[100%] bg-slate-50 p-6 flex flex-col justify-between'>
         
         <div className={`w-full ${activeMenu === 'first' ? 'grid grid-cols-3' : 'hidden'}  gap-x-4 gap-y-6`}>
-          <CustomFormInput label='nama lengkap' placeholder='nama pasien' isFirstItem={true} name='nama' isRequired={true} />
-          <CustomFormInput label='tanggal lahir' name='tanggalLahir' isRequired={true} type='date' />
-          <CustomFormInput label='usia' placeholder='usia pasien' name='usia' isRequired={true} type='number' />
-          <CustomFormInput label='jenis kelamin' name='jenisKelamin' isRequired={true} inputType='select' list={['Pria', 'Wanita']} />
-          <CustomFormInput label='nomor induk keluarga' placeholder='Nomor Induk Pasien' name='nik' isRequired={true} type='number' />
-          <CustomFormInput label='Nomor telepon' placeholder='0823 2402 2150' name='nomorTelepon' isRequired={true}  type='number'/>
-          <CustomFormInput label='status perkawinan' name='statusPernikahan' isRequired={true} inputType='select' list={['Menikah', 'Belum Menikah', 'Cerai']} />
+          <InputForm inputName='nama' label='nama lengkap' placeholder='masukan nama pasien' />
+          <InputForm inputName='tanggalLahir' label='tanggal lahir' inputType='date' />
+          <InputForm inputName='usia' label='usia' placeholder='masukan umur pasien' inputType='number' />
+          <InputSelect inputName='jenisKelamin' label='jenis kelamin' list={['Pria', 'Wanita']} />
+          <InputForm inputName='nik' label='nomor induk keluarga' placeholder='masukan sesuai KTP' />
+          <InputForm inputName='nomorTelepon' label='nomor telepon' placeholder='0824332' />
+          <InputForm inputName='kebangsaan' label='kebangsaan' placeholder='Indonesia' defaultValue='Indonesia' />
+          <InputSelect inputName='agama' label='status pernikahan' list={['Menikah', 'Belum Menikah', 'Cerai']} />
+          <InputForm inputName='alamat' label='alamat' placeholder='Jl. Gatot Subroto ...' />
+          <InputForm inputName='kota' label='kota' placeholder='Baubau' />
+          <InputForm inputName='kecamatan' label='kecamatan' placeholder='Wolio' />
+          <InputForm inputName='kelurahan' label='kelurahan' placeholder='Bukit Wolio Indah' />
+          <InputForm inputName='rt' label='rukun tetangga' placeholder='01' />
+          <InputForm inputName='rw' label='rukun warga' placeholder='01' />
+
+          {/* <CustomFormInput label='status perkawinan' name='statusPernikahan' isRequired={true} inputType='select' list={['Menikah', 'Belum Menikah', 'Cerai']} />
           <CustomFormInput label='Kebangsaan' placeholder='kebangsaan' name='kebangsaan' isRequired={true} />
           <CustomFormInput label='Agama' name='agama' isRequired={true} inputType='select' list={['Islam', 'Kristen', 'Hindu', 'Buddha', 'Kong Hu Cu']} />
           <CustomFormInput label='alamat pasien' placeholder='Alamat Pasien' name='alamat' isRequired={true} />
@@ -61,7 +70,7 @@ const AddData = () => {
           <CustomFormInput label='kecamatan' placeholder='kecamatan' name='kecamatan' isRequired={true} />
           <CustomFormInput label='kelurahan' placeholder='kelurahan' name='kelurahan' isRequired={true} />
           <CustomFormInput label='RT' placeholder='nomor RT' name='rt' isRequired={true} />
-          <CustomFormInput label='RW' placeholder='nomor RW' name='rw' isRequired={true} />
+          <CustomFormInput label='RW' placeholder='nomor RW' name='rw' isRequired={true} /> */}
         </div>
 
         <div className={`w-full ${ activeMenu === 'second' ? 'grid grid-cols-3' : 'hidden' } gap-x-4 gap-y-6`}>
