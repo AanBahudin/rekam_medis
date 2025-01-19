@@ -2,11 +2,14 @@ import { Search, IdCard, CircleUser, ChevronLeft, ChevronRight } from 'lucide-re
 import { TableData } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
-import { useLoaderData } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 
-export const loader = async() => {
+export const loader = async({ request }) => {
+  const url = new URL(request.url);
+  const page = url.searchParams.get("page");
+  
   try {
-    const { data } = await customFetch.get('/medis')
+    const { data } = await customFetch.get(`/medis?page=${page}`)
     return data
   } catch (error) {
     toast.error(error.response.data.msg)
@@ -124,9 +127,15 @@ const AllData = () => {
           <div className='w-full flex justify-between items-center'>
             <h3 className='text-xl font-medium tracking-wide'>Data Pasien</h3>
             <h5 className='text-sm tracking-wide text-greySecondary flex gap-x-4 items-center justify-center'>
-              <ChevronLeft size={20} className='hover:stroke-blue-500 duration-200 ease-in-out'/>
-              <span className='text-blue-500'>{data.currentPage}</span> of <span className='text-blue-500'>{data.numOfPages}</span> 
-              <ChevronRight size={20} className='hover:stroke-blue-500 duration-200 ease-in-out' />
+
+              <Link to={`?page=${data.currentPage === 1 ? data.currentPage.toString() : (data.currentPage - 1).toString()}`}>
+                <ChevronLeft size={20} className='hover:stroke-blue-500 duration-200 ease-in-out'/>
+              </Link>
+              <span className='text-blue-500'>{data.currentPage}</span> of <span className='text-blue-500'>{data.numOfPages}</span>
+              
+              <Link to={`?page=${data.currentPage === data.numOfPages ? data.currentPage.toString() : (data.currentPage + 1).toString()}`} className={data.currentPage === data.numOfPages ? 'invisible' : null}>
+                <ChevronRight size={20} className='hover:stroke-blue-500 duration-200 ease-in-out' />
+              </Link>
             </h5>
           </div>
 
