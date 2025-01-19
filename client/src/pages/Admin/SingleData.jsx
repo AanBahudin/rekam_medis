@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Edit, Trash, ShieldAlert } from "lucide-react";
 import { addDataLinks } from "../../utils/constants";
-import { Data, DataContainer } from "../../components";
+import { BigDataContainer, Data, DataContainer } from "../../components";
 import customFetch from "../../utils/customFetch";
 import { Form, Link, redirect, useLoaderData } from "react-router";
 import { toast } from "react-toastify";
@@ -70,7 +70,7 @@ const SingleData = () => {
       </section>
 
       {/* INPUT SECTION */}
-      <section className="col-span-9 rounded-md overflow-y-auto max-h-[100%] bg-slate-50 p-6 flex flex-col justify-between">
+      <section className="col-span-9 rounded-md overflow-y-auto bg-slate-50 p-6 flex flex-col justify-between">
         <div
           className={`w-full ${
             activeMenu === "first" ? "grid grid-cols-3" : "hidden"
@@ -104,6 +104,7 @@ const SingleData = () => {
           <DataContainer label="Rukun Tetangga" value={rekamMedis.rt} />
           <DataContainer label="Rukun warga" value={rekamMedis.rw} />
         </div>
+
         <div
           className={`w-full ${
             activeMenu === "second" ? "grid grid-cols-3" : "hidden"
@@ -146,6 +147,7 @@ const SingleData = () => {
             value={rekamMedis.rwPenanggungJawab}
           />
         </div>
+
         <div
           className={`w-full ${
             activeMenu === "third" ? "grid grid-cols-3" : "hidden"
@@ -169,6 +171,7 @@ const SingleData = () => {
             value={rekamMedis.golonganDarah}
           />
         </div>
+
         <div
           className={`w-full ${
             activeMenu === "fourth" ? "grid grid-cols-3" : "hidden"
@@ -217,7 +220,34 @@ const SingleData = () => {
           className={`w-full ${
             activeMenu === "fifth" ? "grid grid-cols-2" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <BigDataContainer
+            label="keluhan pasien"
+            value={rekamMedis.keluhanPenyakit}
+          />
+          <BigDataContainer
+            label="Riwayat sakit sebelumnya"
+            value={rekamMedis.riwayatPenyakit}
+          />
+          <BigDataContainer
+            label="riwayat penyakit turunan"
+            value={rekamMedis.penyakitTurunan}
+          />
+          <BigDataContainer
+            label="riwayat operasi"
+            value={rekamMedis.riwayatOperasi}
+          />
+          <BigDataContainer label="riwayat alergi" value={rekamMedis.alergi} />
+          <BigDataContainer
+            label="penyakit yang sedang diderita"
+            value={rekamMedis.penyakitDiderita}
+          />
+          <BigDataContainer
+            label="Obat yang sedang dikonsumsi"
+            value={rekamMedis.pengobatanBerjalan}
+          />
+        </div>
+
         <div
           className={`w-full ${
             activeMenu === "sixth" ? "grid grid-cols-1" : "hidden"
@@ -225,9 +255,18 @@ const SingleData = () => {
         ></div>
         <div
           className={`w-full ${
-            activeMenu === "eighth" ? "grid grid-cols-2" : "hidden"
+            activeMenu === "seventh" ? "grid grid-cols-2" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <BigDataContainer
+            label="Informasi tambahan 1"
+            value={rekamMedis.tambahanPertama}
+          />
+          <BigDataContainer
+            label="Informasi tambahan 2"
+            value={rekamMedis.tambahanKedua}
+          />
+        </div>
         {/* <button
           disabled={isSubmitting}
           className={`self-end bg-blueCard/80 w-[10vw] text-sm py-2 rounded-md text-slate-700 ${

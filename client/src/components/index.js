@@ -1,4 +1,5 @@
 export { default as ActivityCard } from "./ActivityCard";
+export { default as BigDataContainer } from "./BigDataContainer";
 export { default as BigSidebar } from "./BigSidebar";
 export { default as CustomFormInput } from "./CustomFormInput";
 export { default as Data } from "./Data";
