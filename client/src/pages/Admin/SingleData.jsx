@@ -35,6 +35,8 @@ const SingleData = () => {
   const { rekamMedis } = useLoaderData();
 
   const { riwayatKunjungan } = rekamMedis;
+  console.log(riwayatKunjungan);
+
   const formattedDate = (tanggal) => {
     return tanggal.split("T")[0];
   };
@@ -67,6 +69,18 @@ const SingleData = () => {
             );
           })}
         </article>
+        {riwayatKunjungan.length !== 0 && (
+          <h1
+            onClick={() => setMenu("nineth")}
+            className={`w-full ${
+              activeMenu === "nineth"
+                ? "bg-blueCard text-slate-800"
+                : "hover:bg-blueCard/20"
+            } px-4 py-4 select-none cursor-default text-slate-700 text-sm rounded-md duration-200 ease-in-out`}
+          >
+            Riwayat Kunjungan
+          </h1>
+        )}
       </section>
 
       {/* INPUT SECTION */}
@@ -252,7 +266,24 @@ const SingleData = () => {
           className={`w-full ${
             activeMenu === "sixth" ? "grid grid-cols-1" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <DataContainer
+            label="Apakah jalan tidak seimbang?"
+            value={rekamMedis.kondisiBerjalan}
+          />
+          <DataContainer
+            label="Apakah menggunakan alat bantu?"
+            value={rekamMedis.menggunakanAlatBantu}
+          />
+          <DataContainer
+            label="Apakah ada penurunan berat badan yang tidak dinginkan 6 bulan terakhir?"
+            value={rekamMedis.penurunanBeratBadan}
+          />
+          <DataContainer
+            label="Apakah ada penurunan nafsu makan?"
+            value={rekamMedis.penurunanNafsuMakan}
+          />
+        </div>
         <div
           className={`w-full ${
             activeMenu === "seventh" ? "grid grid-cols-2" : "hidden"
@@ -267,17 +298,78 @@ const SingleData = () => {
             value={rekamMedis.tambahanKedua}
           />
         </div>
-        {/* <button
-          disabled={isSubmitting}
-          className={`self-end bg-blueCard/80 w-[10vw] text-sm py-2 rounded-md text-slate-700 ${
-            activeMenu === "eighth" ? "flex items-center" : "hidden"
-          } gap-x-2 justify-center`}
+
+        <div
+          className={`w-full ${
+            activeMenu === "eighth" ? "grid grid-cols-2" : "hidden"
+          } gap-x-4 gap-y-6`}
         >
-          {isSubmitting && (
-            <LoaderCircle size={20} className="animate-spin stroke-white" />
-          )}
-          {isSubmitting ? "Menambahkan ..." : "Selesai"}
-        </button> */}
+          <DataContainer label="Pemeriksa" value={rekamMedis.pemeriksa} />
+          <DataContainer
+            label="Tujuan kunjungan"
+            value={rekamMedis.tujuanBerobat}
+          />
+          <DataContainer
+            label="Status resiko penyakit"
+            value={rekamMedis.statusResiko}
+          />
+          <DataContainer
+            label="kemungkinan terjadi infeksi menular"
+            value={rekamMedis.infeksiMenular}
+          />
+          <DataContainer
+            label="kemungkinan penyakit kronis"
+            value={rekamMedis.kronis}
+          />
+          <DataContainer
+            label="kemungkinan terjadi penularan penyakit"
+            value={rekamMedis.penyakitMenular}
+          />
+        </div>
+
+        <div
+          className={`w-full ${
+            activeMenu === "nineth" ? "flex flex-col gap-y-1" : "hidden"
+          } gap-x-4 gap-y-6 overflow-y-auto`}
+        >
+          {riwayatKunjungan.map((item, index) => {
+            return (
+              <Link
+                to={`/admin/kunjungan/${rekamMedis._id}/${item._id}`}
+                key={index}
+                className="bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out"
+              >
+                <div className="flex flex-col gap-y-2">
+                  <h2 className=" font-semibold text-slate-700">
+                    {moment(item.tanggalKunjungan).format("LL")}
+                  </h2>
+
+                  <div className="flex items-center">
+                    <ShieldAlert
+                      size={25}
+                      className={`p-1 rounded-md ${
+                        item.statusResiko === "Tinggi"
+                          ? "bg-red-300"
+                          : item.statusResiko === "Sedang"
+                          ? "bg-yellowCard"
+                          : "bg-blueCard"
+                      }`}
+                    />
+                    <h1
+                      className={`text-slate-800 tracking-wide w-fit px-4 py-1 rounded-full text-sm font-medium`}
+                    >
+                      Resiko {item.statusResiko}
+                    </h1>
+                  </div>
+                </div>
+
+                <h1 className="text-xl font-semibold text-slate-700">
+                  {item.perihalKunjungan}
+                </h1>
+              </Link>
+            );
+          })}
+        </div>
       </section>
     </Form>
   );
@@ -286,14 +378,14 @@ const SingleData = () => {
 export default SingleData;
 // <div className='w-full flex flex-col items-start justify-start mb-6'>
 
-//   <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
-//     <Link to={`/admin/tambah_kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
-//     <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
-//     <Form method='POST'>
-//       <input type="hidden" name='id' value={rekamMedis._id} />
-//       <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
-//     </Form>
-//   </div>
+// <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
+//   <Link to={`/admin/tambah_kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
+//   <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
+//   <Form method='POST'>
+//     <input type="hidden" name='id' value={rekamMedis._id} />
+//     <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
+//   </Form>
+// </div>
 
 //   <div className='w-[70%] mx-auto mt-10 mb-4 flex'>
 //     <h1 onClick={() => setCurrentTab('first')} className={`w-full flex-1 text-center font-medium py-2 rounded-lg ${currentTab === 'first' ? 'bg-blueCard/70' : 'bg-blueCard/30'} ease-in-out duration-200`}>Data Pasien</h1>
@@ -444,18 +536,20 @@ export default SingleData;
 //             riwayatKunjungan.map((item, index) => {
 
 //               return (
-//               <Link to={`/admin/kunjungan/${rekamMedis._id}/${item._id}`} key={index} className='bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
-//                 <div className='flex flex-col gap-y-2'>
-//                   <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
+{
+  /* <Link to={`/admin/kunjungan/${rekamMedis._id}/${item._id}`} key={index} className='bg-slate-200/50 cursor-default hover:bg-slate-200/80 w-full px-10 flex-1 flex items-center justify-between rounded-xl p-4 min-h-[15vh] hover:shadow-lg duration-200 ease-in-out'>
+  <div className='flex flex-col gap-y-2'>
+    <h2 className='text-xl font-semibold text-slate-700'>{moment(item.tanggalKunjungan).format('LL')}</h2>
 
-//                   <div className='flex items-center'>
-//                     <ShieldAlert size={33} className={`p-1 rounded-md ${ item.statusResiko === 'Tinggi' ? 'bg-red-300' : (item.statusResiko === 'Sedang' ? 'bg-yellowCard' : 'bg-blueCard') }`} />
-//                     <h1 className={`text-slate-800 tracking-wide w-fit px-4 py-1 rounded-full text-sm font-medium`}>Resiko {item.statusResiko}</h1>
-//                   </div>
-//                 </div>
+    <div className='flex items-center'>
+      <ShieldAlert size={33} className={`p-1 rounded-md ${ item.statusResiko === 'Tinggi' ? 'bg-red-300' : (item.statusResiko === 'Sedang' ? 'bg-yellowCard' : 'bg-blueCard') }`} />
+      <h1 className={`text-slate-800 tracking-wide w-fit px-4 py-1 rounded-full text-sm font-medium`}>Resiko {item.statusResiko}</h1>
+    </div>
+  </div>
 
-//                 <h1 className='text-3xl font-semibold text-slate-700'>{item.perihalKunjungan}</h1>
-//               </Link>
+  <h1 className='text-3xl font-semibold text-slate-700'>{item.perihalKunjungan}</h1>
+</Link> */
+}
 //               )
 //             })
 //         )}
