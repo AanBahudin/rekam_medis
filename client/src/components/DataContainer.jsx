@@ -7,7 +7,7 @@ const DataContainer = ({ label, value }) => {
         {" "}
         {label}{" "}
       </p>
-      <h5 className="bg-transparent border-[2px] border-slate-400 px-2 py-3 rounded-lg placeholder:text-[12px] flex-1 outline-none text-[12px]">
+      <h5 className="bg-transparent border-[2px] text-slate-600 border-slate-400 px-2 py-3 rounded-lg placeholder:text-[12px] flex-1 outline-none text-[12px]">
         {value}
       </h5>
     </section>

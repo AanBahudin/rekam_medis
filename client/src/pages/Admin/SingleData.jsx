@@ -104,7 +104,6 @@ const SingleData = () => {
           <DataContainer label="Rukun Tetangga" value={rekamMedis.rt} />
           <DataContainer label="Rukun warga" value={rekamMedis.rw} />
         </div>
-
         <div
           className={`w-full ${
             activeMenu === "second" ? "grid grid-cols-3" : "hidden"
@@ -147,46 +146,88 @@ const SingleData = () => {
             value={rekamMedis.rwPenanggungJawab}
           />
         </div>
-
         <div
           className={`w-full ${
             activeMenu === "third" ? "grid grid-cols-3" : "hidden"
           } gap-x-4 gap-y-6`}
         >
-          <Data label="Tekanan Darah" value={rekamMedis.tekananDarah} />
-          <Data label="Denyut Nadi" value={rekamMedis.denyutNadi} />
-          <Data label="Respiratory Rate" value={rekamMedis.RR} />
-          <Data label="Suhu Badan" value={rekamMedis.suhuBadan} />
-          <Data label="skala kesadaran" value={rekamMedis.skalaKesadaran} />
-          <Data label="tinggi badan" value={rekamMedis.tinggiBadan} />
-          <Data label="berat badan" value={rekamMedis.beratBadan} />
-          <Data label="golongan darah" value={rekamMedis.golonganDarah} />
+          <DataContainer
+            label="Tekanan Darah"
+            value={rekamMedis.tekananDarah}
+          />
+          <DataContainer label="Denyut Nadi" value={rekamMedis.denyutNadi} />
+          <DataContainer label="Respiratory Rate" value={rekamMedis.RR} />
+          <DataContainer label="Suhu Badan" value={rekamMedis.suhuBadan} />
+          <DataContainer
+            label="skala kesadaran"
+            value={rekamMedis.skalaKesadaran}
+          />
+          <DataContainer label="tinggi badan" value={rekamMedis.tinggiBadan} />
+          <DataContainer label="berat badan" value={rekamMedis.beratBadan} />
+          <DataContainer
+            label="golongan darah"
+            value={rekamMedis.golonganDarah}
+          />
         </div>
-
         <div
           className={`w-full ${
             activeMenu === "fourth" ? "grid grid-cols-3" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <DataContainer
+            label="status psikologi"
+            value={rekamMedis.statusPsikologi}
+          />
+          <DataContainer
+            label="status emosional"
+            value={rekamMedis.statusEmosional}
+          />
+          <DataContainer
+            label="status kesadaran"
+            value={rekamMedis.statusKesadaran}
+          />
+          <DataContainer
+            label="status perilaku"
+            value={rekamMedis.statusPerilaku}
+          />
+          <DataContainer
+            label="status kognitif"
+            value={rekamMedis.statusKognitif}
+          />
+          <DataContainer
+            label="status sosial"
+            value={rekamMedis.statusSosial}
+          />
+          <Data
+            label="hubungan keluarga"
+            value={rekamMedis.hubunganDenganKeluarga}
+          />
+          <DataContainer
+            label="tinggal bersama"
+            value={rekamMedis.tinggalBersama}
+          />
+          <DataContainer
+            label="status ekonomi"
+            value={rekamMedis.statusEkonomi}
+          />
+          <DataContainer label="bahasa sehari hari" value={rekamMedis.bahasa} />
+        </div>
 
         <div
           className={`w-full ${
             activeMenu === "fifth" ? "grid grid-cols-2" : "hidden"
           } gap-x-4 gap-y-6`}
         ></div>
-
         <div
           className={`w-full ${
             activeMenu === "sixth" ? "grid grid-cols-1" : "hidden"
           } gap-x-4 gap-y-6`}
         ></div>
-
         <div
           className={`w-full ${
             activeMenu === "eighth" ? "grid grid-cols-2" : "hidden"
           } gap-x-4 gap-y-6`}
         ></div>
-
         {/* <button
           disabled={isSubmitting}
           className={`self-end bg-blueCard/80 w-[10vw] text-sm py-2 rounded-md text-slate-700 ${
