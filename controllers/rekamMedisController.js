@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import RekamMedis from "../models/PasienModel.js";
+import mongoose from "mongoose";
 
 export const statsData = async (req, res) => {
   const totalPasien = await RekamMedis.countDocuments();
@@ -34,20 +35,25 @@ export const createData = async (req, res) => {
 };
 
 export const getAllData = async (req, res) => {
-  console.log(req.query);
-
-  const page = Number(req.query.page) || 1;
+  const currentPage = Number(req.query.page) || 1;
   const limit = 10;
-  const skip = (page - 1) * limit;
+  const skip = (currentPage - 1) * limit;
 
-  const data = await RekamMedis.find({}).skip(skip).limit(limit);
-  const countDocument = await RekamMedis.countDocuments();
+  // setting filter
+  const { page, ...newFilter } = req.query;
+  console.log(newFilter);
+
+  const data = await RekamMedis.find(newFilter).skip(skip).limit(limit);
+  const countDocument = await RekamMedis.find(newFilter)
+    .skip(skip)
+    .limit(limit)
+    .countDocuments();
 
   const numOfPages = Math.ceil(countDocument / limit);
 
   return res
     .status(StatusCodes.OK)
-    .json({ pasien: data, currentPage: page, numOfPages });
+    .json({ pasien: data, currentPage: currentPage, numOfPages });
 };
 
 export const getSingleData = async (req, res) => {

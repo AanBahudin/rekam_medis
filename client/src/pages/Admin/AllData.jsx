@@ -38,11 +38,11 @@ const AllData = () => {
     _id: "",
     nik: "",
     nama: "",
-    jenisKelamin: "Semua",
-    tujuanBerobat: "Semua",
-    status: "Semua",
-    kunjungan: "",
-    golonganDarah: "Semua",
+    jenisKelamin: "",
+    tujuanBerobat: "",
+    status: "",
+    createdAt: "",
+    golonganDarah: "",
   });
 
   const handleFilterChange = (event, filterName) => {
@@ -66,6 +66,21 @@ const AllData = () => {
     navigate(`?${queryParams.toString()}`);
   };
 
+  const removeFilter = () => {
+    setFilter({
+      _id: "",
+      nik: "",
+      nama: "",
+      jenisKelamin: "",
+      tujuanBerobat: "",
+      status: "",
+      createdAt: "",
+      golonganDarah: "",
+    });
+
+    navigate("/admin/all-data");
+  };
+
   const handlePageChange = (newPage) => {
     // Salin semua query parameters yang ada
     const params = new URLSearchParams(searchParams);
@@ -81,8 +96,9 @@ const AllData = () => {
     <section className="w-full flex flex-col items-start justify-center pb-20">
       <h1 className="text-xl mb-2 font-medium">Pencarian Rekam Medis</h1>
       <article className="w-full bg-white rounded-lg shadow-lg px-4 py-6">
-        <div className="w-full flex gap-x-4 items-center justify-end">
-          <div className="w-[40%] flex flex-col gap-y-1">
+        <div className="w-full flex gap-x-4 items-start justify-end">
+          {/* DIAKTIFKAN JIKA NOMOR REKAM MEDIS DIATUR MENJADI AUTO INCREMENT */}
+          {/* <div className="w-[40%] flex flex-col gap-y-1">
             <label htmlFor="" className="text-[14px] font-medium">
               rekam medis
             </label>
@@ -96,9 +112,9 @@ const AllData = () => {
                 className={`px-2 py-3 bg-lightGrey ml-2 rounded-sm placeholder:text-[12px] flex-1 outline-none text-[12px]`}
               />
             </div>
-          </div>
+          </div> */}
 
-          <div className="w-[25%] flex flex-col gap-y-1">
+          <div className="w-[40%] flex flex-col gap-y-1">
             <label htmlFor="" className="text-[14px] font-medium">
               NIK
             </label>
@@ -114,7 +130,7 @@ const AllData = () => {
             </div>
           </div>
 
-          <div className="w-[25%] flex flex-col gap-y-1">
+          <div className="w-[40%] flex flex-col gap-y-1">
             <label htmlFor="" className="text-[14px] font-medium">
               nama
             </label>
@@ -135,9 +151,22 @@ const AllData = () => {
               Cari data
             </label>
             <button
+              onClick={removeFilter}
+              type="reset"
+              className="text-center text-slate-700 text-sm px-2 py-3 rounded-md cursor-default bg-redCard/80"
+            >
+              Hapus
+            </button>
+          </div>
+
+          <div className="w-[10%] flex flex-col gap-y-1">
+            <label htmlFor="" className="text-[14px] font-medium invisible">
+              Cari data
+            </label>
+            <button
               onClick={handleSearch}
               type="submit"
-              className="text-center text-white text-sm px-2 py-3 rounded-md cursor-default bg-blue-500"
+              className="text-center text-slate-700 text-sm px-2 py-3 rounded-md cursor-default bg-blueCard/80"
             >
               Search
             </button>
@@ -203,11 +232,11 @@ const AllData = () => {
 
           <div className="w-[20%] flex flex-col gap-y-1">
             <label htmlFor="" className="text-[14px] font-medium">
-              Kunjungan Terakhir
+              Tanggal daftar
             </label>
             <input
-              onChange={(event) => handleFilterChange(event, "kunjungan")}
-              value={filter.kunjungan}
+              onChange={(event) => handleFilterChange(event, "createdAt")}
+              value={filter.createdAt}
               type="date"
               name=""
               id=""
