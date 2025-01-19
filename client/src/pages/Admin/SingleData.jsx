@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Plus, Edit, Trash, ShieldAlert } from "lucide-react";
 import { addDataLinks } from "../../utils/constants";
-import { Data } from "../../components";
+import { Data, DataContainer } from "../../components";
 import customFetch from "../../utils/customFetch";
 import { Form, Link, redirect, useLoaderData } from "react-router";
 import { toast } from "react-toastify";
@@ -47,7 +47,7 @@ const SingleData = () => {
       {/* MENU SECTION */}
       <section className="col-span-3 py-4 rounded-md overflow-y-auto max-h-full bg-slate-50">
         <h1 className="px-4 mb-6 font-semibold text-2xl text-slate-700">
-          Informasi pasien
+          Detail pasien
         </h1>
         {/* LINK CONTAINER */}
         <article className="w-full max-h-full flex flex-col gap-y-1">
@@ -76,37 +76,92 @@ const SingleData = () => {
             activeMenu === "first" ? "grid grid-cols-3" : "hidden"
           }  gap-x-4 gap-y-6`}
         >
-          <Data label="Nomor Rekam Medis" value={rekamMedis._id} />
-          <Data
+          <DataContainer label="Nomor Rekam Medis" value={rekamMedis._id} />
+          <DataContainer
             label="Nomor Rekam Medis"
             value={formattedDate(rekamMedis.tanggalLahir)}
           />
-          <Data label="Nomor Rekam Medis" value={rekamMedis.usia} />
-          <Data label="Jenis kelamin" value={rekamMedis.jenisKelamin} />
-          <Data label="Nomor induk keluarga" value={rekamMedis.nik} />
-          <Data label="nomor telepon" value={rekamMedis.nomorTelepon} />
-          <Data label="kebangsaan" value={rekamMedis.kebangsaan} />
-          <Data label="status pernikahan" value={rekamMedis.statusPernikahan} />
-          <Data label="agama" value={rekamMedis.agama} />
-          <Data label="alamat" value={rekamMedis.alamat} />
-          <Data label="kota" value={rekamMedis.kota} />
-          <Data label="kecamatan" value={rekamMedis.kecamatan} />
-          <Data label="kelurahan" value={rekamMedis.kelurahan} />
-          <Data label="Rukun Tetangga" value={rekamMedis.rt} />
-          <Data label="Rukun warga" value={rekamMedis.rw} />
+          <DataContainer label="Nomor Rekam Medis" value={rekamMedis.usia} />
+          <DataContainer
+            label="Jenis kelamin"
+            value={rekamMedis.jenisKelamin}
+          />
+          <DataContainer label="Nomor induk keluarga" value={rekamMedis.nik} />
+          <DataContainer
+            label="nomor telepon"
+            value={rekamMedis.nomorTelepon}
+          />
+          <DataContainer label="kebangsaan" value={rekamMedis.kebangsaan} />
+          <DataContainer
+            label="status pernikahan"
+            value={rekamMedis.statusPernikahan}
+          />
+          <DataContainer label="agama" value={rekamMedis.agama} />
+          <DataContainer label="alamat" value={rekamMedis.alamat} />
+          <DataContainer label="kota" value={rekamMedis.kota} />
+          <DataContainer label="kecamatan" value={rekamMedis.kecamatan} />
+          <DataContainer label="kelurahan" value={rekamMedis.kelurahan} />
+          <DataContainer label="Rukun Tetangga" value={rekamMedis.rt} />
+          <DataContainer label="Rukun warga" value={rekamMedis.rw} />
         </div>
 
         <div
           className={`w-full ${
             activeMenu === "second" ? "grid grid-cols-3" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <DataContainer
+            label="nama penanggung jawab"
+            value={rekamMedis.namaPenanggungJawab}
+          />
+          <DataContainer
+            label="Hubungan dengan pasien"
+            value={rekamMedis.hubunganPenanggungJawab}
+          />
+          <DataContainer
+            label="kontak penanggung jawab"
+            value={rekamMedis.nomorTeleponPenanggungJawab}
+          />
+          <DataContainer
+            label="alamat"
+            value={rekamMedis.alamatPenanggungJawab}
+          />
+          <DataContainer
+            label="kota domisili"
+            value={rekamMedis.kotaPenanggungJawab}
+          />
+          <DataContainer
+            label="kecamatan domisili"
+            value={rekamMedis.kecamatanPenanggungJawab}
+          />
+          <DataContainer
+            label="kelurahan domisili"
+            value={rekamMedis.kelurahanPenanggungJawab}
+          />
+          <DataContainer
+            label="Rukun Tetangga"
+            value={rekamMedis.rtPenanggungJawab}
+          />
+          <DataContainer
+            label="Rukun Warga"
+            value={rekamMedis.rwPenanggungJawab}
+          />
+        </div>
 
         <div
           className={`w-full ${
             activeMenu === "third" ? "grid grid-cols-3" : "hidden"
           } gap-x-4 gap-y-6`}
-        ></div>
+        >
+          <Data label="Tekanan Darah" value={rekamMedis.tekananDarah} />
+          <Data label="Denyut Nadi" value={rekamMedis.denyutNadi} />
+          <Data label="Respiratory Rate" value={rekamMedis.RR} />
+          <Data label="Suhu Badan" value={rekamMedis.suhuBadan} />
+          <Data label="skala kesadaran" value={rekamMedis.skalaKesadaran} />
+          <Data label="tinggi badan" value={rekamMedis.tinggiBadan} />
+          <Data label="berat badan" value={rekamMedis.beratBadan} />
+          <Data label="golongan darah" value={rekamMedis.golonganDarah} />
+        </div>
 
         <div
           className={`w-full ${
