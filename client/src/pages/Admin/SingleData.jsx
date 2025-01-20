@@ -47,7 +47,7 @@ const SingleData = () => {
       className="w-full h-[100%] grid grid-cols-12 gap-x-4 no-scrollbar "
     >
       {/* MENU SECTION */}
-      <section className="col-span-3 py-4 rounded-md overflow-y-auto max-h-full bg-slate-50">
+      <section className="col-span-3 py-4 rounded-xl shadow-lg overflow-y-auto no-scrollbar max-h-full bg-slate-50">
         <h1 className="px-4 mb-6 font-semibold text-2xl text-slate-700">
           Detail pasien
         </h1>
@@ -330,8 +330,28 @@ const SingleData = () => {
         <div
           className={`w-full ${
             activeMenu === "nineth" ? "flex flex-col gap-y-1" : "hidden"
-          } gap-x-4 gap-y-6 overflow-y-auto`}
+          } gap-x-4 gap-y-6 overflow-y-auto no-scrollbar`}
         >
+          <div className="flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center">
+            <Link
+              to={`/admin/tambah_kunjungan/${rekamMedis._id}`}
+              className="text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md"
+            >
+              <Plus size={15} className="stroke-greyPrimary" /> Kunjungan
+            </Link>
+            <Link
+              to={`/admin/edit/${rekamMedis._id}`}
+              className="text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md"
+            >
+              <Edit size={15} className="stroke-greyPrimary" /> Pasien
+            </Link>
+            {/* <Form method="POST">
+              <input type="hidden" name="id" value={rekamMedis._id} />
+              <button className="text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md">
+                <Trash size={15} className="stroke-greyPrimary" /> Hapus
+              </button>
+            </Form> */}
+          </div>
           {riwayatKunjungan.map((item, index) => {
             return (
               <Link
@@ -378,14 +398,16 @@ const SingleData = () => {
 export default SingleData;
 // <div className='w-full flex flex-col items-start justify-start mb-6'>
 
-// <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
-//   <Link to={`/admin/tambah_kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
-//   <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
-//   <Form method='POST'>
-//     <input type="hidden" name='id' value={rekamMedis._id} />
-//     <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
-//   </Form>
-// </div>
+{
+  /* <div className='flex gap-x-4 mr-auto w-fit mb-4 justify-end items-center'>
+  <Link to={`/admin/tambah_kunjungan/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Plus size={15} className='stroke-greyPrimary' /> Kunjungan </Link>
+  <Link to={`/admin/edit/${rekamMedis._id}`} className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-blueCard px-4 py-2 rounded-md'> <Edit size={15} className='stroke-greyPrimary' /> Pasien </Link>
+  <Form method='POST'>
+    <input type="hidden" name='id' value={rekamMedis._id} />
+    <button className='text-[12px] w-[8vw] flex items-center justify-center gap-x-2 bg-redCard px-4 py-2 rounded-md'> <Trash size={15} className='stroke-greyPrimary' /> Hapus </button>
+  </Form>
+</div> */
+}
 
 //   <div className='w-[70%] mx-auto mt-10 mb-4 flex'>
 //     <h1 onClick={() => setCurrentTab('first')} className={`w-full flex-1 text-center font-medium py-2 rounded-lg ${currentTab === 'first' ? 'bg-blueCard/70' : 'bg-blueCard/30'} ease-in-out duration-200`}>Data Pasien</h1>
