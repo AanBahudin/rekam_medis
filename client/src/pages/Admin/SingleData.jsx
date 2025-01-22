@@ -52,7 +52,7 @@ const SingleData = () => {
           Detail pasien
         </h1>
         {/* LINK CONTAINER */}
-        <article className="w-full max-h-full flex flex-col gap-y-1">
+        <article className="w-full max-h-full flex flex-col gap-y-1 py-2">
           {addDataLinks.map((item, index) => {
             return (
               <h1
