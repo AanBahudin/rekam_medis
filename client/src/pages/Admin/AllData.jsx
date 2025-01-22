@@ -11,8 +11,6 @@ import {
   Link,
   useLoaderData,
   useLocation,
-  useNavigate,
-  useSearchParams,
 } from "react-router";
 import { useAdminContext } from "./AdminLayout";
 import { useEffect } from "react";
