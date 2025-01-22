@@ -2,6 +2,7 @@ import { Outlet, redirect, useLoaderData, useNavigate, useSearchParams } from 'r
 import { BigSidebar, Navbar } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { useState, useContext, createContext } from 'react'
+import { links } from '../../utils/constants'
 import { toast } from 'react-toastify'
 
 
@@ -103,7 +104,7 @@ const AdminLayout = () => {
       logoutUser
     }}>
       <div className='w-full relative h-[100vh] flex overflow-hidden'>
-        <BigSidebar logoutFunction={logoutUser} />
+        <BigSidebar logoutFunction={logoutUser} links={links} />
 
         <div className='flex-1 w-full'>
           <Navbar />

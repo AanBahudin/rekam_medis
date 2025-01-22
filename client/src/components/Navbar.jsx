@@ -1,9 +1,9 @@
 import { Menu, User } from 'lucide-react';
-import { useAdminContext } from '../pages/Admin/AdminLayout'
+import { useAppContext } from '../App';
 
-const Navbar = () => {
+const Navbar = ({user}) => {
 
-    const { user, toggleSidebar } = useAdminContext()
+  const { toggleSidebar } = useAppContext()
 
   return (
     <div className='w-full h-[70px] flex items-center justify-between bg-slate-50  px-10'>
@@ -11,7 +11,7 @@ const Navbar = () => {
 
         <section className='flex items-center justify-center gap-x-2 my-auto'>
             <User className='my-auto stroke-slate-600' size={20} />
-            <h5 className='text-sm my-auto text-center'>{user.nama}</h5>
+            <h5 className='text-sm my-auto text-center'>{user?.nama || 'User'}</h5>
         </section>
     </div> 
   )

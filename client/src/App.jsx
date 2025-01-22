@@ -1,3 +1,5 @@
+import { createContext, useContext, useState } from 'react'
+
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
 import { loginAction, registerAction } from './pages'
@@ -21,6 +23,7 @@ import {
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
 
 
+const AppContext = createContext()
 
 const App = () => {
 
@@ -129,11 +132,19 @@ const App = () => {
     }
   ])
 
+  const [showSidebar, setShowSidebar] = useState(true);
+    const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  }
+
   return (
-    <div className='h-[100vh] w-full'>
-      <RouterProvider router={router} />
-    </div>
+    <AppContext.Provider value={{}}>
+      <div className='h-[100vh] w-full'>
+        <RouterProvider router={router} />
+      </div>
+    </AppContext.Provider>
   )
 }
 
+export const useAppContext = () => useContext(AppContext)
 export default App

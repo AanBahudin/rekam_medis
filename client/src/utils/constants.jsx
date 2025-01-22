@@ -1,4 +1,4 @@
-import { Book, Home, BookPlus, User, Users, ShieldAlert, ShieldMinus, ShieldPlus, LayoutDashboard, NotepadTextDashed, CopyPlus, SquareUserRound  } from 'lucide-react'
+import { Book, Home, BookPlus, User, Users, ShieldAlert, ShieldMinus, ShieldPlus, LayoutDashboard, NotepadTextDashed, CopyPlus, SquareUserRound, ListMinus  } from 'lucide-react'
 
 export const links = [
     {
@@ -20,6 +20,24 @@ export const links = [
         name: 'Profil',
         icon: <SquareUserRound className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' />,
         path: 'profile'
+    },
+]
+
+export const dokterLink = [
+    {
+        name: 'Dashboard',
+        icon: <LayoutDashboard className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
+        path: '.'
+    },
+    {
+        name: 'Antrian',
+        icon: <ListMinus className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
+        path: 'antrian'
+    },
+    {
+        name: 'Profil',
+        icon: <SquareUserRound className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' />,
+        path: 'profil'
     },
 ]
 
