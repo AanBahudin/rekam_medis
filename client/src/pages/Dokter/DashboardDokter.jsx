@@ -2,7 +2,9 @@ import React from 'react'
 
 const DashboardDokter = () => {
   return (
-    <div>DashboardDokter</div>
+    <div className='flex-1 bg-white h-full'>
+      <h1>Dashboard Dokter</h1>
+    </div>
   )
 }
 

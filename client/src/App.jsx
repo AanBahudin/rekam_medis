@@ -138,7 +138,10 @@ const App = () => {
   }
 
   return (
-    <AppContext.Provider value={{}}>
+    <AppContext.Provider value={{
+      showSidebar,
+      toggleSidebar
+    }}>
       <div className='h-[100vh] w-full'>
         <RouterProvider router={router} />
       </div>
