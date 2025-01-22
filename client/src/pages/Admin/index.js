@@ -13,6 +13,9 @@ export { loader as adminListPageLoader } from './AllAdmin'
 export { action as adminListPageAction } from './AllAdmin'
 
 
+export { default as DokterPage } from './Dokter'
+export { loader as dokterLoader } from './Dokter'
+
 export { default as AllDataPage } from './AllData'
 export { loader as allDataLoader } from './AllData'
 

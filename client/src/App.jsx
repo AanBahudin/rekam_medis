@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
 import { loginAction, registerAction } from './pages'
 
-import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage, adminListPageAction } from './pages/Admin'
+import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, DokterPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage, adminListPageAction } from './pages/Admin'
 import { 
   adminLayoutLoader,
   riwayatPageLoader,
@@ -14,6 +14,7 @@ import {
   kunjunganLoader,
   detailDataLoader,
   statsPageLoader,
+  dokterLoader,
   addDataPageAction,
   riwayatPageAction,
   editDataAction,
@@ -62,6 +63,11 @@ const App = () => {
               path: 'add-data',
               action: addDataPageAction,
               element: <AddDataPage />
+            },
+            {
+              path: 'dokter',
+              element: <DokterPage />,
+              loader: dokterLoader
             },
             {
               path: 'profile',

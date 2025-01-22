@@ -1,4 +1,4 @@
-import { Book, Home, BookPlus, User, Users, ShieldAlert, ShieldMinus, ShieldPlus, LayoutDashboard, NotepadTextDashed, CopyPlus, SquareUserRound, ListMinus  } from 'lucide-react'
+import { LayoutDashboard, NotepadTextDashed, CopyPlus, SquareUserRound, ListMinus, Briefcase, BriefcaseMedical  } from 'lucide-react'
 
 export const links = [
     {
@@ -15,6 +15,11 @@ export const links = [
         name: 'Pendaftaran',
         icon: <CopyPlus className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
         path: 'add-data'
+    },
+    {
+        name: 'Dokter',
+        icon: <BriefcaseMedical className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
+        path: 'dokter'
     },
     {
         name: 'Profil',
