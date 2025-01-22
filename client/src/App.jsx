@@ -1,25 +1,30 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
 
-import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage, adminListPageAction } from './pages/Admin'
+import { 
+  adminLayoutLoader,
+  riwayatPageLoader,
+  adminListPageLoader,
+  allDataLoader,
+  editDataLoader,
+  kunjunganLoader,
+  detailDataLoader,
+  statsPageLoader,
+  addDataPageAction,
+  riwayatPageAction,
+  editDataAction,
+  detailDataAction
+ } from './pages/Admin'
+
+
+
+
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
 
-import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
-import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
-import { loader as statsPageLoader } from './pages/Admin/Stats'
-import { loader as allDataPageLoader } from './pages/Admin/AllData'
-import { loader as singleDataPageLoader } from './pages/Admin/SingleData'
-import { loader as editDataPageLoader } from './pages/Admin/EditRekamMedis'
-import { loader as kunjunganPageLoader } from './pages/Admin/AddRiwayat'
-import { loader as singleKunjunganPageLoader } from './pages/Admin/Kunjungan'
 
 import { action as loginAction } from './pages/Login'
 import { action as registerAction } from './pages/Register'
-import { action as addDataAction } from './pages/Admin/AddData'
-import { action as allAdminAction } from './pages/Admin/AllAdmin'
-import { action as singleDataAction } from './pages/Admin/SingleData'
-import { action as editDataAction } from './pages/Admin/EditRekamMedis'
-import { action as kunjunganAction } from './pages/Admin/AddRiwayat'
 
 const App = () => {
 
@@ -42,7 +47,7 @@ const App = () => {
         {
           path: '/admin',
           element: <AdminDashboardLayout />,
-          loader: AdminLayoutLoader,
+          loader: adminLayoutLoader,
           children: [
             {
               index: true,
@@ -52,11 +57,11 @@ const App = () => {
             {
               path: 'all-data',
               element: <AllDataPage />,
-              loader: allDataPageLoader,
+              loader: allDataLoader,
             },
             {
               path: 'add-data',
-              action: addDataAction,
+              action: addDataPageAction,
               element: <AddDataPage />
             },
             {
@@ -66,30 +71,30 @@ const App = () => {
             {
               path: 'kunjungan/:id/:riwayat',
               element: <Kunjungan />,
-              loader: singleKunjunganPageLoader,
+              loader: kunjunganLoader,
             },
             {
               path: 'tambah_kunjungan/:id',
               element: <AddRiwayat />,
-              loader: kunjunganPageLoader,
-              action: kunjunganAction,
+              loader: riwayatPageLoader,
+              action: riwayatPageAction,
             },
             {
               path: 'all-data/:id',
               element: <SingleDataPage />,
-              loader: singleDataPageLoader,
-              action: singleDataAction
+              loader: detailDataLoader,
+              action: detailDataAction
             },
             {
               path: 'edit/:id',
               element: <EditRekamMedis />,
-              loader: editDataPageLoader,
+              loader: editDataLoader,
               action: editDataAction,
             },
             {
               path: 'all-admin',
-              loader: AdminPageLoader,
-              action : allAdminAction,
+              loader: adminListPageLoader,
+              action : adminListPageAction,
               element: <AllAdminPage />
             }
             
