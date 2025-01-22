@@ -40,8 +40,6 @@ export const getAllData = async (req, res) => {
 
   // setting filter
   const { page, ...newFilter } = req.query;
-  console.log(newFilter);
-
   const data = await RekamMedis.find(newFilter).skip(skip).limit(limit);
   const countDocument = await RekamMedis.find(newFilter).countDocuments();
 

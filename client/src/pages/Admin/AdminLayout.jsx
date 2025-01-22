@@ -1,4 +1,4 @@
-import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router'
+import { Outlet, redirect, useLoaderData, useNavigate, useSearchParams } from 'react-router'
 import { BigSidebar, Navbar } from '../../components'
 import customFetch from '../../utils/customFetch'
 import { useState, useContext, createContext } from 'react'
@@ -21,6 +21,62 @@ const AdminLayout = () => {
 
   const { user } = useLoaderData()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams();
+
+  const [filter, setFilter] = useState({
+    _id: "",
+    nik: "",
+    nama: "",
+    jenisKelamin: "",
+    tujuanBerobat: "",
+    status: "",
+    createdAt: "",
+    golonganDarah: "",
+  });
+
+  const handleFilterChange = (event, filterName) => {
+    setFilter((prev) => ({
+      ...prev,
+      [filterName]: event.target.value,
+    }));
+  };
+
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams();
+    
+
+    // Tambahkan filter yang tidak kosong ke queryParams
+    Object.keys(filter).forEach((key) => {
+      if (filter[key]) {
+        queryParams.append(key, filter[key]);
+      }
+    });
+
+    // Arahkan ke URL baru dengan query params
+    navigate(`?${queryParams.toString()}`);
+  };
+
+  const handlePageChange = (newPage) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", newPage);
+    navigate(`?${params.toString()}`);
+  };
+
+  const removeFilter = () => {
+    setFilter({
+      _id: "",
+      nik: "",
+      nama: "",
+      jenisKelamin: "",
+      tujuanBerobat: "",
+      status: "",
+      createdAt: "",
+      golonganDarah: "",
+    });
+
+    navigate("/admin/all-data");
+  };
+
 
   const [showSidebar, setShowSidebar] = useState(true);
   const toggleSidebar = () => {
@@ -37,8 +93,14 @@ const AdminLayout = () => {
 
     <AdminDashboardContext.Provider value={{
       user,
+      filter,
+      setFilter,
       showSidebar,
       toggleSidebar,
+      handleFilterChange,
+      handlePageChange,
+      handleSearch,
+      removeFilter,
       logoutUser
     }}>
       <div className='w-full relative h-[100vh] flex overflow-hidden'>

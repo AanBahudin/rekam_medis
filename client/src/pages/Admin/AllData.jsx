@@ -15,6 +15,7 @@ import {
   useSearchParams,
 } from "react-router";
 import { useState } from "react";
+import { useAdminContext } from "./AdminLayout";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
@@ -32,65 +33,7 @@ export const loader = async ({ request }) => {
 
 const AllData = () => {
   const data = useLoaderData();
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const [filter, setFilter] = useState({
-    _id: "",
-    nik: "",
-    nama: "",
-    jenisKelamin: "",
-    tujuanBerobat: "",
-    status: "",
-    createdAt: "",
-    golonganDarah: "",
-  });
-
-  const handleFilterChange = (event, filterName) => {
-    setFilter((prev) => ({
-      ...prev,
-      [filterName]: event.target.value,
-    }));
-  };
-
-  const handleSearch = () => {
-    const queryParams = new URLSearchParams();
-
-    // Tambahkan filter yang tidak kosong ke queryParams
-    Object.keys(filter).forEach((key) => {
-      if (filter[key]) {
-        queryParams.append(key, filter[key]);
-      }
-    });
-
-    // Arahkan ke URL baru dengan query params
-    navigate(`?${queryParams.toString()}`);
-  };
-
-  const removeFilter = () => {
-    setFilter({
-      _id: "",
-      nik: "",
-      nama: "",
-      jenisKelamin: "",
-      tujuanBerobat: "",
-      status: "",
-      createdAt: "",
-      golonganDarah: "",
-    });
-
-    navigate("/admin/all-data");
-  };
-
-  const handlePageChange = (newPage) => {
-    // Salin semua query parameters yang ada
-    const params = new URLSearchParams(searchParams);
-
-    // Perbarui atau tambahkan parameter `page`
-    params.set("page", newPage);
-
-    // Arahkan ke URL baru dengan query parameters yang diperbarui
-    navigate(`?${params.toString()}`);
-  };
+  const { filter, handleFilterChange, handleSearch, removeFilter, handlePageChange } = useAdminContext()
 
   return (
     <section className="w-full flex flex-col items-start justify-center pb-20">
