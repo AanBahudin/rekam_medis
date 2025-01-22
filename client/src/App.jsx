@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
+
 import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage } from './pages/Admin'
+import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
 
 import { loader as AdminLayoutLoader } from './pages/Admin/AdminLayout'
 import { loader as AdminPageLoader } from './pages/Admin/AllAdmin'
@@ -91,6 +93,35 @@ const App = () => {
               element: <AllAdminPage />
             }
             
+          ]
+        },
+        {
+          path: '/dokter',
+          element: <DokterLayout />,
+          // loader: ,
+          children: [
+            {
+              index: true,
+              element: <DashboardDokter />,
+              // loader: ,
+            },
+            {
+              path: 'antrian',
+              element: <AntrianDokter />,
+              // loader: ,
+            },
+            {
+              path: 'antrian/:id',
+              element: <DetailAntrian />,
+              // loader: ,
+              // action : ,
+            },
+            {
+              path: 'profil',
+              element: <ProfilDokter />,
+              // loader: ,
+              // action: ,
+            }
           ]
         }
       ]
