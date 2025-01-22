@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { ErrorPage, HomeLayoutPage, LoginPage, RegisterPage } from './pages'
+import { loginAction, registerAction } from './pages'
 
 import { AdminDashboardLayout, AddDataPage, AddRiwayat, AllAdminPage, AllDataPage, EditRekamMedis, Kunjungan, ProfilePage, SingleDataPage, StatsPage, adminListPageAction } from './pages/Admin'
 import { 
@@ -17,14 +18,9 @@ import {
   detailDataAction
  } from './pages/Admin'
 
-
-
-
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
 
 
-import { action as loginAction } from './pages/Login'
-import { action as registerAction } from './pages/Register'
 
 const App = () => {
 
