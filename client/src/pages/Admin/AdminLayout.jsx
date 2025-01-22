@@ -43,8 +43,6 @@ const AdminLayout = () => {
 
   const handleSearch = () => {
     const queryParams = new URLSearchParams();
-    
-
     // Tambahkan filter yang tidak kosong ke queryParams
     Object.keys(filter).forEach((key) => {
       if (filter[key]) {
@@ -96,6 +94,7 @@ const AdminLayout = () => {
       filter,
       setFilter,
       showSidebar,
+      searchParams,
       toggleSidebar,
       handleFilterChange,
       handlePageChange,

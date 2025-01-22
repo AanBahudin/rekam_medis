@@ -1,5 +1,4 @@
 import {
-  Search,
   IdCard,
   CircleUser,
   ChevronLeft,
@@ -11,11 +10,12 @@ import { toast } from "react-toastify";
 import {
   Link,
   useLoaderData,
+  useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router";
-import { useState } from "react";
 import { useAdminContext } from "./AdminLayout";
+import { useEffect } from "react";
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
@@ -33,7 +33,15 @@ export const loader = async ({ request }) => {
 
 const AllData = () => {
   const data = useLoaderData();
-  const { filter, handleFilterChange, handleSearch, removeFilter, handlePageChange } = useAdminContext()
+  const { search } = useLocation();
+  const { filter, setFilter, handleFilterChange, handleSearch, removeFilter, handlePageChange } = useAdminContext()
+
+  // ambil semua filter jika direfresh untuk menjaga agar filternya tidak hilang
+  useEffect(() => {
+    const queryParams = Object.fromEntries(new URLSearchParams(search));
+    setFilter((prev) => ({...prev, ...queryParams}))
+    
+  }, [])
 
   return (
     <section className="w-full flex flex-col items-start justify-center pb-20">
