@@ -21,8 +21,6 @@ const Kunjungan = () => {
 
   const [activeTab, setActiveTab] = useState('first')
   const {data, riwayat} = useLoaderData()
-  
-  
 
   return (
     <section className='w-full flex flex-col items-start justify-start mb-6'>

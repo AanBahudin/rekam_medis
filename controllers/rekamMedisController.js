@@ -51,8 +51,7 @@ export const getAllData = async (req, res) => {
 };
 
 export const getSingleData = async (req, res) => {
-  const rekamMedis = await RekamMedis.findOne({ _id: req.params.id });
-
+  const rekamMedis = await RekamMedis.findOne({ _id: req.params.id }).sort({"riwayatKunjungan.tanggalKunjungan": -1})
   return res.status(StatusCodes.OK).json({ rekamMedis });
 };
 
