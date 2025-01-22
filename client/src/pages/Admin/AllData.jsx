@@ -40,7 +40,6 @@ const AllData = () => {
   useEffect(() => {
     const queryParams = Object.fromEntries(new URLSearchParams(search));
     setFilter((prev) => ({...prev, ...queryParams}))
-    
   }, [])
 
   return (
