@@ -1,24 +1,24 @@
-import { Book, Home, BookPlus, User, Users, ShieldAlert, ShieldMinus, ShieldPlus  } from 'lucide-react'
+import { Book, Home, BookPlus, User, Users, ShieldAlert, ShieldMinus, ShieldPlus, LayoutDashboard, NotepadTextDashed, CopyPlus, SquareUserRound  } from 'lucide-react'
 
 export const links = [
     {
-        name: 'Beranda',
-        icon: <Home /> ,
+        name: 'Statistik',
+        icon: <LayoutDashboard className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
         path: '.'
     },
     {
         name: 'Rekam Medis',
-        icon: <Book /> ,
+        icon: <NotepadTextDashed className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
         path: 'all-data'
     },
     {
-        name: 'Tambah',
-        icon: <BookPlus /> ,
+        name: 'Pendaftaran',
+        icon: <CopyPlus className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' /> ,
         path: 'add-data'
     },
     {
         name: 'Profil',
-        icon: <User />,
+        icon: <SquareUserRound className='stroke-slate-700 w-5 h-5 group-hover:stroke-slate-700 duration-200 ease-in-out' />,
         path: 'profile'
     },
 ]

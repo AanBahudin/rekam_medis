@@ -41,12 +41,12 @@ const AdminLayout = () => {
       toggleSidebar,
       logoutUser
     }}>
-      <div className='w-full h-[100vh] flex overflow-hidden'>
+      <div className='w-full relative h-[100vh] flex overflow-hidden'>
         <BigSidebar logoutFunction={logoutUser} />
 
-        <div className='flex-1'>
+        <div className='flex-1 w-full'>
           <Navbar />
-          <div className='p-10  overflow-y-scroll bg-white h-[90%]'>
+          <div className='p-10 flex-1 overflow-y-scroll bg-white h-[90%]'>
             <Outlet />
           </div>
         </div>
