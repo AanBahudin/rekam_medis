@@ -4,7 +4,7 @@ import { useAppContext } from '../App';
 
 const BigSidebar = ({user, links }) => {
 
-    const {showSidebar, toggleSidebar} = useAppContext()
+    const {showSidebar} = useAppContext()
 
     return (
         <div className={` bg-slate-50 ${showSidebar ? 'w-[15%]' : 'w-0'} h-full ease-in-out duration-200 py-10`}>
