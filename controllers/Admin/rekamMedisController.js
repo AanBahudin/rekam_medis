@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import RekamMedis from "../models/PasienModel.js";
+import RekamMedis from "../../models/PasienModel.js";
 
 export const statsData = async (req, res) => {
   const totalPasien = await RekamMedis.countDocuments();

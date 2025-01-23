@@ -1,5 +1,5 @@
 import express from 'express'
-import {getCurrentUser, getAllAdmin, updateUser  } from '../controllers/adminController.js'
+import {getCurrentUser, getAllAdmin, updateUser  } from '../../controllers/Admin/adminController.js'
 
 const router = express.Router()
 

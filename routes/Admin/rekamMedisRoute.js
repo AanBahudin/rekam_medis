@@ -1,6 +1,6 @@
 import express from 'express';
-import { statsData, createData, getAllData, getSingleData, updateData, deleteData, addKunjungan } from '../controllers/rekamMedisController.js';
-import { validateAddRekamMedis } from '../middleware/validationMiddleware.js'
+import { statsData, createData, getAllData, getSingleData, updateData, deleteData, addKunjungan } from '../../controllers/Admin/rekamMedisController.js';
+import { validateAddRekamMedis } from '../../middleware/validationMiddleware.js'
 
 const router = express.Router();
 

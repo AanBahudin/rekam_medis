@@ -11,7 +11,8 @@ import errorHandler from './errors/ErrorHandler.js'
 import { authenticatedUser } from './middleware/authMiddleware.js'
 
 // import route
-import { adminRoute, authRoute, rekamMedisRoute } from './routes/index.js'
+import { authRoute} from './routes/index.js'
+import { adminRoute, dokterRoute, rekamMedisRoute } from './routes/Admin/index.js'
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(cookieParser())
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/admin', authenticatedUser, adminRoute);
 app.use('/api/v1/medis', authenticatedUser, rekamMedisRoute);
+app.use('/api/v1/dokter', authenticatedUser, dokterRoute)
 
 app.use(errorHandler)
 
