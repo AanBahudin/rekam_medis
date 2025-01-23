@@ -13,6 +13,7 @@ export const loader = async() => {
     const { data } = await customFetch('/medis/stats')
     return data
   } catch (error) {
+    console.log(error);
     return redirect('/')
   }
 }

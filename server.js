@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 // import middleware
 import errorHandler from './errors/ErrorHandler.js'
-import { authenticatedUser } from './middleware/authMiddleware.js'
+import { authenticatedUser, authorizedAdminPermission, authorizeDokterPermission } from './middleware/authMiddleware.js'
 
 // import route
 import { authRoute} from './routes/index.js'
@@ -22,11 +22,13 @@ dotenv.config()
 app.use(cookieParser())
 
 
-// using route
+// auth route
 app.use('/api/v1/auth', authRoute);
-app.use('/api/v1/admin', authenticatedUser, adminRoute);
-app.use('/api/v1/medis', authenticatedUser, rekamMedisRoute);
-app.use('/api/v1/dokter', authenticatedUser, dokterRoute)
+
+// admin route
+app.use('/api/v1/admin', authenticatedUser, authorizedAdminPermission, adminRoute);
+app.use('/api/v1/medis', authenticatedUser, authorizedAdminPermission, rekamMedisRoute);
+app.use('/api/v1/dokter', authenticatedUser, authorizedAdminPermission, dokterRoute)
 
 app.use(errorHandler)
 
