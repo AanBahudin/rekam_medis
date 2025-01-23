@@ -60,3 +60,40 @@ export const validateIdParams = withValidationErrors([
             }
         })
 ])
+
+export const validateUpdateDokter = withValidationErrors([
+    body('nama')
+        .notEmpty()
+        .withMessage('Nama tidak boleh kosong')
+        .isLength({min: 3})
+        .withMessage('Nama terlalu singkat'),
+    body('email')
+        .notEmpty()
+        .withMessage('Email tidak boleh kosong')
+        .isEmail()
+        .withMessage('Format email tidak benar')
+        .custom(async(email) => {
+            const isEmailExist = await Dokter.findOne({email: email})
+            if (isEmailExist) {
+                throw new BadRequestError('Email sudah digunakan')
+            }
+        }),
+    body('jenisKelamin')
+        .notEmpty()
+        .withMessage('Jenis kelamin tidak boleh kosong')
+        .isIn(['Pria', 'Wanita'])
+        .withMessage('jenis kelamin tidak benar')
+        .default('Pria'),
+    body('spesialisasi')
+        .notEmpty()
+        .withMessage('spesialis tidak boleh kosong')
+        .isIn(['Dokter Umum', 'Dokter Radiologi', 'Dokter Bedah'])
+        .withMessage('spesialisasi tidak ada')
+        .default('Dokter Umum'),
+    body('status')
+        .notEmpty()
+        .withMessage('Status tidak boleh kosong')
+        .isIn(['Aktif', 'Non Aktif'])
+        .withMessage('Status tidak boleh kosong')
+        .default('Aktif')
+])
