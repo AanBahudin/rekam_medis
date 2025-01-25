@@ -13,11 +13,11 @@ const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo }
       </div>
 
       <div className='flex-1 flex flex-col justify-start'>
-        <h1 className='text-xl font-semibold text-slate-700 flex items-center gap-x-4'>
+        <h1 className='text-md font-semibold text-slate-700 flex items-center gap-x-4'>
           <span className='h-3 w-3 bg-lime-300 rounded-full'></span>
           {nama}
         </h1>
-        <p className='text-slate-600 text-sm mb-2'>{spesialisasi}</p>
+        <p className='text-slate-600 text-xs mb-2'>{spesialisasi}</p>
 
         <p className='flex items-center gap-x-1 text-xs text-slate-500'>
           <AtSign className='stroke-slate-900 w-3 h-3' />
