@@ -29,6 +29,9 @@ const DokterSchema = new mongoose.Schema({
     nomorTelepon: {
         type: String
     },
+    jabatan : {
+        type: String,
+    },
     status: {
         type: String,
         default : 'Aktif',
