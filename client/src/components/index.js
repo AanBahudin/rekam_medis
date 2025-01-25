@@ -5,6 +5,7 @@ export { default as BigSidebar } from "./BigSidebar";
 export { default as CustomFormInput } from "./CustomFormInput";
 export { default as Data } from "./Data";
 export { default as DataContainer } from "./DataContainer";
+export { default as DetailDokterDataContainer } from "./DetailDokterDataContainer";
 export { default as FormInput } from "./FormInput";
 export { default as InputForm } from "./InputForm";
 export { default as InputSelect } from "./InputSelect";

@@ -24,7 +24,7 @@ const AdminLayout = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams();
 
-  const [showDetail, setShowDetail] = useState(false)
+  const [showDetail, setShowDetail] = useState(true)
 
   const [filter, setFilter] = useState({
     _id: "",
