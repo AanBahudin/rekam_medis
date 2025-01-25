@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useLoaderData } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { AdminDokterCard, DetailDokterDataContainer } from '../../components'
-import { useAdminContext } from './AdminLayout'
-import { AtSign, Phone, X } from 'lucide-react'
+import moment from 'moment'
+import { AtSign, Edit, Phone, Trash, X } from 'lucide-react'
 import { man } from '../../assets/images'
 
 export const loader = async() => {
@@ -19,7 +19,18 @@ export const loader = async() => {
 const Dokter = () => {
 
   const { dokter } = useLoaderData()
-  const { showDetail, setShowDetail } = useAdminContext()
+  const [currentData, setCurrentData] = useState(null)
+  const [ showDetail, setShowDetail ] = useState(true)
+
+  const handlePopup = (id, condition) => {
+    if (condition) {
+        const current = dokter.find(item => {
+          return item._id === id
+        })
+        setCurrentData(current)
+    }
+    setShowDetail(condition)
+  }
   
 
   return (
@@ -28,35 +39,37 @@ const Dokter = () => {
       <article className={`transition-transform duration-200 ease-in-out transform ${showDetail ? 'translate-x-0' : 'translate-x-full'} h-full w-[30%] flex flex-col items-center absolute z-20 right-0 p-6 rounded-xl bg-slate-100  `}>
         {/* CLOSE BUTTON AND TITLE */}
         <div className='w-full flex items-center justify-between'>
-          <h1 className='text-slate-700 font-medium text-lg'>Profil Dokter</h1>
-          <X onClick={() => setShowDetail(false)} />
+          <X onClick={() => handlePopup(' ', false)} />
+
+          <section className='flex gap-x-2 items-center'>
+            <Edit className='stroke-white bg-blueCard p-1 rounded' />
+            <Trash className='stroke-white bg-redCard  p-1 rounded'/>
+          </section>
         </div>
 
         {/* CONTENT */}
         <div className='w-full flex flex-col items-center justify-start mt-10'>
           <img src={man} alt="avatar" className='w-28 h-28 rounded-full' />
-          <h1 className='mt-4 text-2xl'>Aan Bahudin</h1>
+          <h1 className='mt-4 text-2xl'>{currentData?.nama || ''}</h1>
           <p>Spesialis Kandungan</p>
 
           <div className='w-full flex justify-evenly items-center mt-4'>
             <p className='flex items-center gap-x-1 text-xs text-slate-500'>
               <AtSign className='stroke-slate-900 w-3 h-3' />
-              {/* {email} */}
-              aanbahudin@gmail.com
+              {currentData?.email || ''}
             </p>
 
             <p className='flex items-center gap-x-1 text-xs text-slate-500'>
               <Phone className='stroke-slate-900 w-3 h-3' />
-              {/* {nomorTelepon || 'Belum ada '} */}
-              0812 3498 0912
+              {currentData?.nomorTelepon || 'Belum diatur'}
             </p>
           </div>
           
           <div className='w-full mt-20 flex flex-col gap-y-8'>
-            <DetailDokterDataContainer label='Jenis Kelamin' value='Pria' />
-            <DetailDokterDataContainer label='Tempat Tanggal Lahir' value='10 Desember 1990' />
-            <DetailDokterDataContainer label='Jabatan' value='Dokter Spesialis' />
-            <DetailDokterDataContainer label='Status' value='Cuti' />
+            <DetailDokterDataContainer label='Jenis Kelamin' value={currentData?.jenisKelamin} />
+            <DetailDokterDataContainer label='Tanggal Lahir' value={moment( currentData?.tanggalLahir).format('LL')} />
+            <DetailDokterDataContainer label='Jabatan' value={currentData?.jabatan || 'Tidak ada'} />
+            <DetailDokterDataContainer label='Status' value={currentData?.status} />
           </div>
           
         </div>
@@ -68,7 +81,7 @@ const Dokter = () => {
 
         <article className='w-full mt-10 flex flex-wrap items-center justify-start gap-4'>
           {dokter.map((item, index) => {
-            return <AdminDokterCard key={index} {...item} />
+            return <AdminDokterCard key={index} {...item} handlePopup={handlePopup} />
           })}
         </article>
       </section> 

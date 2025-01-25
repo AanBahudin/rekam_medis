@@ -5,9 +5,9 @@ import { AtSign, Phone } from 'lucide-react'
 import { useAdminContext } from '../pages/Admin/AdminLayout'
 
 
-const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo }) => {
+const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo, handlePopup }) => {
 
-  const {showDetail, setShowDetail} = useAdminContext()
+  // const {showDetail, setShowDetail} = useAdminContext()
 
   return (
     <div className='w-[290px] h-[150px] bg-transparent  rounded-xl shadow-sm hover:shadow-lg duration-200 ease-in-out p-4 flex justify-start border-[2px] gap-x-4 border-slate-400'>
@@ -32,7 +32,7 @@ const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo }
           <Phone className='stroke-slate-900 w-3 h-3' />
           {nomorTelepon || 'Belum ada '}
         </p>
-      <button onClick={() => setShowDetail(!showDetail)} className='text-xs rounded-md py-1 mt-2 text- w-full hover:bg-blueCard cursor-default bg-slate-200 font-medium text-slate-600 text-center'>Detail</button>
+      <button onClick={() => handlePopup(_id, true)} className='text-xs rounded-md py-1 mt-2 text- w-full hover:bg-blueCard cursor-default bg-slate-200 font-medium text-slate-600 text-center'>Detail</button>
       </div>
     </div>
   )
