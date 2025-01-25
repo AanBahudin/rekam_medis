@@ -24,6 +24,8 @@ const AdminLayout = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams();
 
+  const [showDetail, setShowDetail] = useState(false)
+
   const [filter, setFilter] = useState({
     _id: "",
     nik: "",
@@ -93,6 +95,8 @@ const AdminLayout = () => {
     <AdminDashboardContext.Provider value={{
       user,
       filter,
+      showDetail,
+      setShowDetail,
       setFilter,
       showSidebar,
       searchParams,
@@ -108,7 +112,7 @@ const AdminLayout = () => {
 
         <div className='flex-1 w-full'>
           <Navbar />
-          <div className='p-10 flex-1 overflow-y-scroll bg-white h-[90%] no-scrollbar'>
+          <div className='flex-1 overflow-y-scroll bg-white h-[90%] no-scrollbar'>
             <Outlet />
           </div>
         </div>

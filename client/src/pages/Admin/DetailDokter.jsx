@@ -16,8 +16,13 @@ export const loader = async({ params }) => {
 const DetailDokter = () => {
 
   const { dokter } = useLoaderData()
+
+  
   return (
     <section className='w-full h-full flex flex-col'>
+
+      {/* POP UP DETAIL */}
+      
   
       {/* BREADCRUMBS */}
       <article className='w-full flex items-center gap-x-4'>
