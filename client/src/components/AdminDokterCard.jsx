@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 import { AtSign, Phone } from 'lucide-react'
 
 
-const AdminDokterCard = ({ nama, spesialisasi, email, nomorTelepon, photo }) => {
+const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo }) => {
   return (
     <div className='w-[290px] h-[150px] bg-transparent  rounded-xl shadow-sm hover:shadow-lg duration-200 ease-in-out p-4 flex justify-start border-[2px] gap-x-4 border-slate-400'>
 
@@ -28,7 +28,7 @@ const AdminDokterCard = ({ nama, spesialisasi, email, nomorTelepon, photo }) => 
           <Phone className='stroke-slate-900 w-3 h-3' />
           {nomorTelepon || 'Belum ada '}
         </p>
-      <Link to={`/admin/dokter/test`} className='text-xs rounded-md py-1 mt-2 text- w-full hover:bg-blueCard cursor-default bg-slate-200 font-medium text-slate-600 text-center'>Detail</Link>
+      <Link to={`/admin/dokter/${_id}`} className='text-xs rounded-md py-1 mt-2 text- w-full hover:bg-blueCard cursor-default bg-slate-200 font-medium text-slate-600 text-center'>Detail</Link>
       </div>
     </div>
   )
