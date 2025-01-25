@@ -28,7 +28,7 @@ const Dokter = () => {
           return <AdminDokterCard key={index} {...item} />
         })}
       </article>
-    </section>
+    </section> 
   )
 }
 
