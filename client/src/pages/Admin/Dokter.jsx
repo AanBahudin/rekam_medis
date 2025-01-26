@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useLoaderData } from 'react-router'
+import { Link, useLoaderData } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { AdminDokterCard, DetailDokterDataContainer } from '../../components'
 import moment from 'moment'
-import { AtSign, Edit, Phone, Trash, X } from 'lucide-react'
+import { AtSign, Edit, Phone, Trash, X, Plus } from 'lucide-react'
 import { man } from '../../assets/images'
 
 export const loader = async() => {
@@ -20,7 +20,7 @@ const Dokter = () => {
 
   const { dokter } = useLoaderData()
   const [currentData, setCurrentData] = useState(null)
-  const [ showDetail, setShowDetail ] = useState(true)
+  const [ showDetail, setShowDetail ] = useState(false)
 
   const handlePopup = (id, condition) => {
     if (condition) {
@@ -36,7 +36,8 @@ const Dokter = () => {
   return (
     <section className='w-full h-full'>
 
-      <article className={`transition-transform duration-200 ease-in-out transform ${showDetail ? 'translate-x-0' : 'translate-x-full'} h-full w-[30%] flex flex-col items-center absolute z-20 right-0 p-6 rounded-xl bg-slate-100  `}>
+      {/* POP DETAIL */}
+      <article className={`transition-transform duration-200 ease-in-out transform ${showDetail ? 'translate-x-0' : 'translate-x-full'} h-full w-[25%] flex flex-col items-center absolute z-20 right-0 p-6 rounded-xl bg-white border-l-2 border-slate-200  `}>
         {/* CLOSE BUTTON AND TITLE */}
         <div className='w-full flex items-center justify-between'>
           <X onClick={() => handlePopup(' ', false)} />
@@ -76,7 +77,10 @@ const Dokter = () => {
       </article>
 
       <section className='w-full relative h-full  no-scrollbar overflow-y-auto p-10'>
-        <h1 className='text-slate-700 font-semibold text-3xl'>Daftar Semua Tenaga Kesehatan</h1>
+        <h1 className='text-slate-700 font-semibold text-3xl flex items-center justify-between w-full cursor-default'>
+          Daftar Semua Tenaga Kesehatan
+          <Link to='/admin/tambah-dokter' className='text-sm font-normal bg-blueCard px-6 py-2 rounded-md flex items-center gap-x-3 group cursor-default '><Plus className='w-3 h-3' /> Dokter</Link>
+        </h1>
         <p className='text-slate-600 mt-1'>Informasi lengkap tentang dokter dan spesialisasi mereka.</p>
 
         <article className='w-full mt-10 flex flex-wrap items-center justify-start gap-4'>
