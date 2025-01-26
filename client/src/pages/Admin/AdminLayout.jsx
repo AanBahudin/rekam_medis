@@ -4,6 +4,7 @@ import customFetch from '../../utils/customFetch'
 import { useState, useContext, createContext } from 'react'
 import { links } from '../../utils/constants'
 import { toast } from 'react-toastify'
+import { handleToast } from '../../utils/handleToast'
 
 
 export const loader = async({ params }) => {
@@ -87,7 +88,7 @@ const AdminLayout = () => {
   const logoutUser = async() => {
     navigate('/');
     await customFetch.get('/auth/logout');
-    toast.success('Logging out...');
+    handleToast('success', 'Berhasil logout', 'Anda berhasil berhasil logout', 2000)
   }
 
   return (
