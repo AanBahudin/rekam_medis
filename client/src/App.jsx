@@ -16,7 +16,6 @@ import {
   statsPageLoader,
   dokterLoader,
   editDokterLoader,
-  deleteDokterAction,
   addDataPageAction,
   riwayatPageAction,
   editDokterAction,
@@ -73,8 +72,7 @@ const App = () => {
             {
               path: 'dokter',
               element: <DokterPage />,
-              loader: dokterLoader,
-              action: deleteDokterAction
+              loader: dokterLoader
             },
             {
               path: 'dokter/:id',

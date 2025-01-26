@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, redirect, useLoaderData } from 'react-router'
+import { Form, Link, redirect, useLoaderData, useNavigate } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { AdminDokterCard, DetailDokterDataContainer } from '../../components'
 import moment from 'moment'
@@ -17,25 +17,12 @@ export const loader = async() => {
   }
 }
 
-export const action = async({ request }) => {
-  const formData = await request.formData()
-  const data = Object.fromEntries(formData)
-  try {
-    await customFetch.delete(`/delete/${data.id}`)
-    toast.success('Data dihapus')
-    return redirect('/admin/dokter')
-  } catch (error) {
-    console.log(error);
-    return error
-    
-  }
-}
-
 const Dokter = () => {
 
   const { dokter } = useLoaderData()
   const [currentData, setCurrentData] = useState(null)
   const [ showDetail, setShowDetail ] = useState(false)
+  const navigate = useNavigate()
   
 
   const handlePopup = (id, condition) => {
@@ -46,6 +33,22 @@ const Dokter = () => {
         setCurrentData(current)
     }
     setShowDetail(condition)
+  }
+
+  const handleDelete = async(id, event) => {
+    event.preventDefault()
+    try {
+      await customFetch.delete(`/dokter/${id}`)
+      toast.success('Berhasil dihapus')
+      setCurrentData(null)
+      setShowDetail(false)
+      return navigate("/admin/dokter", { replace: true });
+    } catch (error) {
+      setCurrentData(null)
+      setShowDetail(false)
+      console.log(error);
+      toast.error('Gagal dihapus')
+    }
   }
   
 
@@ -62,7 +65,10 @@ const Dokter = () => {
             <Link to={`edit/${currentData?._id}`}>
               <Edit className='stroke-white bg-blueCard p-1 rounded' />
             </Link>
-            <Trash className='stroke-white bg-redCard  p-1 rounded'/>
+              {/* <input type="hidden" name='id' value={currentData?._id} /> */}
+              <button onClick={(event) => handleDelete(currentData?._id, event)} className='m-0 p-0 border-none bg-transparent'>
+                <Trash className='stroke-white bg-redCard p-1 rounded'/>
+              </button>
           </section>
         </div>
 
@@ -102,9 +108,15 @@ const Dokter = () => {
         <p className='text-slate-600 mt-1'>Informasi lengkap tentang dokter dan spesialisasi mereka.</p>
 
         <article className='w-full mt-10 flex flex-wrap items-center justify-start gap-4'>
-          {dokter.map((item, index) => {
-            return <AdminDokterCard key={index} {...item} handlePopup={handlePopup} />
-          })}
+
+          {dokter.length === 0 ? (
+            <h1 className='text-slate-600'>Belum ada data dokter ..</h1>
+          ) : (
+            dokter.map((item, index) => {
+              return <AdminDokterCard key={index} {...item} handlePopup={handlePopup} />
+            })
+          )}
+
         </article>
       </section> 
     </section>
