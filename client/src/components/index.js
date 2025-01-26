@@ -3,6 +3,7 @@ export { default as AdminDokterCard } from "./AdminDokterCard";
 export { default as BigDataContainer } from "./BigDataContainer";
 export { default as BigSidebar } from "./BigSidebar";
 export { default as CustomFormInput } from "./CustomFormInput";
+export { default as CustomToast } from "./CustomToast";
 export { default as Data } from "./Data";
 export { default as DataContainer } from "./DataContainer";
 export { default as DetailDokterDataContainer } from "./DetailDokterDataContainer";

@@ -7,6 +7,7 @@ import { toast } from "react-toastify"
 import { man } from '../../assets/images'
 import moment from "moment"
 import { useLoaderData } from "react-router"
+import { handleToast } from "../../utils/handleToast"
 
 export const loader = async() => {
   try {
