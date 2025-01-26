@@ -32,6 +32,14 @@ export const getSingleDokter = async(req, res) => {
 
 export const updateDokter = async(req, res) => {
     const {id} = req.params
+
+    if(req.file) {
+        const response = await cloudinary.v2.uploader.upload(req.file.path);
+        await fs.unlink(req.file.path)
+
+        req.body.photo = response.secure_url
+        req.body.publicPhotoId = response.public_id
+    }
     const updatedDokter = await Dokter.findOneAndUpdate({_id: id}, req.body, {new: true, runValidators: true})
     return res.status(StatusCodes.OK).json({msg: 'ok', updatedDokter})
 }

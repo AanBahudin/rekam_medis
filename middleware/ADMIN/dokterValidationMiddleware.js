@@ -71,13 +71,7 @@ export const validateUpdateDokter = withValidationErrors([
         .notEmpty()
         .withMessage('Email tidak boleh kosong')
         .isEmail()
-        .withMessage('Format email tidak benar')
-        .custom(async(email) => {
-            const isEmailExist = await Dokter.findOne({email: email})
-            if (isEmailExist) {
-                throw new BadRequestError('Email sudah digunakan')
-            }
-        }),
+        .withMessage('Format email tidak benar'),
     body('jenisKelamin')
         .notEmpty()
         .withMessage('Jenis kelamin tidak boleh kosong')
@@ -87,8 +81,6 @@ export const validateUpdateDokter = withValidationErrors([
     body('spesialisasi')
         .notEmpty()
         .withMessage('spesialis tidak boleh kosong')
-        .isIn(['Dokter Umum', 'Dokter Radiologi', 'Dokter Bedah'])
-        .withMessage('spesialisasi tidak ada')
         .default('Dokter Umum'),
     body('status')
         .notEmpty()

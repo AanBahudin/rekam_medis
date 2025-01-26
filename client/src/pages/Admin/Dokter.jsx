@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link, useLoaderData } from 'react-router'
+import { Link, redirect, useLoaderData } from 'react-router'
 import customFetch from '../../utils/customFetch'
 import { AdminDokterCard, DetailDokterDataContainer } from '../../components'
 import moment from 'moment'
 import { AtSign, Edit, Phone, Trash, X, Plus } from 'lucide-react'
 import { man } from '../../assets/images'
+import { toast } from 'react-toastify'
 
 export const loader = async() => {
   try {
@@ -13,6 +14,20 @@ export const loader = async() => {
   } catch (error) {
     console.log(error);
     return error
+  }
+}
+
+export const action = async({ request }) => {
+  const formData = await request.formData()
+  const data = Object.fromEntries(formData)
+  try {
+    await customFetch.delete(`/delete/${data.id}`)
+    toast.success('Data dihapus')
+    return redirect('/admin/dokter')
+  } catch (error) {
+    console.log(error);
+    return error
+    
   }
 }
 
@@ -44,14 +59,16 @@ const Dokter = () => {
           <X onClick={() => handlePopup(' ', false)} />
 
           <section className='flex gap-x-2 items-center'>
-            <Edit className='stroke-white bg-blueCard p-1 rounded' />
+            <Link to={`edit/${currentData?._id}`}>
+              <Edit className='stroke-white bg-blueCard p-1 rounded' />
+            </Link>
             <Trash className='stroke-white bg-redCard  p-1 rounded'/>
           </section>
         </div>
 
         {/* CONTENT */}
         <div className='w-full flex flex-col items-center justify-start mt-10'>
-          <img src={man} alt="avatar" className='w-28 h-28 rounded-full' />
+          <img src={currentData?.photo || man} alt="avatar" className='w-28 h-28 object-cover rounded-full' />
           <h1 className='mt-4 text-2xl'>{currentData?.nama || ''}</h1>
           <p>{currentData?.spesialisasi}</p>
 

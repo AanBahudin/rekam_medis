@@ -15,8 +15,11 @@ import {
   detailDataLoader,
   statsPageLoader,
   dokterLoader,
+  editDokterLoader,
+  deleteDokterAction,
   addDataPageAction,
   riwayatPageAction,
+  editDokterAction,
   editDataAction,
   detailDataAction,
   adminListPageAction,
@@ -24,6 +27,7 @@ import {
  } from './pages/Admin'
 
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
+import EditDokter from './pages/Admin/EditDokter'
 
 
 const AppContext = createContext()
@@ -69,12 +73,19 @@ const App = () => {
             {
               path: 'dokter',
               element: <DokterPage />,
-              loader: dokterLoader
+              loader: dokterLoader,
+              action: deleteDokterAction
             },
             {
               path: 'dokter/:id',
               element: <DetailDokterPage />,
               loader: detailDokterLoader
+            },
+            {
+              path: 'dokter/edit/:id',
+              element: <EditDokter />,
+              loader: editDokterLoader,
+              action: editDokterAction
             },
             {
               path: 'tambah-dokter',

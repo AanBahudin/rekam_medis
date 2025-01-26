@@ -14,6 +14,7 @@ export { action as adminListPageAction } from './AllAdmin'
 
 export { default as DokterPage } from './Dokter'
 export { loader as dokterLoader } from './Dokter'
+export { action as deleteDokterAction } from './Dokter'
 
 export { default as DetailDokterPage } from './DetailDokter'
 export { loader as detailDokterLoader } from './DetailDokter'
@@ -21,12 +22,16 @@ export { loader as detailDokterLoader } from './DetailDokter'
 export { default as TambahDokterPage } from './TambahDokter'
 export { action as tambahDokterAction } from './TambahDokter'
 
+export { default as EditDokterPage } from './EditDokter'
+export { loader as editDokterLoader } from './EditDokter'
+export { action as editDokterAction } from './EditDokter'
+
 export { default as AllDataPage } from './AllData'
 export { loader as allDataLoader } from './AllData'
 
 export { default as EditRekamMedis } from './EditRekamMedis'
-export { loader as editDataLoader } from './AllAdmin'
-export { action as editDataAction } from './AllAdmin'
+export { loader as editDataLoader } from './EditRekamMedis'
+export { action as editDataAction } from './EditRekamMedis'
 
 export { default as Kunjungan } from './Kunjungan'
 export { loader as kunjunganLoader } from './Kunjungan'

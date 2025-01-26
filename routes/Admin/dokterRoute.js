@@ -11,7 +11,7 @@ router.route('/')
 
 router.route('/:id')
     .get(validateIdParams, getSingleDokter)
-    .patch(validateIdParams, validateUpdateDokter, updateDokter)
+    .patch(validateIdParams, upload.single('photo'), validateUpdateDokter, updateDokter)
     .delete(validateIdParams, deleteDokter)
 
 export default router
