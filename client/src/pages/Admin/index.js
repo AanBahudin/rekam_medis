@@ -12,7 +12,6 @@ export { default as AllAdminPage } from './AllAdmin'
 export { loader as adminListPageLoader } from './AllAdmin'
 export { action as adminListPageAction } from './AllAdmin'
 
-
 export { default as DokterPage } from './Dokter'
 export { loader as dokterLoader } from './Dokter'
 
@@ -20,6 +19,7 @@ export { default as DetailDokterPage } from './DetailDokter'
 export { loader as detailDokterLoader } from './DetailDokter'
 
 export { default as TambahDokterPage } from './TambahDokter'
+export { action as tambahDokterAction } from './TambahDokter'
 
 export { default as AllDataPage } from './AllData'
 export { loader as allDataLoader } from './AllData'

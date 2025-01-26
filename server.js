@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv'
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+import cloudinary from 'cloudinary'
 
 // import middleware
 import errorHandler from './errors/ErrorHandler.js'
@@ -21,6 +22,11 @@ if (process.env.NODE_ENV !== "production") {app.use(morgan("tiny"))}
 dotenv.config()
 app.use(cookieParser())
 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+})
 
 // auth route
 app.use('/api/v1/auth', authRoute);

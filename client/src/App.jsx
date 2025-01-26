@@ -19,7 +19,8 @@ import {
   riwayatPageAction,
   editDataAction,
   detailDataAction,
-  adminListPageAction
+  adminListPageAction,
+  tambahDokterAction
  } from './pages/Admin'
 
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
@@ -77,7 +78,8 @@ const App = () => {
             },
             {
               path: 'tambah-dokter',
-              element: <TambahDokterPage />
+              element: <TambahDokterPage />,
+              action: tambahDokterAction
             },
             {
               path: 'profile',

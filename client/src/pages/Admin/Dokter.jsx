@@ -21,6 +21,7 @@ const Dokter = () => {
   const { dokter } = useLoaderData()
   const [currentData, setCurrentData] = useState(null)
   const [ showDetail, setShowDetail ] = useState(false)
+  
 
   const handlePopup = (id, condition) => {
     if (condition) {
@@ -52,7 +53,7 @@ const Dokter = () => {
         <div className='w-full flex flex-col items-center justify-start mt-10'>
           <img src={man} alt="avatar" className='w-28 h-28 rounded-full' />
           <h1 className='mt-4 text-2xl'>{currentData?.nama || ''}</h1>
-          <p>Spesialis Kandungan</p>
+          <p>{currentData?.spesialisasi}</p>
 
           <div className='w-full flex justify-evenly items-center mt-4'>
             <p className='flex items-center gap-x-1 text-xs text-slate-500'>

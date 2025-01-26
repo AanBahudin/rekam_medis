@@ -1,6 +1,8 @@
 import { StatusCodes } from "http-status-codes"
 import Dokter from '../../models/DokterModel.js'
+import cloudinary from 'cloudinary'
 import { hashPassword } from '../../utils/passwordUtils.js'
+import { promises as fs } from 'fs'
 
 export const getAllDokter = async(req, res) => {
     const dokter = await Dokter.find()
@@ -11,7 +13,15 @@ export const addDokter = async(req, res) => {
     
     req.body.password = await hashPassword(req.body.password)
 
-    const dokter = await Dokter.create(req.body)
+    if(req.file) {
+        const response = await cloudinary.v2.uploader.upload(req.file.path);
+        await fs.unlink(req.file.path)
+
+        req.body.photo = response.secure_url
+        req.body.publicPhotoId = response.public_id
+    }
+
+    const dokter = await Dokter.create(req.body);
     return res.status(StatusCodes.CREATED).json({msg: 'success', data: dokter})
 }
 
