@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Form, redirect, useLoaderData } from 'react-router'
 import { CustomFormInput } from '../../components'
 import customFetch from '../../utils/customFetch'
-import { toast } from 'react-toastify'
+import errorMsg from '../../utils/handleErrorMessage'
+import { handleToast } from '../../utils/handleToast'
 
 export const loader = async({ params }) => {
   try {
@@ -19,11 +20,12 @@ export const action = async({request, params}) => {
   const data = Object.fromEntries(formData)
   try {
     await customFetch.post(`/medis/kunjungan/${params.id}`, data)
-    toast.success('Kunjungan ditambahkan')
+    handleToast(1, 'Riwayat Ditambahkan', 'Silahkan cek riwayat kunjungan pasien', 2000)
     return redirect(`/admin/all-data/${params.id}`)
   } catch (error) {
-    console.log(error);
-    return error;
+    const msgError = errorMsg(error)
+    handleToast(3, 'Terjadi Kesalahan', msgError, 2000)
+    return msgError
   }
 }
 

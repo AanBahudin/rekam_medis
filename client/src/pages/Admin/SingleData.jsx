@@ -4,8 +4,9 @@ import { addDataLinks } from "../../utils/constants";
 import { BigDataContainer, Data, DataContainer } from "../../components";
 import customFetch from "../../utils/customFetch";
 import { Form, Link, redirect, useLoaderData } from "react-router";
-import { toast } from "react-toastify";
 import moment from "moment";
+import errorMsg from "../../utils/handleErrorMessage";
+import { handleToast } from "../../utils/handleToast";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -13,11 +14,12 @@ export const action = async ({ request }) => {
 
   try {
     await customFetch.delete(`/medis/${data.id}`);
-    toast.success("Data dihapus");
+    handleToast(1, 'Data Berhasil Dihapus', 'data pasien berhasil dihapus', 2000)
     return redirect("/admin/all-data");
   } catch (error) {
-    toast.error(error.response.data.msg);
-    return error;
+    const msgError = errorMsg(error)
+    handleToast(3, 'Terjadi Kesalahan', msgError, 2000)
+    return msgError
   }
 };
 
@@ -35,7 +37,6 @@ const SingleData = () => {
   const { rekamMedis } = useLoaderData();
 
   const { riwayatKunjungan } = rekamMedis;
-  console.log(riwayatKunjungan);
 
   const formattedDate = (tanggal) => {
     return tanggal.split("T")[0];
@@ -91,6 +92,7 @@ const SingleData = () => {
           }  gap-x-4 gap-y-6`}
         >
           <DataContainer label="Nomor Rekam Medis" value={rekamMedis._id} />
+          <DataContainer label="Nama" value={rekamMedis.nama} />
           <DataContainer
             label="Nomor Rekam Medis"
             value={formattedDate(rekamMedis.tanggalLahir)}

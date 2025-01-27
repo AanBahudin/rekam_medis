@@ -3,19 +3,21 @@ import customFetch from '../../utils/customFetch'
 import { LoaderCircle } from 'lucide-react';
 import { CustomFormInput } from '../../components';
 import { Form, redirect, useLoaderData, useNavigation } from 'react-router';
-import { toast } from 'react-toastify';
+import errorMsg from "../../utils/handleErrorMessage";
+import { handleToast } from "../../utils/handleToast";
 
 export const action = async({ request, params }) => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
 
   try {
-    await customFetch.patch(`/medis/${params.id}`)
-    toast.success('Data berhasil di edit')
+    await customFetch.patch(`/medis/${params.id}`, data)
+    handleToast(1, 'Berhasil Diubah', 'Silahkan cek data terbaru pasien', 2000)
     return redirect(`/admin/all-data/${params.id}`)
   } catch (error) {
-    console.log(error);
-    return error
+    const msgError = errorMsg(error)
+    handleToast(3, 'Terjadi Kesalahan', msgError, 2000)
+    return msgError
   }
 }
 

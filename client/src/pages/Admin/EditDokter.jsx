@@ -5,6 +5,8 @@ import { InputForm, InputSelect } from '../../components'
 import { man } from '../../assets/images'
 import { Form, redirect, useLoaderData, useNavigation } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
+import { handleToast } from '../../utils/handleToast'
+import handleErrormsg from '../../utils/handleErrorMessage'
 
 export const loader = async({ params }) => {
   try {
@@ -21,16 +23,16 @@ export const action = async({request, params}) => {
 
   const file = formData.get('photo')
   if (file && file.size > 500000) {
-    return toast.error('Gambar terlalu berat!')
+    return handleToast(2, 'Peringatan', 'Gambar yang dipilih tidak boleh lebih dari 5 MB', 2000)
   }
 
   try {
     await customFetch.patch(`/dokter/${params.id}`, formData)
-    toast.success('Berhasil diperbaharui')
+    handleToast(1, 'Berhasil Diperbaharui', 'Silahkan cek menu dokter', 2000)
     return redirect('/admin/dokter')
   } catch (error) {
-    console.log(error);
-    return error
+    const errMsg = handleErrormsg(error)
+    return handleToast(3, 'Terjadi Kesalahan', errMsg, 2000)
   }
 }
 

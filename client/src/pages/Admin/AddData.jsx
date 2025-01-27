@@ -6,21 +6,23 @@ import {
 } from "../../components";
 import { Form, redirect, useNavigation } from "react-router";
 import customFetch from "../../utils/customFetch";
-import { toast } from "react-toastify";
 import { LoaderCircle } from "lucide-react";
 import { addDataLinks } from "../../utils/constants";
 import { useState } from "react";
+import errorMsg from "../../utils/handleErrorMessage";
+import { handleToast } from "../../utils/handleToast";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post("/medis", data);
-    toast.success("Data di input");
+    handleToast(1, 'Data ditambahkan', 'Silahkan cek rekam medis untuk melihat', 2000)
     return redirect(".");
   } catch (error) {
-    const errorArr = error.response.data.msg;
-    return toast.error(errorArr.join(", "));
+    const msgErr = errorMsg(error)
+    handleToast(3, 'Terjadi Kesalahan', msgErr, 2000)
+    return msgErr
   }
 };
 
