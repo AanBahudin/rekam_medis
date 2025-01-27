@@ -11,12 +11,12 @@ const AdminDokterCard = ({ _id, nama, spesialisasi, email, nomorTelepon, photo, 
         <img src={photo || man} className='w-16 h-16 mt-2 rounded-full object-cover'/>
       </div>
 
-      <div className='flex-1 flex flex-col justify-start mt-2'>
+      <div className='flex flex-col justify-start mt-2'>
         <h1 className='text-md font-semibold text-slate-700 flex items-center gap-x-4'>
-          <span className='h-3 w-3 bg-lime-300 rounded-full'></span>
+          {/* <span className='h-3 w-3 bg-lime-300 rounded-full'></span> */}
           {nama}
         </h1>
-        <p className='text-slate-600 text-xs mb-2'>{spesialisasi}</p>
+        <p className='text-slate-600 text-xs mb-2 truncate max-h-full'>{spesialisasi.slice(0,30)}...</p>
 
         <p className='flex items-center gap-x-1 text-xs text-slate-500'>
           <AtSign className='stroke-slate-900 w-3 h-3' />

@@ -5,15 +5,17 @@ import { AdminDokterCard, DetailDokterDataContainer } from '../../components'
 import moment from 'moment'
 import { AtSign, Edit, Phone, Trash, X, Plus } from 'lucide-react'
 import { man } from '../../assets/images'
-import { toast } from 'react-toastify'
+import errorMsg from '../../utils/handleErrorMessage'
+import { handleToast } from '../../utils/handleToast'
 
 export const loader = async() => {
   try {
     const {data} = await customFetch.get('/dokter');
     return data
   } catch (error) {
-    console.log(error);
-    return error
+    const msgErr = errorMsg(error)
+    handleToast(3, 'Terjadi Kesalahan', msgErr, 2000)
+    return msgErr
   }
 }
 
@@ -39,15 +41,17 @@ const Dokter = () => {
     event.preventDefault()
     try {
       await customFetch.delete(`/dokter/${id}`)
-      toast.success('Berhasil dihapus')
+      handleToast(1, 'Data dihapus', 'Data dokter berhasil dihapus!', 2000)
       setCurrentData(null)
       setShowDetail(false)
       return navigate("/admin/dokter", { replace: true });
     } catch (error) {
+      const msgError = errorMsg(error)
       setCurrentData(null)
       setShowDetail(false)
       console.log(error);
-      toast.error('Gagal dihapus')
+      handleToast(3, 'Terjadi Kesalahan',msgError , 2000)
+      return msgError
     }
   }
   

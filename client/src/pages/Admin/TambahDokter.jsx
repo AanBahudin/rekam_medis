@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
-import { toast } from 'react-toastify'
 import { InputForm, InputSelect } from '../../components'
 import handleErrormsg from '../../utils/handleErrorMessage'
 import { man } from '../../assets/images'
