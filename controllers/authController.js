@@ -24,7 +24,7 @@ export const login = async(req, res) => {
 
     const isPasswordCorrect = await comparePassword(req.body.password, user.password)
     if (!isPasswordCorrect) {
-        throw new NotAuthenticatedError('password is wrong')
+        throw new NotAuthenticatedError('Password yang dimasukan salah!')
     }
 
     if (user.isApproved === false) {

@@ -26,13 +26,13 @@ const withValidationErrors = (validateValues) => {
 export const validateLogin = withValidationErrors([
     body('email')
         .notEmpty()
-        .withMessage('please provide email')
+        .withMessage('Email tidak boleh kosong')
         .isEmail()
-        .withMessage('email is not valid')
+        .withMessage('Email tidak benar')
         .custom(async (email) => {
             const isEmailExist = await Admin.findOne({email})
             if (!isEmailExist) {
-                throw new BadRequestError("email is not found")
+                throw new BadRequestError("Email salah, silahkan coba lagi")
             }
         }),
     body('password')

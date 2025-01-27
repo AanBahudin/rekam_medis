@@ -88,7 +88,7 @@ const AdminLayout = () => {
   const logoutUser = async() => {
     navigate('/');
     await customFetch.get('/auth/logout');
-    handleToast('success', 'Berhasil logout', 'Anda berhasil berhasil logout', 2000)
+    handleToast(1, 'Berhasil logout', 'Anda berhasil berhasil logout', 2000)
   }
 
   return (

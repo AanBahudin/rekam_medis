@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { mainLogo } from '../assets/images'
 import { FormInput } from '../components'
-import { toast } from 'react-toastify'
+import handleErrorMsg from '../utils/handleErrorMessage'
 import { Form, redirect, useNavigation } from 'react-router';
 import customFetch from '../utils/customFetch'
 import { handleToast } from '../utils/handleToast';
@@ -12,10 +12,11 @@ export const action = async({ request }) => {
 
   try {
     await customFetch.post('/auth/login', data);
-    handleToast('success', 'Berhasil Login', 'Selamat datang dihalaman dashboard anda', 2000)
+    handleToast(1, 'Berhasil Login', 'Selamat datang dihalaman dashboard anda', 2000)
     return redirect('/admin')
   } catch (error) {
-    toast.error(error?.response?.data?.msg)
+    const errMsg = handleErrorMsg(error)
+    handleToast(3, 'Terjadi kesalahan', errMsg, 2000)
     return error
   }
 }

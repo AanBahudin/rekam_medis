@@ -2,25 +2,26 @@ import React, { useState } from 'react'
 import customFetch from '../../utils/customFetch'
 import { toast } from 'react-toastify'
 import { InputForm, InputSelect } from '../../components'
+import handleErrormsg from '../../utils/handleErrorMessage'
 import { man } from '../../assets/images'
 import { Form, useNavigation } from 'react-router'
 import { LoaderCircle } from 'lucide-react'
+import { handleToast } from '../../utils/handleToast'
 
 export const action = async({request}) => {
   const formData = await request.formData()
 
   const file = formData.get('photo');
   if (file && file.size > 500000) {
-    toast.error('Gambar yang anda pilih melebihi 5 MB.')
+    handleToast(2, 'Peringatan', 'Gambar yang dipilih tidak boleh lebih dari 5 MB', 2000)
     return null
   }
-
   try {
     await customFetch.post('/dokter', formData)
-    toast.success('Dokter ditambahkan')
+    handleToast(1, 'Berhasil Ditambahkan', 'Dokter ditambahkan, Silahkan cek menu dokter', 2000)
   } catch (error) {
-    console.log(error);
-    return error
+    const errMsg = handleErrormsg(error)
+    return handleToast(3, 'Terjadi Kesalahan', errMsg, 2000)
   }
 }
 

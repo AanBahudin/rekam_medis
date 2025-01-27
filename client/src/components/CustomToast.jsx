@@ -1,5 +1,5 @@
 import React from 'react'
-import { Check, CircleAlert } from 'lucide-react'
+import { Check, CircleAlert, Ban } from 'lucide-react'
 
 const CustomToast = ({type, title, description}) => {
   return (
@@ -12,7 +12,7 @@ const CustomToast = ({type, title, description}) => {
 
         <div className='flex-1'>
             <h1 className='font-semibold text-slate-700'>{title}</h1>
-            <p className='text-slate-500 text-xs'>{description}</p>
+            <p className='text-slate-500 text-xs truncate'>{description}</p>
         </div>
     </div>
   )
