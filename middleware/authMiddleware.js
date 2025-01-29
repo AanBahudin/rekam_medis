@@ -28,9 +28,6 @@ export const authorizedAdminPermission = (req, res, next) => {
 // untuk menghalangi admin/super admin mengakses resource dari dokter
 export const authorizeDokterPermission = (req, res, next) => {
     const { role } = req.user;
-    console.log(req.user);
-    
-
     if (role !== 'Dokter') {
         throw new UnathorizedError('Not Authorized')
     }
