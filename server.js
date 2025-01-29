@@ -13,7 +13,8 @@ import { authenticatedUser, authorizedAdminPermission, authorizeDokterPermission
 
 // import route
 import { authRoute} from './routes/index.js'
-import { adminRoute, dokterRoute, rekamMedisRoute } from './routes/Admin/index.js'
+import { adminRoute, dokterRoute as dokterDataRoute, rekamMedisRoute } from './routes/Admin/index.js'
+import dokterRoute from './routes/Dokter/dokterRoute.js'
 
 
 const app = express();
@@ -34,7 +35,8 @@ app.use('/api/v1/auth', authRoute);
 // admin route
 app.use('/api/v1/admin', authenticatedUser, authorizedAdminPermission, adminRoute);
 app.use('/api/v1/medis', authenticatedUser, authorizedAdminPermission, rekamMedisRoute);
-app.use('/api/v1/dokter', authenticatedUser, authorizeDokterPermission, dokterRoute)
+app.use('/api/v1/dokter/data', authenticatedUser, authorizeDokterPermission, dokterRoute)
+app.use('/api/v1/dokter', authenticatedUser, authorizedAdminPermission, dokterDataRoute);
 
 app.use(errorHandler)
 
