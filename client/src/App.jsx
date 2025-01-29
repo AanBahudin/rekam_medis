@@ -26,7 +26,7 @@ import {
  } from './pages/Admin'
 
 import { AntrianDokter, DashboardDokter, DetailAntrian, DokterLayout, ProfilDokter } from './pages/Dokter'
-import { dashboardDokterLoader } from './pages/Dokter'
+import { dashboardDokterLoader, antrianDokterLoader } from './pages/Dokter'
 import EditDokter from './pages/Admin/EditDokter'
 
 
@@ -140,7 +140,7 @@ const App = () => {
             {
               path: 'antrian',
               element: <AntrianDokter />,
-              // loader: ,
+              loader: antrianDokterLoader,
             },
             {
               path: 'antrian/:id',

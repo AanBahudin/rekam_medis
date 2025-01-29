@@ -1,4 +1,5 @@
 export { default as AntrianDokter } from './AntrianDokter'
+export { loader as antrianDokterLoader } from './AntrianDokter'
 
 
 export { default as DashboardDokter } from './DashboardDokter'
