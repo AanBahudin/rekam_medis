@@ -34,7 +34,7 @@ app.use('/api/v1/auth', authRoute);
 // admin route
 app.use('/api/v1/admin', authenticatedUser, authorizedAdminPermission, adminRoute);
 app.use('/api/v1/medis', authenticatedUser, authorizedAdminPermission, rekamMedisRoute);
-app.use('/api/v1/dokter', authenticatedUser, authorizedAdminPermission, dokterRoute)
+app.use('/api/v1/dokter', authenticatedUser, authorizeDokterPermission, dokterRoute)
 
 app.use(errorHandler)
 

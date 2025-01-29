@@ -11,9 +11,14 @@ export const action = async({ request }) => {
   const data = Object.fromEntries(formData)
 
   try {
-    await customFetch.post('/auth/login', data);
+    const {data : response} = await customFetch.post('/auth/login', data);
     handleToast(1, 'Berhasil Login', 'Selamat datang dihalaman dashboard anda', 2000)
+   const role = response.user.role
+   if (role === 'Dokter') {
+    return redirect('/dokter')
+   }
     return redirect('/admin')
+
   } catch (error) {
     const errMsg = handleErrorMsg(error)
     handleToast(3, 'Terjadi kesalahan', errMsg, 2000)

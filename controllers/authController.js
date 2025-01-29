@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes'
 import { comparePassword, hashPassword } from '../utils/passwordUtils.js'
 import { BadRequestError, NotAuthenticatedError } from '../middleware/ErrorHandlerMiddleware.js';
 import Admin from '../models/AdminModel.js'
+import Dokter from '../models/DokterModel.js'
 import { createToken } from '../utils/jwt.js';
 
 
@@ -20,7 +21,13 @@ export const register = async(req, res) => {
 
 export const login = async(req, res) => {
     
-    const user = await Admin.findOne({email: req.body.email});
+    const {email} = req.body
+    let user;
+    if (email.includes('health')) {
+        user = await Dokter.findOne({email: req.body.email});
+    } else {
+        user = await Admin.findOne({email: req.body.email});
+    }
 
     const isPasswordCorrect = await comparePassword(req.body.password, user.password)
     if (!isPasswordCorrect) {
@@ -41,7 +48,9 @@ export const login = async(req, res) => {
         secure: process.env.NODE_ENV === 'production'
     });
 
-    return res.status(StatusCodes.OK).json({msg: 'Login successfully'})
+    delete user.password
+
+    return res.status(StatusCodes.OK).json({msg: 'Login successfully', user})
 }
 
 export const logout = async(req, res) => {

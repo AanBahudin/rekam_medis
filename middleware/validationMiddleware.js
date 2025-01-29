@@ -1,6 +1,7 @@
 import { body, param, validationResult } from 'express-validator'
 import { BadRequestError, UnathorizedError } from '../middleware/ErrorHandlerMiddleware.js'
-import  RekamMedis from '../models/PasienModel.js'
+import  RekamMedis from '../models/PasienModel.js';
+import Dokter from '../models/DokterModel.js'
 
 import Admin from '../models/AdminModel.js'
 
@@ -30,7 +31,14 @@ export const validateLogin = withValidationErrors([
         .isEmail()
         .withMessage('Email tidak benar')
         .custom(async (email) => {
-            const isEmailExist = await Admin.findOne({email})
+
+            let isEmailExist;
+            if (email.includes('health')) {
+                isEmailExist = await Dokter.findOne({email})
+            } else {
+                isEmailExist = await Admin.findOne({email})
+            }
+
             if (!isEmailExist) {
                 throw new BadRequestError("Email salah, silahkan coba lagi")
             }

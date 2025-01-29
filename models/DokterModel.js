@@ -17,6 +17,10 @@ const DokterSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    role: {
+        type: String,
+        default: 'Dokter'
+    },
     jenisKelamin: {
         type: String,
         default: 'Pria',
