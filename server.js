@@ -6,6 +6,12 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import cloudinary from 'cloudinary'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // import middleware
 import errorHandler from './errors/ErrorHandler.js'
@@ -29,6 +35,8 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 })
 
+app.use(express.static(path.resolve(__dirname, './client/dist')));
+
 // auth route
 app.use('/api/v1/auth', authRoute);
 
@@ -37,6 +45,10 @@ app.use('/api/v1/admin', authenticatedUser, authorizedAdminPermission, adminRout
 app.use('/api/v1/medis', authenticatedUser, authorizedAdminPermission, rekamMedisRoute);
 app.use('/api/v1/dokter/data', authenticatedUser, authorizeDokterPermission, dokterRoute)
 app.use('/api/v1/dokter', authenticatedUser, authorizedAdminPermission, dokterDataRoute);
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public', 'index.html'))
+})
 
 app.use(errorHandler)
 

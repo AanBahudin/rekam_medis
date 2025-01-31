@@ -25,7 +25,8 @@
     "server": "supervisor server.js",
     "client": "cd client && npm run dev",
     "setup-project": "npm i && cd client && npm i",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-client": "cd client && npm run build"
   },
   "author": "",
   "license": "ISC",
