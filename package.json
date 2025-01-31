@@ -23,6 +23,7 @@
   },
   "scripts": {
     "server": "supervisor server.js",
+    "build": "babel server.js -d dist",
     "client": "cd client && npm run dev",
     "setup-project": "npm i && cd client && npm i",
     "test": "echo \"Error: no test specified\" && exit 1",
